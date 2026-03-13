@@ -4,615 +4,776 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>EDC LV 2026 🎡</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cyan:#00eeff;--pink:#ff073a;--acid:#39ff14;--gold:#ffd600;--purple:#9b00ff;
+  --bg:#000;--border:rgba(255,255,255,.08);
+}
+html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
 
-  :root {
-    --cyan:   #00eeff;
-    --pink:   #ff073a;
-    --acid:   #39ff14;
-    --gold:   #ffd600;
-    --purple: #9b00ff;
-  }
+/* ── BG ── */
+#cvBg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+#cvFx{position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:1;}
 
-  html, body {
-    width: 100%; height: 100%;
-    background: #000;
-    color: #fff;
-    font-family: 'Share Tech Mono', monospace;
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
-  }
 
-  /* ── CANVAS LAYERS ── */
-  canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-  }
-  #cvBg  { z-index: 1; }
-  #cvFx  { z-index: 2; }
 
-  /* ── SHELL ── */
-  .shell {
-    position: relative; z-index: 5;
-    width: 100%; height: 100dvh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 20px 16px 28px;
-    gap: 0;
-  }
+/* ── SECTIONS ── */
+.page{position:relative;z-index:2;}
 
-  /* ── TAGLINE ── */
-  .tagline {
-    font-size: clamp(.48rem, 2.4vw, .66rem);
-    letter-spacing: .42em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    opacity: .75;
-    margin-bottom: 2px;
-    animation: fadeUp .8s .1s ease both;
-  }
+/* ══════════════════════════════════
+   COUNTDOWN SECTION
+══════════════════════════════════ */
+.countdown-section{
+  min-height:100dvh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:20px 16px 28px;
+  position:relative;
+  overflow:hidden;
+}
 
-  /* ── LOGO ── */
-  .logo-wrap {
-    text-align: center;
-    animation: fadeUp .8s ease both;
-    margin-bottom: 4px;
-  }
-  .logo-edc {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5.5rem, 26vw, 10rem);
-    line-height: .85;
-    letter-spacing: .06em;
-    background: linear-gradient(170deg, #fff 0%, #fff 35%, var(--cyan) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* glow via filter — works everywhere */
-    filter: drop-shadow(0 0 18px rgba(0,238,255,.9)) drop-shadow(0 0 50px rgba(0,238,255,.4));
-    animation: logoPulse 2.5s ease-in-out infinite alternate;
-  }
-  @keyframes logoPulse {
-    0%   { filter: drop-shadow(0 0 16px rgba(0,238,255,.8)) drop-shadow(0 0 50px rgba(0,238,255,.3)); }
-    100% { filter: drop-shadow(0 0 36px rgba(0,238,255,1))  drop-shadow(0 0 90px rgba(155,0,255,.5)); }
-  }
-  .logo-sub {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1rem, 5vw, 1.9rem);
-    letter-spacing: .48em;
-    background: linear-gradient(90deg, var(--pink), var(--gold), var(--acid));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 10px rgba(255,214,0,.6));
-    margin-top: -2px;
-    display: block;
-  }
+.tagline{
+  font-family:'Share Tech Mono',monospace;
+  font-size:clamp(.48rem,2.4vw,.66rem);
+  letter-spacing:.42em;text-transform:uppercase;
+  color:var(--cyan);opacity:.75;margin-bottom:2px;
+  animation:fadeUp .8s .1s ease both;
+}
+.logo-wrap{text-align:center;animation:fadeUp .8s ease both;margin-bottom:4px;}
+.logo-edc{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5.5rem,26vw,10rem);
+  line-height:.85;letter-spacing:.06em;
+  background:linear-gradient(170deg,#fff 0%,#fff 35%,var(--cyan) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 18px rgba(0,238,255,.9)) drop-shadow(0 0 50px rgba(0,238,255,.4));
+  animation:logoPulse 2.5s ease-in-out infinite alternate;
+  display:block;
+}
+.logo-sub{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1rem,5vw,1.9rem);letter-spacing:.48em;
+  background:linear-gradient(90deg,var(--pink),var(--gold),var(--acid));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 10px rgba(255,214,0,.6));
+  margin-top:-2px;display:block;
+}
+@keyframes logoPulse{
+  0%{filter:drop-shadow(0 0 16px rgba(0,238,255,.8)) drop-shadow(0 0 50px rgba(0,238,255,.3));}
+  100%{filter:drop-shadow(0 0 36px rgba(0,238,255,1)) drop-shadow(0 0 90px rgba(155,0,255,.5));}
+}
 
-  /* ── COUNTDOWN GRID ── */
-  .countdown {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(6px, 2.2vw, 12px);
-    width: 100%; max-width: 430px;
-    margin: 10px 0 8px;
-    animation: fadeUp .8s .3s ease both;
-  }
-  .unit {
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-  }
-  .box {
-    width: 100%; aspect-ratio: 1;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-    border-radius: 10px;
-    background: rgba(0,0,0,.7);
-    /* Solid glowing border — universally supported */
-    border: 1.5px solid rgba(255,255,255,.12);
-    overflow: hidden;
-  }
-  /* Animated gradient overlay inside box for glow feel */
-  .box-glow {
-    position: absolute; inset: 0;
-    border-radius: 9px;
-    opacity: .1;
-    animation: glowPulse 1.8s ease-in-out infinite alternate;
-  }
-  @keyframes glowPulse { 0% { opacity: .05; } 100% { opacity: .18; } }
+.countdown{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(6px,2.2vw,12px);
+  width:100%;max-width:430px;
+  margin:10px 0 8px;
+  animation:fadeUp .8s .3s ease both;
+}
+.unit{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.box{
+  width:100%;aspect-ratio:1;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;border-radius:10px;
+  background:rgba(0,0,0,.7);
+  border:1.5px solid rgba(255,255,255,.12);
+  overflow:hidden;
+}
+.box-glow{position:absolute;inset:0;border-radius:9px;opacity:.1;animation:glowPulse 1.8s ease-in-out infinite alternate;}
+@keyframes glowPulse{0%{opacity:.05;}100%{opacity:.18;}}
+.unit:nth-child(1) .box{border-color:rgba(0,238,255,.45);box-shadow:0 0 18px rgba(0,238,255,.25),inset 0 0 14px rgba(0,238,255,.07);}
+.unit:nth-child(2) .box{border-color:rgba(155,0,255,.45);box-shadow:0 0 18px rgba(155,0,255,.25),inset 0 0 14px rgba(155,0,255,.07);}
+.unit:nth-child(3) .box{border-color:rgba(255,7,58,.45);box-shadow:0 0 18px rgba(255,7,58,.25),inset 0 0 14px rgba(255,7,58,.07);}
+.unit:nth-child(4) .box{border-color:rgba(57,255,20,.45);box-shadow:0 0 18px rgba(57,255,20,.25),inset 0 0 14px rgba(57,255,20,.07);}
+.unit:nth-child(1) .box-glow{background:radial-gradient(circle at 50% 90%,rgba(0,238,255,.8),transparent 70%);}
+.unit:nth-child(2) .box-glow{background:radial-gradient(circle at 50% 90%,rgba(155,0,255,.8),transparent 70%);}
+.unit:nth-child(3) .box-glow{background:radial-gradient(circle at 50% 90%,rgba(255,7,58,.8),transparent 70%);}
+.unit:nth-child(4) .box-glow{background:radial-gradient(circle at 50% 90%,rgba(57,255,20,.8),transparent 70%);}
+.num{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,11vw,3.8rem);line-height:1;letter-spacing:.02em;position:relative;z-index:2;}
+.unit:nth-child(1) .num{color:var(--cyan);text-shadow:0 0 14px var(--cyan),0 0 40px rgba(0,238,255,.5);}
+.unit:nth-child(2) .num{color:var(--purple);text-shadow:0 0 14px var(--purple),0 0 40px rgba(155,0,255,.5);}
+.unit:nth-child(3) .num{color:var(--pink);text-shadow:0 0 14px var(--pink),0 0 40px rgba(255,7,58,.5);}
+.unit:nth-child(4) .num{color:var(--acid);text-shadow:0 0 14px var(--acid),0 0 40px rgba(57,255,20,.5);}
+.num.pop{animation:numPop .28s cubic-bezier(.34,1.8,.64,1);}
+@keyframes numPop{0%{transform:scale(1.35);}100%{transform:scale(1);}}
+.lbl{font-family:'Share Tech Mono',monospace;font-size:clamp(.38rem,1.8vw,.54rem);letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.38);}
 
-  .unit:nth-child(1) .box          { border-color: rgba(0,238,255,.45);   box-shadow: 0 0 18px rgba(0,238,255,.25),   inset 0 0 14px rgba(0,238,255,.07); }
-  .unit:nth-child(2) .box          { border-color: rgba(155,0,255,.45);   box-shadow: 0 0 18px rgba(155,0,255,.25),   inset 0 0 14px rgba(155,0,255,.07); }
-  .unit:nth-child(3) .box          { border-color: rgba(255,7,58,.45);    box-shadow: 0 0 18px rgba(255,7,58,.25),    inset 0 0 14px rgba(255,7,58,.07); }
-  .unit:nth-child(4) .box          { border-color: rgba(57,255,20,.45);   box-shadow: 0 0 18px rgba(57,255,20,.25),   inset 0 0 14px rgba(57,255,20,.07); }
-  .unit:nth-child(1) .box-glow     { background: radial-gradient(circle at 50% 90%, rgba(0,238,255,.8), transparent 70%); }
-  .unit:nth-child(2) .box-glow     { background: radial-gradient(circle at 50% 90%, rgba(155,0,255,.8), transparent 70%); }
-  .unit:nth-child(3) .box-glow     { background: radial-gradient(circle at 50% 90%, rgba(255,7,58,.8), transparent 70%); }
-  .unit:nth-child(4) .box-glow     { background: radial-gradient(circle at 50% 90%, rgba(57,255,20,.8), transparent 70%); }
+.divider{width:100%;max-width:430px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),var(--pink),transparent);opacity:.45;margin:6px 0;animation:fadeUp .8s .4s ease both;}
 
-  .num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 11vw, 3.8rem);
-    line-height: 1;
-    letter-spacing: .02em;
-    position: relative; z-index: 2;
-    transition: transform .1s ease;
-  }
-  .unit:nth-child(1) .num { color: var(--cyan);   text-shadow: 0 0 14px var(--cyan),   0 0 40px rgba(0,238,255,.5); }
-  .unit:nth-child(2) .num { color: var(--purple);  text-shadow: 0 0 14px var(--purple), 0 0 40px rgba(155,0,255,.5); }
-  .unit:nth-child(3) .num { color: var(--pink);    text-shadow: 0 0 14px var(--pink),   0 0 40px rgba(255,7,58,.5); }
-  .unit:nth-child(4) .num { color: var(--acid);    text-shadow: 0 0 14px var(--acid),   0 0 40px rgba(57,255,20,.5); }
+.date-block{text-align:center;margin-bottom:8px;animation:fadeUp .8s .5s ease both;}
+.date-main{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.3rem,6.5vw,2rem);letter-spacing:.18em;color:#fff;text-shadow:0 0 16px rgba(255,255,255,.25);}
+.date-sub{font-size:clamp(.42rem,2vw,.58rem);letter-spacing:.22em;color:rgba(255,255,255,.32);text-transform:uppercase;margin-top:2px;font-family:'Share Tech Mono',monospace;}
 
-  .num.pop { animation: numPop .28s cubic-bezier(.34,1.8,.64,1); }
-  @keyframes numPop { 0% { transform: scale(1.35); } 100% { transform: scale(1); } }
+.prog-wrap{width:100%;max-width:430px;animation:fadeUp .8s .6s ease both;}
+.prog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.prog-label{font-family:'Share Tech Mono',monospace;font-size:clamp(.38rem,1.8vw,.5rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);}
+.prog-pct{font-family:'Bebas Neue',sans-serif;font-size:clamp(.7rem,3.5vw,1rem);letter-spacing:.08em;color:var(--gold);text-shadow:0 0 10px rgba(255,214,0,.55);}
+.prog-track{width:100%;height:5px;background:rgba(255,255,255,.07);border-radius:99px;position:relative;overflow:visible;}
+.prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--purple),var(--cyan),var(--acid),var(--purple));background-size:300% 100%;animation:shimmer 3s linear infinite;transition:width 1s ease;box-shadow:0 0 10px var(--cyan),0 0 24px rgba(0,238,255,.3);position:relative;}
+@keyframes shimmer{0%{background-position:0% 0;}100%{background-position:300% 0;}}
+.prog-fill::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 8px var(--cyan),0 0 18px var(--cyan);}
 
-  .lbl {
-    font-size: clamp(.38rem, 1.8vw, .54rem);
-    letter-spacing: .28em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.38);
-  }
+.vibe{margin-top:9px;text-align:center;animation:fadeUp .8s .7s ease both;}
+.vibe-text{font-family:'Share Tech Mono',monospace;font-size:clamp(.48rem,2.3vw,.64rem);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-shadow:0 0 10px rgba(255,214,0,.45);animation:vibePulse 2s ease-in-out infinite alternate;}
+@keyframes vibePulse{0%{opacity:.65;}100%{opacity:1;}}
 
-  /* ── DIVIDER ── */
-  .divider {
-    width: 100%; max-width: 430px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), var(--pink), transparent);
-    opacity: .45;
-    margin: 6px 0;
-    animation: fadeUp .8s .4s ease both;
-  }
+.eq{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:26px;margin-top:10px;animation:fadeUp .8s .8s ease both;}
+.eq-bar{width:clamp(4px,1.5vw,7px);border-radius:2px 2px 0 0;transform-origin:bottom;animation:eqB var(--d,.4s) ease-in-out infinite alternate;}
+@keyframes eqB{0%{transform:scaleY(.1);}100%{transform:scaleY(1);}}
 
-  /* ── DATE ── */
-  .date-block {
-    text-align: center;
-    margin-bottom: 8px;
-    animation: fadeUp .8s .5s ease both;
-  }
-  .date-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.3rem, 6.5vw, 2rem);
-    letter-spacing: .18em;
-    color: #fff;
-    text-shadow: 0 0 16px rgba(255,255,255,.25);
-  }
-  .date-sub {
-    font-size: clamp(.42rem, 2vw, .58rem);
-    letter-spacing: .22em;
-    color: rgba(255,255,255,.32);
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
+/* SCROLL CTA */
+.scroll-cta{
+  margin-top:18px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  animation:fadeUp .8s 1s ease both;cursor:pointer;
+}
+.scroll-cta-text{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.scroll-arrow{font-size:1.2rem;animation:bounce 1.5s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
 
-  /* ── PROGRESS ── */
-  .prog-wrap {
-    width: 100%; max-width: 430px;
-    animation: fadeUp .8s .6s ease both;
-  }
-  .prog-head {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 5px;
-  }
-  .prog-label {
-    font-size: clamp(.38rem, 1.8vw, .5rem);
-    letter-spacing: .2em; text-transform: uppercase;
-    color: rgba(255,255,255,.28);
-  }
-  .prog-pct {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(.7rem, 3.5vw, 1rem);
-    letter-spacing: .08em;
-    color: var(--gold);
-    text-shadow: 0 0 10px rgba(255,214,0,.55);
-  }
-  .prog-track {
-    width: 100%; height: 5px;
-    background: rgba(255,255,255,.07);
-    border-radius: 99px;
-    position: relative;
-    overflow: visible;
-  }
-  .prog-fill {
-    height: 100%; border-radius: 99px;
-    /* Use background-position animation instead of @property */
-    background: linear-gradient(90deg, var(--purple), var(--cyan), var(--acid), var(--purple));
-    background-size: 300% 100%;
-    animation: shimmer 3s linear infinite;
-    transition: width 1s ease;
-    box-shadow: 0 0 10px var(--cyan), 0 0 24px rgba(0,238,255,.3);
-    position: relative;
-  }
-  @keyframes shimmer { 0% { background-position: 0% 0; } 100% { background-position: 300% 0; } }
-  .prog-fill::after {
-    content: '';
-    position: absolute; right: -5px; top: 50%;
-    transform: translateY(-50%);
-    width: 10px; height: 10px; border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 0 8px var(--cyan), 0 0 18px var(--cyan);
-  }
+/* ══════════════════════════════════
+   LINEUP SECTION
+══════════════════════════════════ */
+.lineup-section{
+  min-height:100dvh;
+  padding:24px 14px 70px;
+  max-width:680px;margin:0 auto;
+}
 
-  /* ── VIBE MSG ── */
-  .vibe {
-    margin-top: 9px; text-align: center;
-    animation: fadeUp .8s .7s ease both;
-  }
-  .vibe-text {
-    font-size: clamp(.48rem, 2.3vw, .64rem);
-    letter-spacing: .14em; text-transform: uppercase;
-    color: var(--gold);
-    text-shadow: 0 0 10px rgba(255,214,0,.45);
-    animation: vibePulse 2s ease-in-out infinite alternate;
-  }
-  @keyframes vibePulse { 0% { opacity: .65; } 100% { opacity: 1; } }
+.lineup-header{
+  text-align:center;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:20px;
+}
+.lineup-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,9vw,3rem);letter-spacing:.1em;background:linear-gradient(170deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 14px rgba(0,238,255,.5));}
+.lineup-sub{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px;}
 
-  /* ── EQ BARS ── */
-  .eq {
-    display: flex; align-items: flex-end; justify-content: center;
-    gap: 3px; height: 26px;
-    margin-top: 10px;
-    animation: fadeUp .8s .8s ease both;
-  }
-  .eq-bar {
-    width: clamp(4px, 1.5vw, 7px);
-    border-radius: 2px 2px 0 0;
-    transform-origin: bottom;
-    animation: eqB var(--d, .4s) ease-in-out infinite alternate;
-  }
-  @keyframes eqB { 0% { transform: scaleY(.1); } 100% { transform: scaleY(1); } }
+.filters{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.filter-row{display:flex;flex-direction:column;gap:4px;}
+.filter-label{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.filter-select{
+  width:100%;padding:10px 14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:8px;
+  color:#fff;font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:600;
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300eeff' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  cursor:pointer;transition:border-color .2s,box-shadow .2s;
+}
+.filter-select:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,238,255,.15);}
+.filter-select option{background:#0d0d1a;color:#fff;}
+.filter-row.active .filter-label{color:var(--cyan);}
+.filter-row.active .filter-select{border-color:rgba(0,238,255,.4);box-shadow:0 0 12px rgba(0,238,255,.1);}
 
-  /* ── FOOTER ── */
-  .footer {
-    position: fixed; bottom: 7px; left: 0; right: 0;
-    text-align: center;
-    font-size: .42rem; letter-spacing: .28em; text-transform: uppercase;
-    color: rgba(255,255,255,.14);
-    z-index: 6;
-  }
+.search-wrap{position:relative;margin-bottom:10px;}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.4;}
+.search-input{
+  width:100%;padding:11px 14px 11px 38px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;
+  color:#fff;font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:600;
+  transition:border-color .2s,box-shadow .2s;
+}
+.search-input::placeholder{color:rgba(255,255,255,.25);}
+.search-input:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 2px rgba(155,0,255,.15);}
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+.clear-btn{
+  width:100%;padding:9px;margin-bottom:14px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;
+  color:rgba(255,255,255,.35);font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+}
+.clear-btn:hover{border-color:var(--pink);color:var(--pink);}
 
-  /* ── IT'S TIME ── */
-  .itstime {
-    display: none; position: fixed; inset: 0; z-index: 20;
-    align-items: center; justify-content: center; flex-direction: column;
-    gap: 14px; text-align: center; padding: 30px;
-    background: rgba(0,0,0,.92);
-  }
-  .itstime.on { display: flex; }
-  .itstime h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 16vw, 6rem);
-    background: linear-gradient(135deg, var(--cyan), var(--pink), var(--gold));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    animation: logoPulse 1s infinite alternate;
-  }
-  .itstime p {
-    font-size: clamp(.55rem, 2.5vw, .75rem);
-    letter-spacing: .25em; color: rgba(255,255,255,.5);
-    text-transform: uppercase;
-  }
+.results-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;}
+.results-count{color:var(--cyan);}
+.results-mode{color:rgba(255,255,255,.3);}
+
+.table-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+.tbl-head{display:grid;grid-template-columns:1fr auto auto;padding:10px 14px;background:rgba(255,255,255,.05);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);gap:8px;}
+.tbl-head span:last-child{text-align:right;}
+
+.artist-row{display:grid;grid-template-columns:1fr auto auto;padding:11px 14px;border-bottom:1px solid var(--border);gap:8px;align-items:center;transition:background .15s;animation:rowIn .3s ease both;}
+.artist-row:last-child{border-bottom:none;}
+.artist-row:active{background:rgba(255,255,255,.04);}
+@keyframes rowIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+
+.art-name{font-weight:700;font-size:clamp(.85rem,3.5vw,1rem);color:#fff;line-height:1.2;}
+.art-sub{font-size:.7rem;color:rgba(255,255,255,.32);margin-top:1px;font-weight:400;}
+.art-genre{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:4px;white-space:nowrap;text-align:center;}
+.art-rating{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.02em;text-align:right;min-width:36px;}
+
+.g-house{background:rgba(0,238,255,.1);color:var(--cyan);}
+.g-techno{background:rgba(155,0,255,.12);color:var(--purple);}
+.g-bass{background:rgba(255,7,58,.1);color:var(--pink);}
+.g-trance{background:rgba(255,214,0,.1);color:var(--gold);}
+.g-hardance{background:rgba(255,100,0,.1);color:#ff6400;}
+.g-dnb{background:rgba(57,255,20,.1);color:var(--acid);}
+.g-mainstage{background:rgba(255,255,255,.08);color:#fff;}
+.g-other{background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);}
+
+.r5{color:var(--gold);text-shadow:0 0 10px rgba(255,214,0,.6);}
+.r49{color:var(--cyan);text-shadow:0 0 10px rgba(0,238,255,.5);}
+.r48{color:var(--acid);text-shadow:0 0 8px rgba(57,255,20,.4);}
+.r47{color:var(--purple);text-shadow:0 0 8px rgba(155,0,255,.4);}
+.r46{color:#fff;}
+.rlow{color:rgba(255,255,255,.4);}
+
+.empty{text-align:center;padding:50px 20px;font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);}
+
+/* FOOTER */
+.page-footer{position:fixed;bottom:0;left:0;right:0;text-align:center;padding:8px;font-family:'Share Tech Mono',monospace;font-size:.4rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.12);background:linear-gradient(to top,rgba(0,0,0,.9),transparent);z-index:10;}
+
+/* SECTION DIVIDER */
+.section-divider{width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),var(--pink),transparent);opacity:.3;position:relative;z-index:2;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── MUSIC PLAYER ── */
+.music-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;gap:10px;
+  padding:10px 16px;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.music-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(0,238,255,.1);border:1.5px solid rgba(0,238,255,.4);
+  color:var(--cyan);font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;transition:all .2s;
+}
+.music-btn:hover{background:rgba(0,238,255,.2);}
+.music-info{flex:1;overflow:hidden;}
+.music-track{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.music-artist{font-family:'Share Tech Mono',monospace;font-size:.45rem;letter-spacing:.12em;color:rgba(255,255,255,.3);margin-top:2px;text-transform:uppercase;}
+.music-vol{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.vol-icon{font-size:.75rem;opacity:.5;}
+.vol-slider{width:60px;height:3px;accent-color:var(--cyan);cursor:pointer;}
+.music-eq{display:flex;align-items:flex-end;gap:2px;height:16px;flex-shrink:0;}
+.meq-bar{width:3px;border-radius:1px;background:var(--cyan);transform-origin:bottom;animation:meqB var(--md,.3s) ease-in-out infinite alternate;}
+@keyframes meqB{0%{transform:scaleY(.15);}100%{transform:scaleY(1);}}
+.music-eq.paused .meq-bar{animation-play-state:paused;}
 </style>
 </head>
 <body>
 
 <canvas id="cvBg"></canvas>
-<canvas id="cvFx"></canvas>
 
-<div class="shell">
-  <div class="tagline">✦ Under The Electric Sky ✦</div>
+<div class="page">
 
-  <div class="logo-wrap">
-    <span class="logo-edc">EDC</span>
-    <span class="logo-sub">Las Vegas · 2026</span>
+  <!-- ══ COUNTDOWN ══ -->
+  <div class="countdown-section" id="top">
+    <canvas id="cvFx"></canvas>
+    <!-- Corner decorations -->
+    <!-- Top-left firework burst -->
+    <svg class="corner-deco corner-tl" width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Burst center at ~50,50 -->
+      <!-- Long rays -->
+      <line x1="50" y1="50" x2="10" y2="10" stroke="#00eeff" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+      <line x1="50" y1="50" x2="50" y2="0" stroke="#39ff14" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+      <line x1="50" y1="50" x2="0" y2="50" stroke="#ff073a" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+      <line x1="50" y1="50" x2="110" y2="10" stroke="#ffd600" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <line x1="50" y1="50" x2="10" y2="110" stroke="#9b00ff" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <line x1="50" y1="50" x2="130" y2="50" stroke="#00eeff" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <line x1="50" y1="50" x2="50" y2="130" stroke="#39ff14" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <!-- Medium rays -->
+      <line x1="50" y1="50" x2="20" y2="0" stroke="#ff073a" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+      <line x1="50" y1="50" x2="0" y2="20" stroke="#ffd600" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+      <line x1="50" y1="50" x2="90" y2="0" stroke="#9b00ff" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <line x1="50" y1="50" x2="0" y2="90" stroke="#00eeff" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <line x1="50" y1="50" x2="140" y2="80" stroke="#39ff14" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+      <line x1="50" y1="50" x2="80" y2="140" stroke="#ff073a" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+      <!-- Sparkle dots at ray tips -->
+      <circle cx="10" cy="10" r="3" fill="#00eeff" opacity="0.9"/>
+      <circle cx="50" cy="0" r="2.5" fill="#39ff14" opacity="0.85"/>
+      <circle cx="0" cy="50" r="2.5" fill="#ff073a" opacity="0.85"/>
+      <circle cx="110" cy="10" r="2" fill="#ffd600" opacity="0.8"/>
+      <circle cx="10" cy="110" r="2" fill="#9b00ff" opacity="0.8"/>
+      <circle cx="130" cy="50" r="2" fill="#00eeff" opacity="0.65"/>
+      <circle cx="50" cy="130" r="2" fill="#39ff14" opacity="0.65"/>
+      <circle cx="20" cy="0" r="1.5" fill="#ff073a" opacity="0.6"/>
+      <circle cx="0" cy="20" r="1.5" fill="#ffd600" opacity="0.6"/>
+      <!-- Center glow -->
+      <circle cx="50" cy="50" r="5" fill="#fff" opacity="0.9"/>
+      <circle cx="50" cy="50" r="10" fill="#00eeff" opacity="0.2"/>
+    </svg>
+    <!-- Top-right firework burst (mirrored) -->
+    <svg class="corner-deco corner-tr" width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="130" y1="50" x2="170" y2="10" stroke="#ff073a" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+      <line x1="130" y1="50" x2="130" y2="0" stroke="#ffd600" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+      <line x1="130" y1="50" x2="180" y2="50" stroke="#9b00ff" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+      <line x1="130" y1="50" x2="70" y2="10" stroke="#00eeff" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <line x1="130" y1="50" x2="170" y2="110" stroke="#39ff14" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <line x1="130" y1="50" x2="0" y2="50" stroke="#ff073a" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
+      <line x1="130" y1="50" x2="130" y2="130" stroke="#ffd600" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
+      <line x1="130" y1="50" x2="160" y2="0" stroke="#9b00ff" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+      <line x1="130" y1="50" x2="180" y2="20" stroke="#00eeff" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+      <line x1="130" y1="50" x2="90" y2="0" stroke="#39ff14" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <line x1="130" y1="50" x2="180" y2="90" stroke="#ff073a" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <line x1="130" y1="50" x2="50" y2="80" stroke="#ffd600" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+      <line x1="130" y1="50" x2="100" y2="140" stroke="#9b00ff" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+      <!-- Sparkle dots -->
+      <circle cx="170" cy="10" r="3" fill="#ff073a" opacity="0.9"/>
+      <circle cx="130" cy="0" r="2.5" fill="#ffd600" opacity="0.85"/>
+      <circle cx="180" cy="50" r="2.5" fill="#9b00ff" opacity="0.85"/>
+      <circle cx="70" cy="10" r="2" fill="#00eeff" opacity="0.8"/>
+      <circle cx="170" cy="110" r="2" fill="#39ff14" opacity="0.8"/>
+      <circle cx="0" cy="50" r="2" fill="#ff073a" opacity="0.6"/>
+      <circle cx="130" cy="130" r="2" fill="#ffd600" opacity="0.6"/>
+      <circle cx="160" cy="0" r="1.5" fill="#9b00ff" opacity="0.6"/>
+      <circle cx="180" cy="20" r="1.5" fill="#00eeff" opacity="0.6"/>
+      <!-- Center glow -->
+      <circle cx="130" cy="50" r="5" fill="#fff" opacity="0.9"/>
+      <circle cx="130" cy="50" r="10" fill="#ff073a" opacity="0.2"/>
+    </svg>
+    <div class="tagline">✦ Under The Electric Sky ✦</div>
+    <div class="logo-wrap">
+      <span class="logo-edc">EDC</span>
+      <span class="logo-sub">Las Vegas · 2026</span>
+    </div>
+    <div class="countdown">
+      <div class="unit"><div class="box"><div class="box-glow"></div><span class="num" id="nd">--</span></div><span class="lbl">Days</span></div>
+      <div class="unit"><div class="box"><div class="box-glow"></div><span class="num" id="nh">--</span></div><span class="lbl">Hours</span></div>
+      <div class="unit"><div class="box"><div class="box-glow"></div><span class="num" id="nm">--</span></div><span class="lbl">Mins</span></div>
+      <div class="unit"><div class="box"><div class="box-glow"></div><span class="num" id="ns">--</span></div><span class="lbl">Secs</span></div>
+    </div>
+    <div class="divider"></div>
+    <div class="date-block">
+      <div class="date-main">May 15 – 17 · 2026</div>
+      <div class="date-sub">Las Vegas Motor Speedway · Nevada</div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-head">
+        <span class="prog-label">Hype Progress</span>
+        <span class="prog-pct" id="pctTxt">0%</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div class="vibe"><span class="vibe-text" id="vibeTxt">Loading vibes...</span></div>
+    <div class="eq" id="eqEl"></div>
+    <div class="scroll-cta" onclick="document.getElementById('lineup').scrollIntoView({behavior:'smooth'})">
+      <span class="scroll-cta-text">View Full Lineup</span>
+      <span class="scroll-arrow">⬇️</span>
+    </div>
   </div>
 
-  <div class="countdown">
-    <div class="unit">
-      <div class="box"><div class="box-glow"></div><span class="num" id="nd">--</span></div>
-      <span class="lbl">Days</span>
+  <div class="section-divider"></div>
+
+  <!-- ══ LINEUP ══ -->
+  <div class="lineup-section" id="lineup">
+    <div class="lineup-header">
+      <div class="lineup-title">Full Lineup</div>
+      <div class="lineup-sub" id="totalCount"></div>
     </div>
-    <div class="unit">
-      <div class="box"><div class="box-glow"></div><span class="num" id="nh">--</span></div>
-      <span class="lbl">Hours</span>
+
+    <div class="filters">
+      <div class="filter-row" id="fr-genre">
+        <span class="filter-label">Filter by Genre</span>
+        <select class="filter-select" id="sel-genre"><option value="">— All Genres —</option></select>
+      </div>
+      <div class="filter-row" id="fr-subgenre">
+        <span class="filter-label">Filter by Subgenre</span>
+        <select class="filter-select" id="sel-subgenre"><option value="">— All Subgenres —</option></select>
+      </div>
+      <div class="filter-row" id="fr-top10">
+        <span class="filter-label">Top 10 by Genre</span>
+        <select class="filter-select" id="sel-top10"><option value="">— Pick a Genre —</option></select>
+      </div>
+      <div class="filter-row" id="fr-top5">
+        <span class="filter-label">Top 5 by Subgenre</span>
+        <select class="filter-select" id="sel-top5"><option value="">— Pick a Subgenre —</option></select>
+      </div>
+      <div class="filter-row" id="fr-sort">
+        <span class="filter-label">Browse All Artists</span>
+        <select class="filter-select" id="sel-sort">
+          <option value="">— Select View —</option>
+          <option value="alpha">All Artists (A–Z)</option>
+          <option value="rating">All Artists (by Rating)</option>
+        </select>
+      </div>
+      <div class="filter-row" id="fr-wish">
+        <span class="filter-label">My Wish List</span>
+        <select class="filter-select" id="sel-wish">
+          <option value="">— Select List —</option>
+          <option value="beast">🔥 Ultimate EDC 2026 Beast List</option>
+          <option value="top20">⭐ Top 20 by Rating</option>
+        </select>
+      </div>
     </div>
-    <div class="unit">
-      <div class="box"><div class="box-glow"></div><span class="num" id="nm">--</span></div>
-      <span class="lbl">Mins</span>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" id="searchBox" type="text" placeholder="Search artist name...">
     </div>
-    <div class="unit">
-      <div class="box"><div class="box-glow"></div><span class="num" id="ns">--</span></div>
-      <span class="lbl">Secs</span>
+    <button class="clear-btn" id="clearBtn">✕ Clear All Filters</button>
+
+    <div class="results-header">
+      <span class="results-count" id="resCount">— artists</span>
+      <span class="results-mode" id="resMode">All</span>
+    </div>
+
+    <div class="table-wrap">
+      <div class="tbl-head"><span>Artist</span><span>Genre</span><span>Rating</span></div>
+      <div id="artistList"></div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <div class="date-block">
-    <div class="date-main">May 15 – 17 · 2026</div>
-    <div class="date-sub">Las Vegas Motor Speedway · Nevada</div>
-  </div>
-
-  <div class="prog-wrap">
-    <div class="prog-head">
-      <span class="prog-label">Hype Progress</span>
-      <span class="prog-pct" id="pctTxt">0%</span>
-    </div>
-    <div class="prog-track">
-      <div class="prog-fill" id="progFill" style="width:0%"></div>
-    </div>
-  </div>
-
-  <div class="vibe"><span class="vibe-text" id="vibeTxt">Loading vibes...</span></div>
-
-  <div class="eq" id="eqEl"></div>
 </div>
 
-<div class="footer">#EDCLV2026 · 30th Anniversary · Kinetic Journey</div>
-
-<div class="itstime" id="itstime">
-  <h1>IT'S TIME 🎡</h1>
-  <p>Under The Electric Sky</p>
+<!-- Music Player -->
+<div class="music-bar" id="musicBar">
+  <button class="music-btn" id="playBtn" title="Play/Pause">▶</button>
+  <div class="music-info">
+    <div class="music-track" id="trackName">Loading track...</div>
+    <div class="music-artist">EDC LV 2026 · Vibes Mix</div>
+  </div>
+  <div class="music-eq paused" id="musicEq">
+    <div class="meq-bar" style="height:60%;--md:.25s"></div>
+    <div class="meq-bar" style="height:80%;--md:.35s"></div>
+    <div class="meq-bar" style="height:50%;--md:.28s"></div>
+    <div class="meq-bar" style="height:90%;--md:.32s"></div>
+    <div class="meq-bar" style="height:65%;--md:.22s"></div>
+  </div>
+  <div class="music-vol">
+    <span class="vol-icon">🔊</span>
+    <input class="vol-slider" id="volSlider" type="range" min="0" max="100" value="60">
+  </div>
 </div>
 
 <script>
-// ── CANVAS SETUP ──────────────────────────────────────
-const cvBg = document.getElementById('cvBg');
-const ctBg = cvBg.getContext('2d');
-const cvFx = document.getElementById('cvFx');
-const ctFx = cvFx.getContext('2d');
-let W = 0, H = 0;
-
-function resize() {
-  W = window.innerWidth; H = window.innerHeight;
-  cvBg.width = cvFx.width = W;
-  cvBg.height = cvFx.height = H;
+/* ── CANVAS ── */
+const cvBg=document.getElementById('cvBg'),ctBg=cvBg.getContext('2d');
+const cvFx=document.getElementById('cvFx'),ctFx=cvFx.getContext('2d');
+let W,H,FxH,kick=0;
+function resize(){
+  W=window.innerWidth;H=window.innerHeight;
+  cvBg.width=W;cvBg.height=H;
+  // cvFx only covers the countdown section
+  const cs=document.getElementById('top');
+  FxH=cs.offsetHeight;
+  cvFx.width=W;cvFx.height=FxH;
 }
-window.addEventListener('resize', resize);
+window.addEventListener('resize',resize);
+// Wait for layout before sizing
+window.addEventListener('load',resize);
+setTimeout(resize,100);
 resize();
 
-// ── BACKGROUND + ORBS ────────────────────────────────
-let kickFlash = 0;
-function drawBg(t) {
-  ctBg.clearRect(0, 0, W, H);
-
-  // Deep radial base
-  const gBase = ctBg.createRadialGradient(W * .5, H, 0, W * .5, H, H * 1.3);
-  gBase.addColorStop(0,   'rgba(70,0,110,.4)');
-  gBase.addColorStop(.5,  'rgba(0,15,50,.55)');
-  gBase.addColorStop(1,   '#000');
-  ctBg.fillStyle = gBase;
-  ctBg.fillRect(0, 0, W, H);
-
-  // Pulsing color orbs
-  const orbs = [
-    { cx: .18, cy: .72, rx: .48, c: [0, 238, 255], p: 1.2 },
-    { cx: .82, cy: .68, rx: .44, c: [155, 0, 255],  p: 1.7 },
-    { cx: .5,  cy: .9,  rx: .55, c: [255, 7, 58],   p: .85 },
-  ];
-  orbs.forEach(o => {
-    const a = (Math.sin(t * o.p) * .5 + .5) * .12 + .04;
-    const gr = ctBg.createRadialGradient(W * o.cx, H * o.cy, 0, W * o.cx, H * o.cy, W * o.rx);
-    gr.addColorStop(0, `rgba(${o.c[0]},${o.c[1]},${o.c[2]},${a.toFixed(3)})`);
-    gr.addColorStop(1, 'rgba(0,0,0,0)');
-    ctBg.fillStyle = gr;
-    ctBg.fillRect(0, 0, W, H);
+function drawBg(t){
+  ctBg.clearRect(0,0,W,H);
+  const g=ctBg.createRadialGradient(W*.5,H,0,W*.5,H,H*1.3);
+  g.addColorStop(0,'rgba(70,0,110,.4)');g.addColorStop(.5,'rgba(0,15,50,.55)');g.addColorStop(1,'#000');
+  ctBg.fillStyle=g;ctBg.fillRect(0,0,W,H);
+  [{cx:.18,cy:.72,rx:.48,c:[0,238,255],p:1.2},{cx:.82,cy:.68,rx:.44,c:[155,0,255],p:1.7},{cx:.5,cy:.9,rx:.55,c:[255,7,58],p:.85}].forEach(o=>{
+    const a=(Math.sin(t*o.p)*.5+.5)*.12+.04;
+    const gr=ctBg.createRadialGradient(W*o.cx,H*o.cy,0,W*o.cx,H*o.cy,W*o.rx);
+    gr.addColorStop(0,`rgba(${o.c[0]},${o.c[1]},${o.c[2]},${a.toFixed(3)})`);gr.addColorStop(1,'rgba(0,0,0,0)');
+    ctBg.fillStyle=gr;ctBg.fillRect(0,0,W,H);
   });
-
-  // Kick flash
-  if (kickFlash > 0) {
-    ctBg.fillStyle = `rgba(255,255,255,${(kickFlash * .06).toFixed(3)})`;
-    ctBg.fillRect(0, 0, W, H);
-    kickFlash = Math.max(0, kickFlash - .05);
-  }
+  if(kick>0){ctBg.fillStyle=`rgba(255,255,255,${(kick*.06).toFixed(3)})`;ctBg.fillRect(0,0,W,H);kick=Math.max(0,kick-.05);}
 }
 
-// ── LASERS ───────────────────────────────────────────
-const LASER_COLORS = ['#00eeff','#ff073a','#9b00ff','#39ff14','#ffd600'];
-const lasers = [];
-
-function spawnLaser() {
-  const fromLeft = Math.random() < .5;
-  lasers.push({
-    x: fromLeft ? 0 : W,
-    y: H * (.5 + Math.random() * .5),
-    angle: fromLeft
-      ? -Math.PI / 8 + Math.random() * (Math.PI / 4)
-      : Math.PI - Math.PI / 8 + Math.random() * (Math.PI / 4),
-    len:   W * (.3 + Math.random() * .55),
-    color: LASER_COLORS[Math.floor(Math.random() * LASER_COLORS.length)],
-    life:  1,
-    decay: .014 + Math.random() * .012,
-  });
-}
-setInterval(spawnLaser, 550);
-
-function drawLasers() {
-  for (let i = lasers.length - 1; i >= 0; i--) {
-    const l = lasers[i];
-    l.life -= l.decay;
-    if (l.life <= 0) { lasers.splice(i, 1); continue; }
-    const ex = l.x + Math.cos(l.angle) * l.len;
-    const ey = l.y + Math.sin(l.angle) * l.len;
-
-    ctFx.save();
-    ctFx.globalAlpha = l.life * .55;
-    ctFx.shadowBlur  = 20;
-    ctFx.shadowColor = l.color;
-    ctFx.strokeStyle = l.color;
-    ctFx.lineWidth   = 1.5;
-    ctFx.beginPath(); ctFx.moveTo(l.x, l.y); ctFx.lineTo(ex, ey); ctFx.stroke();
-    ctFx.globalAlpha = l.life * .1;
-    ctFx.lineWidth   = 10;
-    ctFx.stroke();
-    ctFx.restore();
-  }
+const LC=['#00eeff','#ff073a','#9b00ff','#39ff14','#ffd600'];
+const lasers=[];
+function spawnL(){const r=Math.random()<.5;const fh=FxH||H;lasers.push({x:r?0:W,y:fh*(.35+Math.random()*.55),angle:r?(-Math.PI/8+Math.random()*(Math.PI/4)):(Math.PI-Math.PI/8+Math.random()*(Math.PI/4)),len:W*(.3+Math.random()*.55),color:LC[Math.floor(Math.random()*LC.length)],life:1,decay:.014+Math.random()*.012});}
+setInterval(spawnL,550);
+function drawLasers(){
+  for(let i=lasers.length-1;i>=0;i--){const l=lasers[i];l.life-=l.decay;if(l.life<=0){lasers.splice(i,1);continue;}
+    const ex=l.x+Math.cos(l.angle)*l.len,ey=l.y+Math.sin(l.angle)*l.len;
+    ctFx.save();ctFx.globalAlpha=l.life*.55;ctFx.shadowBlur=20;ctFx.shadowColor=l.color;ctFx.strokeStyle=l.color;ctFx.lineWidth=1.5;ctFx.beginPath();ctFx.moveTo(l.x,l.y);ctFx.lineTo(ex,ey);ctFx.stroke();ctFx.globalAlpha=l.life*.1;ctFx.lineWidth=10;ctFx.stroke();ctFx.restore();}
 }
 
-// ── PARTICLES ────────────────────────────────────────
-const PART_COLS = ['#00eeff','#ff073a','#9b00ff','#39ff14','#ffd600','#ffffff'];
-const parts = [];
+const PC=['#00eeff','#ff073a','#9b00ff','#39ff14','#ffd600','#fff'];
+const parts=[];
+function spawnP(x,y,burst){const n=burst?22:1;for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,sp=burst?(1.5+Math.random()*5):(.3+Math.random()*.9);parts.push({x:x!=null?x:Math.random()*W,y:y!=null?y:H+4,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-(burst?0:(.6+Math.random()*1.4)),life:1,decay:.009+Math.random()*.018,r:burst?(2+Math.random()*4):(1+Math.random()*2),color:PC[Math.floor(Math.random()*PC.length)],grav:burst?.07:-.005});}}
+setInterval(()=>{const fh=FxH||H;spawnP(Math.random()*W,fh+4,false);},110);
+// No click/touch particles - ambient only
 
-function spawnParticles(x, y, burst) {
-  const n = burst ? 22 : 1;
-  for (let i = 0; i < n; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const speed = burst ? (1.5 + Math.random() * 5) : (.3 + Math.random() * .9);
-    parts.push({
-      x: x != null ? x : Math.random() * W,
-      y: y != null ? y : H + 4,
-      vx:    Math.cos(angle) * speed,
-      vy:    Math.sin(angle) * speed - (burst ? 0 : (.6 + Math.random() * 1.4)),
-      life:  1,
-      decay: .009 + Math.random() * .018,
-      r:     burst ? (2 + Math.random() * 4) : (1 + Math.random() * 2),
-      color: PART_COLS[Math.floor(Math.random() * PART_COLS.length)],
-      grav:  burst ? .07 : -.005,
-    });
-  }
-}
 
-// Ambient drift-up particles
-setInterval(() => spawnParticles(null, null, false), 110);
-
-// Touch/click burst
-function onTap(px, py) {
-  spawnParticles(px, py, true);
-  kickFlash = 1;
-}
-document.addEventListener('click',      e => onTap(e.clientX, e.clientY));
-document.addEventListener('touchstart', e => {
-  const t = e.changedTouches[0];
-  onTap(t.clientX, t.clientY);
-}, { passive: true });
-
-function drawParticles() {
-  for (let i = parts.length - 1; i >= 0; i--) {
-    const p = parts[i];
-    p.x  += p.vx;
-    p.y  += p.vy;
-    p.vy += p.grav;
-    p.life -= p.decay;
-    if (p.life <= 0 || p.y > H + 20) { parts.splice(i, 1); continue; }
-
-    ctFx.save();
-    ctFx.globalAlpha = p.life;
-    ctFx.shadowBlur  = 8;
-    ctFx.shadowColor = p.color;
-    ctFx.fillStyle   = p.color;
-    ctFx.beginPath();
-    ctFx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctFx.fill();
-    ctFx.restore();
-  }
-}
-
-// ── MAIN RENDER LOOP ─────────────────────────────────
-let startTs = null;
-function loop(ts) {
-  if (!startTs) startTs = ts;
-  const t = (ts - startTs) / 1000;
-
+let st=null;
+function drawParts(){const fh=FxH||H;for(let i=parts.length-1;i>=0;i--){const p=parts[i];p.x+=p.vx;p.y+=p.vy;p.vy+=p.grav;p.life-=p.decay;if(p.life<=0||p.y>fh+20||p.y<-20){parts.splice(i,1);continue;}ctFx.save();ctFx.globalAlpha=p.life;ctFx.shadowBlur=8;ctFx.shadowColor=p.color;ctFx.fillStyle=p.color;ctFx.beginPath();ctFx.arc(p.x,p.y,p.r,0,Math.PI*2);ctFx.fill();ctFx.restore();}}
+function loop(ts){
+  if(!st)st=ts;const t=(ts-st)/1000;
   drawBg(t);
-
-  ctFx.clearRect(0, 0, W, H);
+  ctFx.clearRect(0,0,W,FxH||H);
   drawLasers();
-  drawParticles();
-
+  drawParts();
+  // Draw fireworks on top
+  for(let i=fwBursts.length-1;i>=0;i--){
+    fwBursts[i].update();
+    fwBursts[i].draw(ctFx);
+    if(fwBursts[i].done) fwBursts.splice(i,1);
+  }
   requestAnimationFrame(loop);
 }
 requestAnimationFrame(loop);
 
-// ── EQ BARS ──────────────────────────────────────────
-const eqEl = document.getElementById('eqEl');
-const EQ_COLORS = ['var(--cyan)','var(--purple)','var(--pink)','var(--acid)','var(--gold)'];
-for (let i = 0; i < 20; i++) {
-  const b = document.createElement('div');
-  b.className = 'eq-bar';
-  const col = EQ_COLORS[i % EQ_COLORS.length];
-  b.style.cssText = [
-    `height:${18 + Math.random() * 82}%`,
-    `--d:${(.22 + Math.random() * .48).toFixed(2)}s`,
-    `background:${col}`,
-    `box-shadow:0 0 6px ${col}`,
-    `animation-delay:${(Math.random() * .4).toFixed(2)}s`,
-  ].join(';');
-  eqEl.appendChild(b);
+/* ── EQ BARS ── */
+const eqEl=document.getElementById('eqEl');
+const EC=['var(--cyan)','var(--purple)','var(--pink)','var(--acid)','var(--gold)'];
+for(let i=0;i<20;i++){const b=document.createElement('div');b.className='eq-bar';const col=EC[i%EC.length];b.style.cssText=`height:${18+Math.random()*82}%;--d:${(.22+Math.random()*.48).toFixed(2)}s;background:${col};box-shadow:0 0 6px ${col};animation-delay:${(Math.random()*.4).toFixed(2)}s;`;eqEl.appendChild(b);}
+
+/* ── COUNTDOWN ── */
+const EDC=new Date('2026-05-15T20:00:00'),FROM=new Date('2026-01-01T00:00:00');
+const eD=document.getElementById('nd'),eH=document.getElementById('nh'),eM=document.getElementById('nm'),eS=document.getElementById('ns');
+const progFill=document.getElementById('progFill'),pctTxt=document.getElementById('pctTxt'),vibeTxt=document.getElementById('vibeTxt');
+let pD=-1,pH=-1,pM=-1,pS=-1;
+function pad2(n){return String(Math.floor(n)).padStart(2,'0');}
+function pop(el){el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}
+const VIBES=[{d:200,msg:'🎡 Mark your calendar, Headliner!'},{d:100,msg:'🚀 Under 100 days — start planning your fits!'},{d:60,msg:'🎵 60 days — build those playlists!'},{d:30,msg:'💊 One month out — hydrate & prepare!'},{d:14,msg:'✈️ Two weeks — book those hotels NOW!'},{d:7,msg:'🔥 ONE WEEK — can you feel the bass?!'},{d:3,msg:'⚡ 3 DAYS — almost Under the Electric Sky!'},{d:1,msg:"🌅 TOMORROW — it's almost time, Headliner!"},{d:0,msg:'🎡 TODAY IS EDC — GO GO GO!!!'}];
+function getVibe(d){for(const v of VIBES)if(d<=v.d)return v.msg;return`🎶 ${d} days until the Electric Sky opens!`;}
+function tick(){
+  const now=new Date(),diff=EDC-now;
+  if(diff<=0)return;
+  const p=Math.min(Math.max((now-FROM)/(EDC-FROM)*100,0),100);
+  progFill.style.width=p.toFixed(2)+'%';pctTxt.textContent=p.toFixed(1)+'%';
+  const days=Math.floor(diff/864e5),hrs=Math.floor(diff%864e5/36e5),mins=Math.floor(diff%36e5/6e4),secs=Math.floor(diff%6e4/1e3);
+  if(days!==pD){eD.textContent=days;pop(eD);pD=days;}
+  if(hrs!==pH){eH.textContent=pad2(hrs);pop(eH);pH=hrs;}
+  if(mins!==pM){eM.textContent=pad2(mins);pop(eM);pM=mins;}
+  if(secs!==pS){eS.textContent=pad2(secs);pop(eS);pS=secs;kick=.4;}
+  vibeTxt.textContent=getVibe(days);
 }
+tick();setInterval(tick,1000);
 
-// ── COUNTDOWN ────────────────────────────────────────
-const EDC_DATE  = new Date('2026-05-15T18:00:00');
-const HYPE_FROM = new Date('2026-01-01T00:00:00');
-
-const elD = document.getElementById('nd');
-const elH = document.getElementById('nh');
-const elM = document.getElementById('nm');
-const elS = document.getElementById('ns');
-const progFill = document.getElementById('progFill');
-const pctTxt   = document.getElementById('pctTxt');
-const vibeTxt  = document.getElementById('vibeTxt');
-
-let prevD = -1, prevH = -1, prevM = -1, prevS = -1;
-
-function pad2(n) { return String(Math.floor(n)).padStart(2, '0'); }
-
-function pop(el) {
-  el.classList.remove('pop');
-  void el.offsetWidth;   // force reflow
-  el.classList.add('pop');
-}
-
-const VIBES = [
-  { d: 200, msg: '🎡 Mark your calendar, Headliner!' },
-  { d: 100, msg: '🚀 Under 100 days — start planning your fits!' },
-  { d: 60,  msg: '🎵 60 days — build those playlists!' },
-  { d: 30,  msg: '💊 One month out — hydrate & prepare!' },
-  { d: 14,  msg: '✈️ Two weeks — book those hotels NOW!' },
-  { d: 7,   msg: '🔥 ONE WEEK — can you feel the bass?!' },
-  { d: 3,   msg: '⚡ 3 DAYS — almost Under the Electric Sky!' },
-  { d: 1,   msg: "🌅 TOMORROW — it's almost time, Headliner!" },
-  { d: 0,   msg: '🎡 TODAY IS EDC — GO GO GO!!!' },
+/* ── LINEUP DATA ── */
+const ARTISTS=[
+  ["999999999","Techno","Progressive Techno",4.7],["KI/KI","Techno","Acid Techno",4.6],["Ahmed Spins","House","Afro House",4.2],["MËSTIZA","House","Afro House",4.2],["Chris Lorenzo","House","Bass House",4.6],["Ship Wrek","House","Bass House",4.3],["Wax Motif","House","Bass House",4.6],["MPH","UK Garage","Bassline",4.4],["Notion","UK Garage","Bassline",4.2],["Sammy Virji","UK Garage","Bassline",4.8],["Hardwell","Mainstage","Big Room",4.9],["Martin Garrix","Mainstage","Big Room",5],["Maddix","Hard Dance","Big Room Techno",4.6],["Frankie Bones","Techno","Classic Techno",4.1],["Darude","Trance","Classic Trance",4.5],["Paul Oakenfold","Trance","Classic Trance",4.5],["Paul van Dyk","Trance","Classic Trance",4.7],["Sofi Tukker","House","Dance House",4.6],["BUNT.","House","Dance Pop",4.2],["Culture Shock","Drum & Bass","Dancefloor",4.5],["Sub Focus","Drum & Bass","Dancefloor",4.8],["1991","Drum & Bass","Dancefloor DnB",4.3],["Abana B2B Juliet Mendoza","House","Deep House",3.8],["DJ Tennis B2B Chloé Caillet","House","Deep House",4.4],["Heidi Lawden B2B Masha Mar","House","Deep House",3.7],["Lu.Re","House","Deep House",3.6],["Mary Droppinz","House","Deep House",4.1],["MEDUZA","House","Deep House",4.7],["Peggy Gou","House","Deep House",4.8],["Serafina","House","Deep House",3.6],["Silvie Loto","House","Deep House",3.8],["Solomun","House","Deep House",4.8],["Warung","House","Deep House",3.7],["The Carry Nation","House","Disco House",3.8],["ÆON:MODE","Bass","Dubstep",4.1],["ATLiens","Bass","Dubstep",4.6],["Boogie T B2B Distinct Motive","Bass","Dubstep",4.2],["Cyclops","Bass","Dubstep",4],["Doctor P B2B Flux Pavilion B2B FuntCase","Bass","Dubstep",4.8],["DØMINA","Bass","Dubstep",3.7],["DREYA V","Bass","Dubstep",3.7],["Eptic B2B Space Laces","Bass","Dubstep",4.7],["Getter","Bass","Dubstep",4.5],["Ghengar","Bass","Dubstep",4.2],["GorillaT","Bass","Dubstep",4.1],["GRiZ B2B Wooli","Bass","Dubstep",4.8],["HEYZ","Bass","Dubstep",3.9],["Kai Wachi","Bass","Dubstep",4.5],["KLO","Bass","Dubstep",3.6],["Level Up","Bass","Dubstep",4.2],["Levity","Bass","Dubstep",4],["Mish","Bass","Dubstep",3.6],["Peekaboo","Bass","Dubstep",4.6],["Ray Volpe","Bass","Dubstep",4.6],["RIOT","Bass","Dubstep",4.2],["Sippy","Bass","Dubstep",4.2],["SLAMM","Bass","Dubstep",3.7],["Slugg","Bass","Dubstep",3.8],["Subtronics","Bass","Dubstep",4.9],["Viperactive","Bass","Dubstep",3.7],["Virtual Riot","Bass","Dubstep",4.7],["Wooli","Bass","Dubstep",4.7],["YDG","Bass","Dubstep",4.1],["Yosuf","Bass","Dubstep",4],["Porter Robinson","Mainstage","Electro",4.7],["Laidback Luke B2B Chuckie","Mainstage","Electro House",4.5],["Steve Aoki","Mainstage","Electro House",4.6],["Zedd","Mainstage","Electro House",4.8],["Boys Noize","Electro","Electro Techno",4.6],["DJ Gigola","Techno","Electro Techno",4],["AHEE B2B Liquid Stranger","Bass","Experimental Bass",4.4],["Deathpact","Bass","Experimental Bass",4.4],["EAZYBAKED","Bass","Experimental Bass",4.1],["Player Dave","Bass","Experimental Bass",4],["The Chainsmokers","Mainstage","Festival EDM",4.7],["Tiësto","Mainstage","Festival EDM",5],["Armin van Buuren (Sunrise Set)","Trance","Festival Trance",5],["San Holo","Bass","Future Bass",4.6],["Whethan","Bass","Future Bass",4.3],["KREAM","House","Future House",4.4],["Interplanetary Criminal","UK Garage","Garage",4.5],["Adrián Mills","Techno","Hard Techno",4.2],["Anastazja","Techno","Hard Techno",3.9],["Bashkka B2B Sedef Adasi","Techno","Hard Techno",4],["Benwal","Techno","Hard Techno",3.8],["Clawz","Techno","Hard Techno",3.7],["Cloudy","Techno","Hard Techno",3.8],["Discip","Techno","Hard Techno",3.7],["DYEN","Techno","Hard Techno",4.4],["Funk Tribu","Techno","Hard Techno",4.2],["Hannah Laing","Techno","Hard Techno",4.4],["Holy Priest","Hard Dance","Hard Techno",4.2],["I Hate Models","Techno","Hard Techno",4.7],["ISAbella","Techno","Hard Techno",3.6],["Klangkuenstler","Techno","Hard Techno",4.7],["KUKO B2B Johannes Schuster","Hard Dance","Hard Techno",4],["Lilly Palmer","Techno","Hard Techno",4.5],["Linska","Techno","Hard Techno",3.7],["mink","Techno","Hard Techno",3.6],["Nico Moreno","Techno","Hard Techno",4.6],["Pegassi","Hard Dance","Hard Techno",4],["Restricted","Hard Dance","Hard Techno",4.2],["RØZ","Techno","Hard Techno",3.7],["Sihk","Techno","Hard Techno",3.7],["Spray","Techno","Hard Techno",3.6],["Stan Christ","Techno","Hard Techno",4.2],["T78","Techno","Hard Techno",4],["Trace","Techno","Hard Techno",3.8],["Bullet Tooth","Hard Dance","Hardcore",3.6],["Dead X","Hard Dance","Hardcore",3.6],["GRAVAGERZ","Hard Dance","Hardcore",3.7],["GRAVEDGR","Hard Dance","Hardcore",4.4],["Lil Texas","Hard Dance","Hardcore",4.6],["The Outlaw","Hard Dance","Hardcore",3.6],["Rob Gee B2B Lenny Dee","Hard Dance","Hardcore",4],["Vieze Asbak","Hard Dance","Hardcore",4],["MALUGI","Techno","Hardgroove",4.2],["MCR-T","Techno","Hardgroove",4.2],["Audiofreq B2B Code Black B2B Toneshifterz","Hard Dance","Hardstyle",4.4],["Da Tweekaz","Hard Dance","Hardstyle",4.6],["DJ Isaac","Hard Dance","Hardstyle",4.2],["DJ Mandy","Hard Dance","Hardstyle",3.9],["Lady Faith B2B LNY TNZ","Hard Dance","Hardstyle",4.2],["The Purge","Hard Dance","Hardstyle",4.1],["Rooler","Hard Dance","Hardstyle",4.6],["Silva Bumpa","Hard Dance","Hardstyle",4.1],["Sub Zero Project","Hard Dance","Hardstyle",4.8],["Warface","Hard Dance","Hardstyle",4.6],["Frost Children","Electro","Hyperpop",3.9],["Snow Strippers","Electro","Hyperpop",4.2],["Avalon Emerson","House","Indie Dance",4.2],["Confidence Man","House","Indie Dance",4.2],["DJ Tennis B2B Red Axes","House","Indie Dance",4.3],["HAAi B2B Luke Alessi","House","Indie Dance",4.2],["PARAMIDA","House","Indie Dance",4.1],["salute B2B Chloé Caillet","House","Indie Dance",4.4],["Massimiliano Pagliara","House","Indie House",3.9],["Rebekah","Techno","Industrial Techno",4.4],["A.M.C w/ MC Phantom","Drum & Bass","Jump-Up",4.5],["Bou","Drum & Bass","Jump-Up",4.6],["Fallen with MC Dino","Drum & Bass","Jump-Up",3.7],["Murphy's Law","Drum & Bass","Jump-Up",3.7],["Nightstalker with MC Dino","Drum & Bass","Jump-Up",3.6],["Hybrid Minds","Drum & Bass","Liquid",4.5],["Dabin","Bass","Melodic Bass",4.5],["Seven Lions","Bass","Melodic Bass",4.8],["William Black","Bass","Melodic Bass",4.4],["Adventure Club","Bass","Melodic Dubstep",4.6],["Cassian","Melodic House","Melodic House",4.6],["Eli & Fur","Melodic House","Melodic House",4.4],["Adriatique","Melodic Techno","Melodic Techno",4.7],["Argy","Melodic Techno","Melodic Techno",4.6],["Innellea","Melodic Techno","Melodic Techno",4.4],["Kevin de Vries","Melodic Techno","Melodic Techno",4.7],["Korolova","Melodic Techno","Melodic Techno",4.4],["Massano","Melodic Techno","Melodic Techno",4.4],["Mathame","Melodic Techno","Melodic Techno",4.6],["Black Tiger Sex Machine","Bass","Midtempo Bass",4.5],["Chris Stussy","House","Minimal House",4.6],["Josh Baker","House","Minimal House",4.3],["Luciano","House","Minimal House",4.3],["Luuk van Dijk","House","Minimal House",4.4],["Toman","House","Minimal House",4],["Beltran","House","Minimal Tech House",4.5],["Beltran B2B Simas","House","Minimal Tech House",4.3],["Delta Heavy","Drum & Bass","Neurofunk",4.4],["MUZZ","Drum & Bass","Neurofunk",4.4],["ANNA","Techno","Peak Techno",4.6],["Charlotte de Witte","Techno","Peak Techno",5],["Cristoph","Melodic House","Progressive House",4.5],["Kaskade","House","Progressive House",4.8],["Underworld","Techno","Progressive Techno",4.9],["Above & Beyond (Sunrise Set)","Trance","Progressive Trance",4.9],["Cosmic Gate","Trance","Progressive Trance",4.7],["Gareth Emery","Trance","Progressive Trance",4.7],["Ilan Bluestone","Trance","Progressive Trance",4.6],["Shingo Nakamura","Trance","Progressive Trance",4.3],["Tinlicker","Trance","Progressive Trance",4.7],["Indira Paganotto","Techno","Psy Techno",4.7],["Astrix","Trance","Psytrance",4.5],["The Prodigy","Breakbeat","Rave",5],["Prospa","House","Rave House",4.4],["HOL!","Bass","Riddim",4.4],["INFEKT B2B Samplifire","Bass","Riddim",4.6],["Alves","House","Tech House",3.7],["AVELLO B2B Dennett","House","Tech House",3.6],["Bad Boombox B2B Ollie Lishman","House","Tech House",3.7],["BOLO","House","Tech House",4],["CID","House","Tech House",4.2],["Cloonee","House","Tech House",4.6],["Club Angel","House","Tech House",3.6],["Fisher","House","Tech House",4.9],["HNTR","House","Tech House",4.1],["Jackie Hollander","House","Tech House",3.7],["John Summit","House","Tech House",4.9],["KETTAMA","House","Tech House",4.6],["KinAhau","House","Tech House",3.6],["Luke Dean","House","Tech House",3.8],["Matty Ralph","House","Tech House",3.7],["Max Dean","House","Tech House",4],["Morgan Seatree","House","Tech House",4.1],["Noizu","House","Tech House",4.4],["Nostalgix","House","Tech House",4.3],["Obskür","House","Tech House",4.1],["Omar+","House","Tech House",3.7],["OMNOM","House","Tech House",4.5],["Roddy Lima","House","Tech House",3.6],["The Saints","House","Tech House",3.6],["San Pacho","House","Tech House",4.4],["Sidney Charles B2B Bushbaby","House","Tech House",4],["Skream","House","Tech House",4.6],["Vintage Culture","House","Tech House",4.7],["Walker & Royce B2B VNSSA","House","Tech House",4.5],["Westend","House","Tech House",4.4],["Eli Brown","Techno","Techno",4.8],["Joseph Capriati","Techno","Techno",4.7],["Layton Giordani","Techno","Techno",4.5],["Rebūke","Techno","Techno",4.5],["Sama Abdulhadi","Techno","Techno",4.3],["Stacy Christine","Techno","Techno",3.6],["Thomas Schumacher","Techno","Techno",4.1],["Tiga","Techno","Techno",4.3],["VTSS","Techno","Techno",4.4],["CUTDWN","Bass","Trap",3.8],["Alison Wonderland","Bass","Trap/Future Bass",4.7],["Hamdi","Bass","UK Bass",4.6],["Adiel","Techno","Underground Techno",4.1],["BAUGRUPPE90","Techno","Underground Techno",3.9],["Alyssa Jolee","Trance","Uplifting Trance",3.7],["Andrew Rayel","Trance","Uplifting Trance",4.4],["Billy Gillies","Trance","Uplifting Trance",4.3],["Cold Blue","Trance","Uplifting Trance",4.2],["Darren Porter","Trance","Uplifting Trance",4],["Maria Healy","Trance","Uplifting Trance",4.1],["SUPERSTRINGS","Trance","Uplifting Trance",4],["AR/CO","House","Vocal House",4],["HAYLA","House","Vocal House",4.1],["Sarah de Warren","Trance","Vocal Trance",4.1],
 ];
-function getVibe(d) {
-  for (const v of VIBES) if (d <= v.d) return v.msg;
-  return `🎶 ${d} days until the Electric Sky opens!`;
+
+const BEAST=["Martin Garrix","Hardwell","Zedd","MEDUZA","Above & Beyond (Sunrise Set)","ATLiens","Sub Focus","Charlotte de Witte","I Hate Models","Klangkuenstler","Restricted","Holy Priest","Subtronics","GRiZ B2B Wooli","Doctor P B2B Flux Pavilion B2B FuntCase","Nico Moreno","John Summit","Fisher","KETTAMA","Sammy Virji","Armin van Buuren (Sunrise Set)"];
+
+function genreClass(g){return({"House":"g-house","Techno":"g-techno","Bass":"g-bass","Trance":"g-trance","Hard Dance":"g-hardance","Drum & Bass":"g-dnb","Mainstage":"g-mainstage"})[g]||"g-other";}
+function ratingClass(r){if(r>=5)return"r5";if(r>=4.9)return"r49";if(r>=4.8)return"r48";if(r>=4.7)return"r47";if(r>=4.6)return"r46";return"rlow";}
+
+const genres=[...new Set(ARTISTS.map(a=>a[1]))].sort();
+const subgenres=[...new Set(ARTISTS.map(a=>a[2]))].sort();
+const selGenre=document.getElementById('sel-genre'),selSubgenre=document.getElementById('sel-subgenre'),selTop10=document.getElementById('sel-top10'),selTop5=document.getElementById('sel-top5'),selSort=document.getElementById('sel-sort'),selWish=document.getElementById('sel-wish'),searchBox=document.getElementById('searchBox'),artistList=document.getElementById('artistList'),resCount=document.getElementById('resCount'),resMode=document.getElementById('resMode');
+
+genres.forEach(g=>{[selGenre,selTop10].forEach(s=>{const o=document.createElement('option');o.value=g;o.textContent=g;s.appendChild(o);});});
+subgenres.forEach(g=>{[selSubgenre,selTop5].forEach(s=>{const o=document.createElement('option');o.value=g;o.textContent=g;s.appendChild(o);});});
+document.getElementById('totalCount').textContent=ARTISTS.length+' Artists · May 15–17, 2026';
+
+let state={genre:'',subgenre:'',top10:'',top5:'',sort:'',wish:'',search:''};
+
+function clearAll(){state={genre:'',subgenre:'',top10:'',top5:'',sort:'',wish:'',search:''};[selGenre,selSubgenre,selTop10,selTop5,selSort,selWish].forEach(s=>s.value='');searchBox.value='';updateActive();render();}
+
+function updateActive(){['genre','subgenre','top10','top5','sort','wish'].forEach(k=>{document.getElementById('fr-'+k).classList.toggle('active',!!state[k]);});}
+
+function getFiltered(){
+  let mode='By Rating',data=[...ARTISTS];
+  if(state.wish==='beast'){data=data.filter(a=>BEAST.includes(a[0])).sort((a,b)=>b[3]-a[3]);mode='Beast List';}
+  else if(state.wish==='top20'){data=[...ARTISTS].sort((a,b)=>b[3]-a[3]).slice(0,20);mode='Top 20';}
+  else if(state.top10){data=data.filter(a=>a[1]===state.top10).sort((a,b)=>b[3]-a[3]).slice(0,10);mode='Top 10 · '+state.top10;}
+  else if(state.top5){data=data.filter(a=>a[2]===state.top5).sort((a,b)=>b[3]-a[3]).slice(0,5);mode='Top 5 · '+state.top5;}
+  else if(state.genre){data=data.filter(a=>a[1]===state.genre).sort((a,b)=>b[3]-a[3]);mode='Genre · '+state.genre;}
+  else if(state.subgenre){data=data.filter(a=>a[2]===state.subgenre).sort((a,b)=>b[3]-a[3]);mode='Subgenre · '+state.subgenre;}
+  else if(state.sort==='alpha'){data.sort((a,b)=>a[0].localeCompare(b[0]));mode='A–Z';}
+  else{data.sort((a,b)=>b[3]-a[3]);}
+  if(state.search){const q=state.search.toLowerCase();data=data.filter(a=>a[0].toLowerCase().includes(q));mode+=' · Search';}
+  return{data,mode};
 }
 
-function tick() {
-  const now  = new Date();
-  const diff = EDC_DATE - now;
+function render(){
+  const{data,mode}=getFiltered();
+  resCount.textContent=data.length+' artist'+(data.length!==1?'s':'');
+  resMode.textContent=mode;
+  if(data.length===0){artistList.innerHTML='<div class="empty">No artists found 👀</div>';return;}
+  artistList.innerHTML=data.map((a,i)=>`<div class="artist-row" style="animation-delay:${Math.min(i*.02,.4)}s"><div><div class="art-name">${a[0]}</div><div class="art-sub">${a[2]}</div></div><span class="art-genre ${genreClass(a[1])}">${a[1]}</span><span class="art-rating ${ratingClass(a[3])}">${a[3]}</span></div>`).join('');
+}
 
-  if (diff <= 0) {
-    document.getElementById('itstime').classList.add('on');
-    return;
+function mkSel(sel,key,others){sel.addEventListener('change',()=>{state[key]=sel.value;if(state[key]){others.forEach(([s,k])=>{state[k]='';s.value='';});}updateActive();render();});}
+mkSel(selGenre,'genre',[[selSubgenre,'subgenre'],[selTop10,'top10'],[selTop5,'top5'],[selSort,'sort'],[selWish,'wish']]);
+mkSel(selSubgenre,'subgenre',[[selGenre,'genre'],[selTop10,'top10'],[selTop5,'top5'],[selSort,'sort'],[selWish,'wish']]);
+mkSel(selTop10,'top10',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop5,'top5'],[selSort,'sort'],[selWish,'wish']]);
+mkSel(selTop5,'top5',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop10,'top10'],[selSort,'sort'],[selWish,'wish']]);
+mkSel(selSort,'sort',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop10,'top10'],[selTop5,'top5'],[selWish,'wish']]);
+mkSel(selWish,'wish',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop10,'top10'],[selTop5,'top5'],[selSort,'sort']]);
+searchBox.addEventListener('input',()=>{state.search=searchBox.value;render();});
+document.getElementById('clearBtn').addEventListener('click',clearAll);
+render();
+
+/* ── CORNER FIREWORKS on cvFx ── */
+const FW_COLORS = ['#00eeff','#ff073a','#39ff14','#ffd600','#9b00ff','#ffffff','#ff8800'];
+
+class FWParticle {
+  constructor(x, y, color) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 1.5 + Math.random() * 4;
+    this.x = x; this.y = y;
+    this.vx = Math.cos(angle) * speed;
+    this.vy = Math.sin(angle) * speed;
+    this.color = color;
+    this.r = 1.5 + Math.random() * 2.5;
+    this.life = 1;
+    this.decay = 0.014 + Math.random() * 0.02;
+    this.trail = [];
   }
-
-  // Progress
-  const totalSpan = EDC_DATE - HYPE_FROM;
-  const elapsed   = now - HYPE_FROM;
-  const pct = Math.min(Math.max(elapsed / totalSpan * 100, 0), 100);
-  progFill.style.width = pct.toFixed(2) + '%';
-  pctTxt.textContent   = pct.toFixed(1) + '%';
-
-  // Time units
-  const days = Math.floor(diff / 864e5);
-  const hrs  = Math.floor(diff % 864e5 / 36e5);
-  const mins = Math.floor(diff % 36e5  / 6e4);
-  const secs = Math.floor(diff % 6e4   / 1e3);
-
-  if (days !== prevD) { elD.textContent = days;     pop(elD); prevD = days; }
-  if (hrs  !== prevH) { elH.textContent = pad2(hrs); pop(elH); prevH = hrs; }
-  if (mins !== prevM) { elM.textContent = pad2(mins);pop(elM); prevM = mins; }
-  if (secs !== prevS) { elS.textContent = pad2(secs);pop(elS); prevS = secs; kickFlash = .5; }
-
-  vibeTxt.textContent = getVibe(days);
+  update() {
+    this.trail.push({x: this.x, y: this.y});
+    if (this.trail.length > 6) this.trail.shift();
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vy += 0.07;
+    this.vx *= 0.96;
+    this.vy *= 0.96;
+    this.life -= this.decay;
+  }
+  draw(ctx) {
+    // trail
+    for (let i = 0; i < this.trail.length; i++) {
+      const t = this.trail[i];
+      const a = (i / this.trail.length) * this.life * 0.5;
+      ctx.save();
+      ctx.globalAlpha = a;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(t.x, t.y, this.r * 0.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    // dot
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, this.life);
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = this.color;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
 }
 
-tick();
-setInterval(tick, 1000);
+class FWBurst {
+  constructor(x, y) {
+    this.x = x; this.y = y;
+    this.done = false;
+    const color = FW_COLORS[Math.floor(Math.random() * FW_COLORS.length)];
+    const count = 28 + Math.floor(Math.random() * 20);
+    this.particles = Array.from({length: count}, () => new FWParticle(x, y, 
+      Math.random() < 0.2 ? '#ffffff' : color));
+    // flash
+    this.flash = 1.0;
+  }
+  update() {
+    this.flash = Math.max(0, this.flash - 0.1);
+    this.particles.forEach(p => { if (p.life > 0) p.update(); });
+    this.done = this.particles.every(p => p.life <= 0);
+  }
+  draw(ctx) {
+    if (this.flash > 0) {
+      ctx.save();
+      ctx.globalAlpha = this.flash * 0.5;
+      ctx.fillStyle = '#ffffff';
+      const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, 30);
+      g.addColorStop(0, 'rgba(255,255,255,1)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 30, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    this.particles.forEach(p => { if (p.life > 0) p.draw(ctx); });
+  }
+}
+
+// Store active bursts - drawn on top of cvFx
+const fwBursts = [];
+
+function spawnCornerFW() {
+  const margin = Math.min(W * 0.15, 120);
+  const yRange = Math.min(FxH * 0.35, 150);
+  // Randomly pick left or right corner
+  const side = Math.random() < 0.5 ? 'left' : 'right';
+  const x = side === 'left'
+    ? margin * (0.3 + Math.random() * 0.7)
+    : W - margin * (0.3 + Math.random() * 0.7);
+  const y = 20 + Math.random() * yRange;
+  fwBursts.push(new FWBurst(x, y));
+}
+
+// Fire both corners on load, then alternate every 3-4s
+spawnCornerFW();
+setTimeout(spawnCornerFW, 1800);
+
+function scheduleBurst() {
+  const delay = 3000 + Math.random() * 1500;
+  setTimeout(() => {
+    spawnCornerFW();
+    // Sometimes fire both corners close together
+    if (Math.random() < 0.4) setTimeout(spawnCornerFW, 400 + Math.random() * 600);
+    scheduleBurst();
+  }, delay);
+}
+scheduleBurst();
+
+// Hook into existing render loop - patch drawParts to also draw fw
+const _origDrawParts = drawParts;
+function drawPartsAndFW() {
+  _origDrawParts();
+  // Draw fireworks on cvFx
+  for (let i = fwBursts.length - 1; i >= 0; i--) {
+    fwBursts[i].update();
+    fwBursts[i].draw(ctFx);
+    if (fwBursts[i].done) fwBursts.splice(i, 1);
+  }
+}
+// Fireworks draw in main loop below
+
+/* ── MUSIC PLAYER ── */
+// Free EDM radio streams - these are live internet radio stations
+const TRACKS = [
+  { name: 'DI.FM · Electronic', url: 'https://stream.freemusicarchive.org/api/data/streams/3/64.mp3' },
+  { name: 'SoundHelix Mix 1', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+  { name: 'SoundHelix Mix 2', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+];
+let trackIdx = 0;
+const audio = new Audio();
+audio.volume = 0.6;
+audio.loop = false;
+let playing = false;
+
+const playBtn = document.getElementById('playBtn');
+const trackName = document.getElementById('trackName');
+const volSlider = document.getElementById('volSlider');
+const musicEq = document.getElementById('musicEq');
+
+function loadTrack(idx) {
+  audio.src = TRACKS[idx].url;
+  trackName.textContent = TRACKS[idx].name;
+}
+
+function togglePlay() {
+  if (playing) {
+    audio.pause();
+    playing = false;
+    playBtn.textContent = '▶';
+    musicEq.classList.add('paused');
+  } else {
+    audio.play().catch(() => {});
+    playing = true;
+    playBtn.textContent = '⏸';
+    musicEq.classList.remove('paused');
+  }
+}
+
+audio.addEventListener('ended', () => {
+  trackIdx = (trackIdx + 1) % TRACKS.length;
+  loadTrack(trackIdx);
+  audio.play().catch(() => {});
+});
+
+volSlider.addEventListener('input', () => { audio.volume = volSlider.value / 100; });
+playBtn.addEventListener('click', togglePlay);
+loadTrack(0);
 </script>
 </body>
 </html>
