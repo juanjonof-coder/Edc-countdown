@@ -496,7 +496,11 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 .modal-artist-item:last-child{border-bottom:none;}
 .modal-artist-item:hover{background:rgba(255,255,255,.04);}
 .modal-artist-item input[type=checkbox]{accent-color:var(--cyan);width:16px;height:16px;flex-shrink:0;cursor:pointer;}
-.modal-artist-name{flex:1;font-weight:600;font-size:.92rem;}
+.modal-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.modal-selected-count{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);}
+.modal-show-selected{background:none;border:1px solid rgba(0,238,255,.25);border-radius:6px;color:rgba(0,238,255,.5);font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;cursor:pointer;transition:all .2s;}
+.modal-show-selected:hover,.modal-show-selected.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,238,255,.08);}
+.modal-artist-item.checked-item{background:rgba(0,238,255,.06);}
 .modal-artist-meta{font-size:.72rem;color:rgba(255,255,255,.35);}
 .modal-btns{display:flex;gap:10px;justify-content:flex-end;}
 .modal-btn{padding:9px 20px;border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none;}
@@ -1019,6 +1023,10 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
         <span class="modal-search-icon">🔍</span>
         <input class="modal-search" id="modalSearch" type="text" placeholder="Search artists...">
       </div>
+      <div class="modal-controls">
+        <span class="modal-selected-count" id="modalCount">0 selected</span>
+        <button class="modal-show-selected" id="modalShowSelected">Show selected first</button>
+      </div>
       <div class="modal-artist-list" id="modalArtistList"></div>
       <div class="modal-btns">
         <button class="modal-btn modal-btn-cancel" id="modalCancel">Cancel</button>
@@ -1376,22 +1384,52 @@ function openModal(listId){
   if(listId!==null){const lst=myLists.find(l=>l.id===listId);if(lst){nameInput.value=lst.name;lst.artists.forEach(a=>{modalCheckMap[a]=true;});}}
   else{nameInput.value='';}
   document.getElementById('modalSearch').value='';
+  modalShowSelectedFirst=false;
+  const ssBtn=document.getElementById('modalShowSelected');
+  if(ssBtn)ssBtn.classList.remove('active');
   renderModalArtists('');
+  updateModalCount();
   modal.classList.add('open');
   nameInput.focus();
+}
+
+let modalShowSelectedFirst=false;
+function updateModalCount(){
+  const n=Object.values(modalCheckMap).filter(Boolean).length;
+  const el=document.getElementById('modalCount');
+  if(el)el.textContent=n+' selected';
+  const saveEl=document.getElementById('modalSave');
+  if(saveEl)saveEl.textContent=n>0?`Save List (${n})`:'Save List';
 }
 
 function renderModalArtists(q){
   const container=document.getElementById('modalArtistList');
   if(!container)return;
-  const sorted=[...ARTISTS].sort((a,b)=>a[0].localeCompare(b[0]));
+  let sorted=[...ARTISTS].sort((a,b)=>a[0].localeCompare(b[0]));
+  if(modalShowSelectedFirst){
+    const checked=sorted.filter(a=>modalCheckMap[a[0]]);
+    const unchecked=sorted.filter(a=>!modalCheckMap[a[0]]);
+    sorted=[...checked,...unchecked];
+  }
   const filtered=q?sorted.filter(a=>a[0].toLowerCase().includes(q.toLowerCase())):sorted;
-  container.innerHTML=filtered.map(a=>`<label class="modal-artist-item"><input type="checkbox" ${modalCheckMap[a[0]]?'checked':''} data-name="${a[0].replace(/"/g,'&quot;')}"><span class="modal-artist-name">${a[0]}</span><span class="modal-artist-meta">${a[2]}</span></label>`).join('');
-  container.querySelectorAll('input[type=checkbox]').forEach(cb=>{cb.addEventListener('change',()=>{modalCheckMap[cb.dataset.name]=cb.checked;});});
+  container.innerHTML=filtered.map(a=>`<label class="modal-artist-item${modalCheckMap[a[0]]?' checked-item':''}"><input type="checkbox" ${modalCheckMap[a[0]]?'checked':''} data-name="${a[0].replace(/"/g,'&quot;')}"><span class="modal-artist-name">${a[0]}</span><span class="modal-artist-meta">${a[2]}</span></label>`).join('');
+  container.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change',()=>{
+      modalCheckMap[cb.dataset.name]=cb.checked;
+      cb.closest('label').classList.toggle('checked-item',cb.checked);
+      updateModalCount();
+    });
+  });
 }
 
 const modalSearchEl=document.getElementById('modalSearch');
 if(modalSearchEl)modalSearchEl.addEventListener('input',e=>renderModalArtists(e.target.value));
+const modalShowSelBtn=document.getElementById('modalShowSelected');
+if(modalShowSelBtn)modalShowSelBtn.addEventListener('click',()=>{
+  modalShowSelectedFirst=!modalShowSelectedFirst;
+  modalShowSelBtn.classList.toggle('active',modalShowSelectedFirst);
+  renderModalArtists(document.getElementById('modalSearch').value);
+});
 const modalCancelEl=document.getElementById('modalCancel');
 if(modalCancelEl)modalCancelEl.addEventListener('click',()=>document.getElementById('listModal').classList.remove('open'));
 const listModalEl=document.getElementById('listModal');
