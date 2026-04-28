@@ -355,33 +355,7 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
-/* ── MUSIC PLAYER ── */
-.music-bar{
-  position:fixed;bottom:0;left:0;right:0;z-index:20;
-  display:flex;align-items:center;gap:10px;
-  padding:10px 16px;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(12px);
-  border-top:1px solid rgba(255,255,255,.07);
-}
-.music-btn{
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(0,238,255,.1);border:1.5px solid rgba(0,238,255,.4);
-  color:var(--cyan);font-size:1rem;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;flex-shrink:0;transition:all .2s;
-}
-.music-btn:hover{background:rgba(0,238,255,.2);}
-.music-info{flex:1;overflow:hidden;}
-.music-track{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.music-artist{font-family:'Share Tech Mono',monospace;font-size:.45rem;letter-spacing:.12em;color:rgba(255,255,255,.3);margin-top:2px;text-transform:uppercase;}
-.music-vol{display:flex;align-items:center;gap:6px;flex-shrink:0;}
-.vol-icon{font-size:.75rem;opacity:.5;}
-.vol-slider{width:60px;height:3px;accent-color:var(--cyan);cursor:pointer;}
-.music-eq{display:flex;align-items:flex-end;gap:2px;height:16px;flex-shrink:0;}
-.meq-bar{width:3px;border-radius:1px;background:var(--cyan);transform-origin:bottom;animation:meqB var(--md,.3s) ease-in-out infinite alternate;}
-@keyframes meqB{0%{transform:scaleY(.15);}100%{transform:scaleY(1);}}
-.music-eq.paused .meq-bar{animation-play-state:paused;}
+
 
 /* ══════════════════════════════════
    MAPS / PHOTOS SECTION
@@ -493,6 +467,55 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
   font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;
   color:rgba(255,255,255,.4);margin-top:3px;
 }
+
+/* ── CUSTOM LISTS ── */
+.lists-section{margin-bottom:10px;}
+.lists-label{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px;display:block;}
+.lists-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:6px;}
+.list-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:20px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.12);font-family:'Rajdhani',sans-serif;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.7);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.list-chip:hover{border-color:var(--cyan);color:var(--cyan);}
+.list-chip.active{background:rgba(0,238,255,.1);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 12px rgba(0,238,255,.15);}
+.list-chip-del{opacity:.4;font-size:.8rem;margin-left:2px;padding:0 2px;transition:opacity .2s;}
+.list-chip-del:hover{opacity:1;color:var(--pink);}
+.new-list-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;background:transparent;border:1.5px dashed rgba(0,238,255,.35);font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,238,255,.5);cursor:pointer;transition:all .2s;}
+.new-list-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,238,255,.05);}
+.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .25s;}
+.modal-bg.open{opacity:1;pointer-events:all;}
+.modal-box{width:100%;max-width:500px;background:#0a0a14;border:1px solid rgba(0,238,255,.25);border-radius:16px;padding:22px 20px;box-shadow:0 0 60px rgba(0,238,255,.12);}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.1em;color:var(--cyan);margin-bottom:14px;}
+.modal-input{width:100%;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(0,238,255,.25);border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;outline:none;margin-bottom:14px;}
+.modal-input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,238,255,.12);}
+.modal-search-wrap{position:relative;margin-bottom:10px;}
+.modal-search{width:100%;padding:9px 14px 9px 34px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;}
+.modal-search:focus{border-color:var(--purple);}
+.modal-search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.35;font-size:.85rem;}
+.modal-artist-list{max-height:260px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;margin-bottom:14px;}
+.modal-artist-list::-webkit-scrollbar{width:4px;}
+.modal-artist-list::-webkit-scrollbar-thumb{background:rgba(0,238,255,.25);border-radius:2px;}
+.modal-artist-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;}
+.modal-artist-item:last-child{border-bottom:none;}
+.modal-artist-item:hover{background:rgba(255,255,255,.04);}
+.modal-artist-item input[type=checkbox]{accent-color:var(--cyan);width:16px;height:16px;flex-shrink:0;cursor:pointer;}
+.modal-artist-name{flex:1;font-weight:600;font-size:.92rem;}
+.modal-artist-meta{font-size:.72rem;color:rgba(255,255,255,.35);}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end;}
+.modal-btn{padding:9px 20px;border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none;}
+.modal-btn-cancel{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);}
+.modal-btn-cancel:hover{background:rgba(255,255,255,.1);}
+.modal-btn-save{background:rgba(0,238,255,.12);color:var(--cyan);border:1.5px solid rgba(0,238,255,.4);}
+.modal-btn-save:hover{background:rgba(0,238,255,.22);}
+.list-view-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px;}
+.list-day-group{border-bottom:1px solid var(--border);}
+.list-day-group:last-child{border-bottom:none;}
+.list-day-header{padding:9px 14px;background:rgba(255,255,255,.04);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:var(--gold);border-bottom:1px solid var(--border);}
+.list-stage-group{padding:0 14px;}
+.list-stage-label{font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:7px 0 4px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:4px;}
+.list-stage-artist{padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:8px;}
+.list-stage-artist:last-child{border-bottom:none;}
+.list-remove-btn{margin-left:auto;font-size:.75rem;opacity:.3;cursor:pointer;padding:2px 6px;border-radius:4px;transition:all .15s;color:var(--pink);}
+.list-remove-btn:hover{opacity:1;background:rgba(255,7,58,.1);}
+.list-empty-hint{text-align:center;padding:22px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);}
+
 </style>
 </head>
 <body>
@@ -504,65 +527,6 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
   <!-- ══ COUNTDOWN ══ -->
   <div class="countdown-section" id="top">
     <canvas id="cvFx"></canvas>
-    <!-- Corner decorations -->
-    <!-- Top-left firework burst -->
-      <!-- Burst center at ~50,50 -->
-      <!-- Long rays -->
-      <line x1="50" y1="50" x2="10" y2="10" stroke="#00eeff" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
-      <line x1="50" y1="50" x2="50" y2="0" stroke="#39ff14" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
-      <line x1="50" y1="50" x2="0" y2="50" stroke="#ff073a" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
-      <line x1="50" y1="50" x2="110" y2="10" stroke="#ffd600" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-      <line x1="50" y1="50" x2="10" y2="110" stroke="#9b00ff" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-      <line x1="50" y1="50" x2="130" y2="50" stroke="#00eeff" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-      <line x1="50" y1="50" x2="50" y2="130" stroke="#39ff14" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-      <!-- Medium rays -->
-      <line x1="50" y1="50" x2="20" y2="0" stroke="#ff073a" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-      <line x1="50" y1="50" x2="0" y2="20" stroke="#ffd600" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-      <line x1="50" y1="50" x2="90" y2="0" stroke="#9b00ff" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-      <line x1="50" y1="50" x2="0" y2="90" stroke="#00eeff" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-      <line x1="50" y1="50" x2="140" y2="80" stroke="#39ff14" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
-      <line x1="50" y1="50" x2="80" y2="140" stroke="#ff073a" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
-      <!-- Sparkle dots at ray tips -->
-      <circle cx="10" cy="10" r="3" fill="#00eeff" opacity="0.9"/>
-      <circle cx="50" cy="0" r="2.5" fill="#39ff14" opacity="0.85"/>
-      <circle cx="0" cy="50" r="2.5" fill="#ff073a" opacity="0.85"/>
-      <circle cx="110" cy="10" r="2" fill="#ffd600" opacity="0.8"/>
-      <circle cx="10" cy="110" r="2" fill="#9b00ff" opacity="0.8"/>
-      <circle cx="130" cy="50" r="2" fill="#00eeff" opacity="0.65"/>
-      <circle cx="50" cy="130" r="2" fill="#39ff14" opacity="0.65"/>
-      <circle cx="20" cy="0" r="1.5" fill="#ff073a" opacity="0.6"/>
-      <circle cx="0" cy="20" r="1.5" fill="#ffd600" opacity="0.6"/>
-      <!-- Center glow -->
-      <circle cx="50" cy="50" r="5" fill="#fff" opacity="0.9"/>
-      <circle cx="50" cy="50" r="10" fill="#00eeff" opacity="0.2"/>
-        <!-- Top-right firework burst (mirrored) -->
-       <line x1="130" y1="50" x2="170" y2="10" stroke="#ff073a" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
-      <line x1="130" y1="50" x2="130" y2="0" stroke="#ffd600" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
-      <line x1="130" y1="50" x2="180" y2="50" stroke="#9b00ff" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
-      <line x1="130" y1="50" x2="70" y2="10" stroke="#00eeff" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-      <line x1="130" y1="50" x2="170" y2="110" stroke="#39ff14" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-      <line x1="130" y1="50" x2="0" y2="50" stroke="#ff073a" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
-      <line x1="130" y1="50" x2="130" y2="130" stroke="#ffd600" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
-      <line x1="130" y1="50" x2="160" y2="0" stroke="#9b00ff" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-      <line x1="130" y1="50" x2="180" y2="20" stroke="#00eeff" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-      <line x1="130" y1="50" x2="90" y2="0" stroke="#39ff14" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-      <line x1="130" y1="50" x2="180" y2="90" stroke="#ff073a" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-      <line x1="130" y1="50" x2="50" y2="80" stroke="#ffd600" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
-      <line x1="130" y1="50" x2="100" y2="140" stroke="#9b00ff" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
-      <!-- Sparkle dots -->
-      <circle cx="170" cy="10" r="3" fill="#ff073a" opacity="0.9"/>
-      <circle cx="130" cy="0" r="2.5" fill="#ffd600" opacity="0.85"/>
-      <circle cx="180" cy="50" r="2.5" fill="#9b00ff" opacity="0.85"/>
-      <circle cx="70" cy="10" r="2" fill="#00eeff" opacity="0.8"/>
-      <circle cx="170" cy="110" r="2" fill="#39ff14" opacity="0.8"/>
-      <circle cx="0" cy="50" r="2" fill="#ff073a" opacity="0.6"/>
-      <circle cx="130" cy="130" r="2" fill="#ffd600" opacity="0.6"/>
-      <circle cx="160" cy="0" r="1.5" fill="#9b00ff" opacity="0.6"/>
-      <circle cx="180" cy="20" r="1.5" fill="#00eeff" opacity="0.6"/>
-      <!-- Center glow -->
-      <circle cx="130" cy="50" r="5" fill="#fff" opacity="0.9"/>
-      <circle cx="130" cy="50" r="10" fill="#ff073a" opacity="0.2"/>
-    </svg>
     <div class="tagline">✦ Under The Electric Sky ✦</div>
     <div class="logo-wrap">
       <span class="logo-edc">EDC</span>
@@ -1046,6 +1010,23 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
     </div>
   </div>
 
+  <!-- New/Edit List Modal -->
+  <div class="modal-bg" id="listModal">
+    <div class="modal-box">
+      <div class="modal-title" id="modalTitle">New List</div>
+      <input class="modal-input" id="listNameInput" placeholder="List name (e.g. Saturday Picks)" maxlength="40">
+      <div class="modal-search-wrap">
+        <span class="modal-search-icon">🔍</span>
+        <input class="modal-search" id="modalSearch" type="text" placeholder="Search artists...">
+      </div>
+      <div class="modal-artist-list" id="modalArtistList"></div>
+      <div class="modal-btns">
+        <button class="modal-btn modal-btn-cancel" id="modalCancel">Cancel</button>
+        <button class="modal-btn modal-btn-save" id="modalSave">Save List</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
     <div class="lightbox-inner">
@@ -1090,14 +1071,15 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
           <option value="rating">All Artists (by Rating)</option>
         </select>
       </div>
-      <div class="filter-row" id="fr-wish">
-        <span class="filter-label">My Wish List</span>
-        <select class="filter-select" id="sel-wish">
-          <option value="">— Select List —</option>
-          <option value="beast">🔥 Ultimate EDC 2026 Beast List</option>
-          <option value="top20">⭐ Top 20 by Rating</option>
-        </select>
+    </div>
+
+    <!-- My Lists -->
+    <div class="lists-section" id="myListsSection">
+      <span class="lists-label">My Lists</span>
+      <div class="lists-bar" id="listsBar">
+        <button class="new-list-btn" id="newListBtn">＋ New List</button>
       </div>
+      <div id="listViewWrap"></div>
     </div>
 
     <div class="search-wrap">
@@ -1119,25 +1101,7 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 
 </div>
 
-<!-- Music Player -->
-<div class="music-bar" id="musicBar">
-  <button class="music-btn" id="playBtn" title="Play/Pause">▶</button>
-  <div class="music-info">
-    <div class="music-track" id="trackName">Loading track...</div>
-    <div class="music-artist">EDC LV 2026 · Vibes Mix</div>
-  </div>
-  <div class="music-eq paused" id="musicEq">
-    <div class="meq-bar" style="height:60%;--md:.25s"></div>
-    <div class="meq-bar" style="height:80%;--md:.35s"></div>
-    <div class="meq-bar" style="height:50%;--md:.28s"></div>
-    <div class="meq-bar" style="height:90%;--md:.32s"></div>
-    <div class="meq-bar" style="height:65%;--md:.22s"></div>
-  </div>
-  <div class="music-vol">
-    <span class="vol-icon">🔊</span>
-    <input class="vol-slider" id="volSlider" type="range" min="0" max="100" value="60">
-  </div>
-</div>
+
 
 <script>
 /* ── CANVAS ── */
@@ -1174,7 +1138,15 @@ function drawBg(t){
 
 const LC=['#00eeff','#ff073a','#9b00ff','#39ff14','#ffd600'];
 const lasers=[];
-function spawnL(){const r=Math.random()<.5;const fh=FxH||H;lasers.push({x:r?0:W,y:fh*(.35+Math.random()*.55),angle:r?(-Math.PI/8+Math.random()*(Math.PI/4)):(Math.PI-Math.PI/8+Math.random()*(Math.PI/4)),len:W*(.3+Math.random()*.55),color:LC[Math.floor(Math.random()*LC.length)],life:1,decay:.014+Math.random()*.012});}
+let tabVisible=!document.hidden;
+document.addEventListener('visibilitychange',()=>{
+  tabVisible=!document.hidden;
+  if(tabVisible){lasers.length=0;}
+});
+function spawnL(){
+  if(!tabVisible)return;
+  const r=Math.random()<.5;const fh=FxH||H;lasers.push({x:r?0:W,y:fh*(.35+Math.random()*.55),angle:r?(-Math.PI/8+Math.random()*(Math.PI/4)):(Math.PI-Math.PI/8+Math.random()*(Math.PI/4)),len:W*(.3+Math.random()*.55),color:LC[Math.floor(Math.random()*LC.length)],life:1,decay:.014+Math.random()*.012});
+}
 setInterval(spawnL,550);
 function drawLasers(){
   for(let i=lasers.length-1;i>=0;i--){const l=lasers[i];l.life-=l.decay;if(l.life<=0){lasers.splice(i,1);continue;}
@@ -1247,23 +1219,27 @@ function ratingClass(r){if(r>=5)return"r5";if(r>=4.9)return"r49";if(r>=4.8)retur
 
 const genres=[...new Set(ARTISTS.map(a=>a[1]))].sort();
 const subgenres=[...new Set(ARTISTS.map(a=>a[2]))].sort();
-const selGenre=document.getElementById('sel-genre'),selSubgenre=document.getElementById('sel-subgenre'),selTop10=document.getElementById('sel-top10'),selTop5=document.getElementById('sel-top5'),selSort=document.getElementById('sel-sort'),selWish=document.getElementById('sel-wish'),searchBox=document.getElementById('searchBox'),artistList=document.getElementById('artistList'),resCount=document.getElementById('resCount'),resMode=document.getElementById('resMode');
+const selGenre=document.getElementById('sel-genre'),selSubgenre=document.getElementById('sel-subgenre'),selTop10=document.getElementById('sel-top10'),selTop5=document.getElementById('sel-top5'),selSort=document.getElementById('sel-sort'),searchBox=document.getElementById('searchBox'),artistList=document.getElementById('artistList'),resCount=document.getElementById('resCount'),resMode=document.getElementById('resMode');
 
 genres.forEach(g=>{[selGenre,selTop10].forEach(s=>{const o=document.createElement('option');o.value=g;o.textContent=g;s.appendChild(o);});});
 subgenres.forEach(g=>{[selSubgenre,selTop5].forEach(s=>{const o=document.createElement('option');o.value=g;o.textContent=g;s.appendChild(o);});});
 document.getElementById('totalCount').textContent=ARTISTS.length+' Artists · May 15–17, 2026';
 
-let state={genre:'',subgenre:'',top10:'',top5:'',sort:'',wish:'',search:''};
+let state={genre:'',subgenre:'',top10:'',top5:'',sort:'',search:''};
+let activeListId=null;
 
-function clearAll(){state={genre:'',subgenre:'',top10:'',top5:'',sort:'',wish:'',search:''};[selGenre,selSubgenre,selTop10,selTop5,selSort,selWish].forEach(s=>s.value='');searchBox.value='';updateActive();render();}
+function clearAll(){state={genre:'',subgenre:'',top10:'',top5:'',sort:'',search:''};activeListId=null;[selGenre,selSubgenre,selTop10,selTop5,selSort].forEach(s=>s.value='');searchBox.value='';updateActive();renderListChips();render();}
 
-function updateActive(){['genre','subgenre','top10','top5','sort','wish'].forEach(k=>{document.getElementById('fr-'+k).classList.toggle('active',!!state[k]);});}
+function updateActive(){['genre','subgenre','top10','top5','sort'].forEach(k=>{document.getElementById('fr-'+k).classList.toggle('active',!!state[k]);});}
 
 function getFiltered(){
   let mode='By Rating',data=[...ARTISTS];
-  if(state.wish==='beast'){data=data.filter(a=>BEAST.includes(a[0])).sort((a,b)=>b[3]-a[3]);mode='Beast List';}
-  else if(state.wish==='top20'){data=[...ARTISTS].sort((a,b)=>b[3]-a[3]).slice(0,20);mode='Top 20';}
-  else if(state.top10){data=data.filter(a=>a[1]===state.top10).sort((a,b)=>b[3]-a[3]).slice(0,10);mode='Top 10 · '+state.top10;}
+  if(activeListId!==null){
+    const lst=myLists.find(l=>l.id===activeListId);
+    if(lst){data=data.filter(a=>lst.artists.includes(a[0])).sort((a,b)=>b[3]-a[3]);mode='📋 '+lst.name;}
+    return{data,mode};
+  }
+  if(state.top10){data=data.filter(a=>a[1]===state.top10).sort((a,b)=>b[3]-a[3]).slice(0,10);mode='Top 10 · '+state.top10;}
   else if(state.top5){data=data.filter(a=>a[2]===state.top5).sort((a,b)=>b[3]-a[3]).slice(0,5);mode='Top 5 · '+state.top5;}
   else if(state.genre){data=data.filter(a=>a[1]===state.genre).sort((a,b)=>b[3]-a[3]);mode='Genre · '+state.genre;}
   else if(state.subgenre){data=data.filter(a=>a[2]===state.subgenre).sort((a,b)=>b[3]-a[3]);mode='Subgenre · '+state.subgenre;}
@@ -1281,16 +1257,159 @@ function render(){
   artistList.innerHTML=data.map((a,i)=>`<div class="artist-row" style="animation-delay:${Math.min(i*.02,.4)}s"><div><div class="art-name">${a[0]}</div><div class="art-sub">${a[2]}</div></div><span class="art-genre ${genreClass(a[1])}">${a[1]}</span><span class="art-rating ${ratingClass(a[3])}">${a[3]}</span></div>`).join('');
 }
 
-function mkSel(sel,key,others){sel.addEventListener('change',()=>{state[key]=sel.value;if(state[key]){others.forEach(([s,k])=>{state[k]='';s.value='';});}updateActive();render();});}
-mkSel(selGenre,'genre',[[selSubgenre,'subgenre'],[selTop10,'top10'],[selTop5,'top5'],[selSort,'sort'],[selWish,'wish']]);
-mkSel(selSubgenre,'subgenre',[[selGenre,'genre'],[selTop10,'top10'],[selTop5,'top5'],[selSort,'sort'],[selWish,'wish']]);
-mkSel(selTop10,'top10',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop5,'top5'],[selSort,'sort'],[selWish,'wish']]);
-mkSel(selTop5,'top5',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop10,'top10'],[selSort,'sort'],[selWish,'wish']]);
-mkSel(selSort,'sort',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop10,'top10'],[selTop5,'top5'],[selWish,'wish']]);
-mkSel(selWish,'wish',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop10,'top10'],[selTop5,'top5'],[selSort,'sort']]);
+function mkSel(sel,key,others){sel.addEventListener('change',()=>{state[key]=sel.value;if(state[key]){others.forEach(([s,k])=>{state[k]='';s.value='';});activeListId=null;renderListChips();}updateActive();render();});}
+mkSel(selGenre,'genre',[[selSubgenre,'subgenre'],[selTop10,'top10'],[selTop5,'top5'],[selSort,'sort']]);
+mkSel(selSubgenre,'subgenre',[[selGenre,'genre'],[selTop10,'top10'],[selTop5,'top5'],[selSort,'sort']]);
+mkSel(selTop10,'top10',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop5,'top5'],[selSort,'sort']]);
+mkSel(selTop5,'top5',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop10,'top10'],[selSort,'sort']]);
+mkSel(selSort,'sort',[[selGenre,'genre'],[selSubgenre,'subgenre'],[selTop10,'top10'],[selTop5,'top5']]);
 searchBox.addEventListener('input',()=>{state.search=searchBox.value;render();});
 document.getElementById('clearBtn').addEventListener('click',clearAll);
 render();
+
+/* ── CUSTOM LISTS ── */
+const STAGE_SCHEDULE={};
+function buildSchedule(){
+  try{
+    document.querySelectorAll('.stage-card').forEach(card=>{
+      const stageName=card.querySelector('.stage-name')?.textContent?.trim()||'';      card.querySelectorAll('.stage-day-block').forEach(block=>{
+        const dayLabel=block.querySelector('.stage-day-label')?.textContent?.trim()||'';        block.querySelectorAll('.stage-artist').forEach(el=>{
+          const name=el.textContent.trim();
+          if(!STAGE_SCHEDULE[name])STAGE_SCHEDULE[name]=[];
+          STAGE_SCHEDULE[name].push({day:dayLabel,stage:stageName});
+        });
+      });
+    });
+  }catch(e){console.warn('buildSchedule',e);}
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',buildSchedule);}else{buildSchedule();}
+
+let myLists=[];try{myLists=JSON.parse(localStorage.getItem('edcLists')||'[]');}catch(e){myLists=[];}
+let editingListId=null;
+function saveLists(){try{localStorage.setItem('edcLists',JSON.stringify(myLists));}catch(e){}}
+
+function renderListChips(){
+  const bar=document.getElementById('listsBar');
+  if(!bar)return;
+  bar.innerHTML='';
+  myLists.forEach(lst=>{
+    const chip=document.createElement('button');
+    chip.className='list-chip'+(activeListId===lst.id?' active':'');
+    chip.innerHTML=`<span>${lst.name}</span><span class="list-chip-edit" data-id="${lst.id}">✏️</span><span class="list-chip-del" data-id="${lst.id}">✕</span>`;
+    chip.addEventListener('click',e=>{
+      if(e.target.classList.contains('list-chip-del')){deleteList(lst.id);return;}
+      if(e.target.classList.contains('list-chip-edit')){openModal(lst.id);return;}
+      activeListId=activeListId===lst.id?null:lst.id;
+      [selGenre,selSubgenre,selTop10,selTop5,selSort].forEach(s=>s.value='');
+      state={genre:'',subgenre:'',top10:'',top5:'',sort:'',search:''};
+      updateActive();renderListChips();renderListView();render();
+    });
+    bar.appendChild(chip);
+  });
+  const nb=document.createElement('button');
+  nb.className='new-list-btn';
+  nb.textContent='＋ New List';
+  nb.addEventListener('click',()=>openModal(null));
+  bar.appendChild(nb);
+  renderListView();
+}
+
+function renderListView(){
+  const wrap=document.getElementById('listViewWrap');
+  if(!wrap)return;
+  if(activeListId===null){wrap.innerHTML='';return;}
+  const lst=myLists.find(l=>l.id===activeListId);
+  if(!lst||lst.artists.length===0){wrap.innerHTML='<div class="list-view-wrap"><div class="list-empty-hint">No artists yet — click ✏️ to add some!</div></div>';return;}
+  const dayOrder=['Friday May 15','Saturday May 16','Sunday May 17'];
+  const grouped={};
+  const unscheduled=[];
+  lst.artists.forEach(name=>{
+    const slots=STAGE_SCHEDULE[name];
+    if(!slots||slots.length===0){unscheduled.push(name);return;}
+    slots.forEach(({day,stage})=>{
+      if(!grouped[day])grouped[day]={};
+      if(!grouped[day][stage])grouped[day][stage]=[];
+      grouped[day][stage].push(name);
+    });
+  });
+  let html='<div class="list-view-wrap">';
+  dayOrder.forEach(day=>{
+    if(!grouped[day])return;
+    html+=`<div class="list-day-group"><div class="list-day-header">${day}</div>`;
+    Object.entries(grouped[day]).forEach(([stage,names])=>{
+      html+=`<div class="list-stage-group"><div class="list-stage-label">${stage}</div>`;
+      names.forEach(name=>{html+=`<div class="list-stage-artist"><span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;});
+      html+='</div>';
+    });
+    html+='</div>';
+  });
+  if(unscheduled.length){
+    html+='<div class="list-day-group"><div class="list-day-header">Unscheduled</div><div class="list-stage-group">';
+    unscheduled.forEach(name=>{html+=`<div class="list-stage-artist"><span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;});
+    html+='</div></div>';
+  }
+  html+='</div>';
+  wrap.innerHTML=html;
+  wrap.querySelectorAll('.list-remove-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const lid=parseInt(btn.dataset.list);
+      const l=myLists.find(x=>x.id===lid);
+      if(l){l.artists=l.artists.filter(a=>a!==btn.dataset.artist);saveLists();renderListView();render();}
+    });
+  });
+}
+
+function deleteList(id){
+  myLists=myLists.filter(l=>l.id!==id);
+  if(activeListId===id)activeListId=null;
+  saveLists();renderListChips();render();
+}
+
+let modalCheckMap={};
+function openModal(listId){
+  editingListId=listId;
+  const modal=document.getElementById('listModal');
+  const nameInput=document.getElementById('listNameInput');
+  if(!modal||!nameInput)return;
+  document.getElementById('modalTitle').textContent=listId!==null?'Edit List':'New List';
+  modalCheckMap={};
+  if(listId!==null){const lst=myLists.find(l=>l.id===listId);if(lst){nameInput.value=lst.name;lst.artists.forEach(a=>{modalCheckMap[a]=true;});}}
+  else{nameInput.value='';}
+  document.getElementById('modalSearch').value='';
+  renderModalArtists('');
+  modal.classList.add('open');
+  nameInput.focus();
+}
+
+function renderModalArtists(q){
+  const container=document.getElementById('modalArtistList');
+  if(!container)return;
+  const sorted=[...ARTISTS].sort((a,b)=>a[0].localeCompare(b[0]));
+  const filtered=q?sorted.filter(a=>a[0].toLowerCase().includes(q.toLowerCase())):sorted;
+  container.innerHTML=filtered.map(a=>`<label class="modal-artist-item"><input type="checkbox" ${modalCheckMap[a[0]]?'checked':''} data-name="${a[0].replace(/"/g,'&quot;')}"><span class="modal-artist-name">${a[0]}</span><span class="modal-artist-meta">${a[2]}</span></label>`).join('');
+  container.querySelectorAll('input[type=checkbox]').forEach(cb=>{cb.addEventListener('change',()=>{modalCheckMap[cb.dataset.name]=cb.checked;});});
+}
+
+const modalSearchEl=document.getElementById('modalSearch');
+if(modalSearchEl)modalSearchEl.addEventListener('input',e=>renderModalArtists(e.target.value));
+const modalCancelEl=document.getElementById('modalCancel');
+if(modalCancelEl)modalCancelEl.addEventListener('click',()=>document.getElementById('listModal').classList.remove('open'));
+const listModalEl=document.getElementById('listModal');
+if(listModalEl)listModalEl.addEventListener('click',e=>{if(e.target===listModalEl)listModalEl.classList.remove('open');});
+const modalSaveEl=document.getElementById('modalSave');
+if(modalSaveEl)modalSaveEl.addEventListener('click',()=>{
+  const name=document.getElementById('listNameInput').value.trim();
+  if(!name){document.getElementById('listNameInput').focus();return;}
+  const selected=Object.entries(modalCheckMap).filter(([,v])=>v).map(([k])=>k);
+  if(editingListId!==null){const lst=myLists.find(l=>l.id===editingListId);if(lst){lst.name=name;lst.artists=selected;}}
+  else{myLists.push({id:Date.now(),name,artists:selected});}
+  saveLists();
+  document.getElementById('listModal').classList.remove('open');
+  renderListChips();
+  if(editingListId!==null&&activeListId===editingListId){renderListView();render();}
+});
+
+renderListChips();
 
 /* ── CORNER FIREWORKS on cvFx ── */
 const FW_COLORS = ['#00eeff','#ff073a','#39ff14','#ffd600','#9b00ff','#ffffff','#ff8800'];
@@ -1421,52 +1540,7 @@ function drawPartsAndFW() {
 }
 // Fireworks draw in main loop below
 
-/* ── MUSIC PLAYER ── */
-// Free EDM radio streams - these are live internet radio stations
-const TRACKS = [
-  { name: 'DI.FM · Electronic', url: 'https://stream.freemusicarchive.org/api/data/streams/3/64.mp3' },
-  { name: 'SoundHelix Mix 1', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { name: 'SoundHelix Mix 2', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-];
-let trackIdx = 0;
-const audio = new Audio();
-audio.volume = 0.6;
-audio.loop = false;
-let playing = false;
 
-const playBtn = document.getElementById('playBtn');
-const trackName = document.getElementById('trackName');
-const volSlider = document.getElementById('volSlider');
-const musicEq = document.getElementById('musicEq');
-
-function loadTrack(idx) {
-  audio.src = TRACKS[idx].url;
-  trackName.textContent = TRACKS[idx].name;
-}
-
-function togglePlay() {
-  if (playing) {
-    audio.pause();
-    playing = false;
-    playBtn.textContent = '▶';
-    musicEq.classList.add('paused');
-  } else {
-    audio.play().catch(() => {});
-    playing = true;
-    playBtn.textContent = '⏸';
-    musicEq.classList.remove('paused');
-  }
-}
-
-audio.addEventListener('ended', () => {
-  trackIdx = (trackIdx + 1) % TRACKS.length;
-  loadTrack(trackIdx);
-  audio.play().catch(() => {});
-});
-
-volSlider.addEventListener('input', () => { audio.volume = volSlider.value / 100; });
-playBtn.addEventListener('click', togglePlay);
-loadTrack(0);
 
 /* ── LIGHTBOX ── */
 function openLightbox(src, caption, sub) {
