@@ -520,6 +520,28 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 .list-remove-btn:hover{opacity:1;background:rgba(255,7,58,.1);}
 .list-empty-hint{text-align:center;padding:22px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);}
 .fb-saving{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,238,255,.4);margin-left:8px;}
+
+/* ── DAY FILTER BAR ── */
+.day-filter-bar{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:28px;
+}
+.day-filter-btn{
+  padding:10px 24px;border-radius:30px;
+  background:rgba(255,255,255,.05);
+  border:1.5px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.5);
+  font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;
+  cursor:pointer;transition:all .25s;
+}
+.day-filter-btn:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8);}
+.day-filter-btn.active{
+  background:rgba(155,0,255,.15);
+  border-color:var(--purple);
+  color:#fff;
+  box-shadow:0 0 18px rgba(155,0,255,.25);
+}
+.stage-day-block.hidden{display:none;}
 </style>
 </head>
 <body>
@@ -569,6 +591,13 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
     <div class="stages-header">
       <div class="stages-title">Stages</div>
       <div class="stages-sub">EDC Las Vegas · May 15–17, 2026</div>
+    </div>
+
+    <div class="day-filter-bar">
+      <button class="day-filter-btn active" data-day="all">All Days</button>
+      <button class="day-filter-btn" data-day="Friday May 15">Friday May 15</button>
+      <button class="day-filter-btn" data-day="Saturday May 16">Saturday May 16</button>
+      <button class="day-filter-btn" data-day="Sunday May 17">Sunday May 17</button>
     </div>
 
     <div class="stages-grid">
@@ -1214,7 +1243,7 @@ tick();setInterval(tick,1000);
 
 /* ── LINEUP DATA ── */
 const ARTISTS=[
-  ["999999999","Techno","Progressive Techno",4.7],["KI/KI","Techno","Acid Techno",4.6],["Ahmed Spins","House","Afro House",4.2],["MËSTIZA","House","Afro House",4.2],["Chris Lorenzo","House","Bass House",4.6],["Ship Wrek","House","Bass House",4.3],["Wax Motif","House","Bass House",4.6],["MPH","UK Garage","Bassline",4.4],["Notion","UK Garage","Bassline",4.2],["Sammy Virji","UK Garage","Bassline",4.8],["Hardwell","Mainstage","Big Room",4.9],["Martin Garrix","Mainstage","Big Room",5],["Maddix","Hard Dance","Big Room Techno",4.6],["Frankie Bones","Techno","Classic Techno",4.1],["Darude","Trance","Classic Trance",4.5],["Paul Oakenfold","Trance","Classic Trance",4.5],["Paul van Dyk","Trance","Classic Trance",4.7],["Sofi Tukker","House","Dance House",4.6],["BUNT.","House","Dance Pop",4.2],["Culture Shock","Drum & Bass","Dancefloor",4.5],["Sub Focus","Drum & Bass","Dancefloor",4.8],["1991","Drum & Bass","Dancefloor DnB",4.3],["Abana B2B Juliet Mendoza","House","Deep House",3.8],["DJ Tennis B2B Chloé Caillet","House","Deep House",4.4],["Heidi Lawden B2B Masha Mar","House","Deep House",3.7],["Lu.Re","House","Deep House",3.6],["Mary Droppinz","House","Deep House",4.1],["MEDUZA","House","Deep House",4.7],["Peggy Gou","House","Deep House",4.8],["Serafina","House","Deep House",3.6],["Silvie Loto","House","Deep House",3.8],["Solomun","House","Deep House",4.8],["Warung","House","Deep House",3.7],["The Carry Nation","House","Disco House",3.8],["ÆON:MODE","Bass","Dubstep",4.1],["ATLiens","Bass","Dubstep",4.6],["Boogie T B2B Distinct Motive","Bass","Dubstep",4.2],["Cyclops","Bass","Dubstep",4],["Doctor P B2B Flux Pavilion B2B FuntCase","Bass","Dubstep",4.8],["DØMINA","Bass","Dubstep",3.7],["DREYA V","Bass","Dubstep",3.7],["Eptic B2B Space Laces","Bass","Dubstep",4.7],["Getter","Bass","Dubstep",4.5],["Ghengar","Bass","Dubstep",4.2],["GorillaT","Bass","Dubstep",4.1],["GRiZ B2B Wooli","Bass","Dubstep",4.8],["HEYZ","Bass","Dubstep",3.9],["Kai Wachi","Bass","Dubstep",4.5],["KLO","Bass","Dubstep",3.6],["Level Up","Bass","Dubstep",4.2],["Levity","Bass","Dubstep",4],["Mish","Bass","Dubstep",3.6],["Peekaboo","Bass","Dubstep",4.6],["Ray Volpe","Bass","Dubstep",4.6],["RIOT","Bass","Dubstep",4.2],["Sippy","Bass","Dubstep",4.2],["SLAMM","Bass","Dubstep",3.7],["Slugg","Bass","Dubstep",3.8],["Subtronics","Bass","Dubstep",4.9],["Viperactive","Bass","Dubstep",3.7],["Virtual Riot","Bass","Dubstep",4.7],["Wooli","Bass","Dubstep",4.7],["YDG","Bass","Dubstep",4.1],["Yosuf","Bass","Dubstep",4],["Porter Robinson","Mainstage","Electro",4.7],["Laidback Luke B2B Chuckie","Mainstage","Electro House",4.5],["Steve Aoki","Mainstage","Electro House",4.6],["Zedd","Mainstage","Electro House",4.8],["Boys Noize","Electro","Electro Techno",4.6],["DJ Gigola","Techno","Electro Techno",4],["AHEE B2B Liquid Stranger","Bass","Experimental Bass",4.4],["Deathpact","Bass","Experimental Bass",4.4],["EAZYBAKED","Bass","Experimental Bass",4.1],["Player Dave","Bass","Experimental Bass",4],["The Chainsmokers","Mainstage","Festival EDM",4.7],["Tiësto","Mainstage","Festival EDM",5],["Armin van Buuren (Sunrise Set)","Trance","Festival Trance",5],["San Holo","Bass","Future Bass",4.6],["Whethan","Bass","Future Bass",4.3],["KREAM","House","Future House",4.4],["Interplanetary Criminal","UK Garage","Garage",4.5],["Adrián Mills","Techno","Hard Techno",4.2],["Anastazja","Techno","Hard Techno",3.9],["Bashkka B2B Sedef Adasi","Techno","Hard Techno",4],["Benwal","Techno","Hard Techno",3.8],["Clawz","Techno","Hard Techno",3.7],["Cloudy","Techno","Hard Techno",3.8],["Discip","Techno","Hard Techno",3.7],["DYEN","Techno","Hard Techno",4.4],["Funk Tribu","Techno","Hard Techno",4.2],["Hannah Laing","Techno","Hard Techno",4.4],["Holy Priest","Hard Dance","Hard Techno",4.2],["I Hate Models","Techno","Hard Techno",4.7],["ISAbella","Techno","Hard Techno",3.6],["Klangkuenstler","Techno","Hard Techno",4.7],["KUKO B2B Johannes Schuster","Hard Dance","Hard Techno",4],["Lilly Palmer","Techno","Hard Techno",4.5],["Linska","Techno","Hard Techno",3.7],["mink","Techno","Hard Techno",3.6],["Nico Moreno","Techno","Hard Techno",4.6],["Pegassi","Hard Dance","Hard Techno",4],["Restricted","Hard Dance","Hard Techno",4.2],["RØZ","Techno","Hard Techno",3.7],["Sihk","Techno","Hard Techno",3.7],["Spray","Techno","Hard Techno",3.6],["Stan Christ","Techno","Hard Techno",4.2],["T78","Techno","Hard Techno",4],["Trace","Techno","Hard Techno",3.8],["Bullet Tooth","Hard Dance","Hardcore",3.6],["Dead X","Hard Dance","Hardcore",3.6],["GRAVAGERZ","Hard Dance","Hardcore",3.7],["GRAVEDGR","Hard Dance","Hardcore",4.4],["Lil Texas","Hard Dance","Hardcore",4.6],["The Outlaw","Hard Dance","Hardcore",3.6],["Rob Gee B2B Lenny Dee","Hard Dance","Hardcore",4],["Vieze Asbak","Hard Dance","Hardcore",4],["MALUGI","Techno","Hardgroove",4.2],["MCR-T","Techno","Hardgroove",4.2],["Audiofreq B2B Code Black B2B Toneshifterz","Hard Dance","Hardstyle",4.4],["Da Tweekaz","Hard Dance","Hardstyle",4.6],["DJ Isaac","Hard Dance","Hardstyle",4.2],["DJ Mandy","Hard Dance","Hardstyle",3.9],["Lady Faith B2B LNY TNZ","Hard Dance","Hardstyle",4.2],["The Purge","Hard Dance","Hardstyle",4.1],["Rooler","Hard Dance","Hardstyle",4.6],["Silva Bumpa","Hard Dance","Hardstyle",4.1],["Sub Zero Project","Hard Dance","Hardstyle",4.8],["Warface","Hard Dance","Hardstyle",4.6],["Frost Children","Electro","Hyperpop",3.9],["Snow Strippers","Electro","Hyperpop",4.2],["Avalon Emerson","House","Indie Dance",4.2],["Confidence Man","House","Indie Dance",4.2],["DJ Tennis B2B Red Axes","House","Indie Dance",4.3],["HAAi B2B Luke Alessi","House","Indie Dance",4.2],["PARAMIDA","House","Indie Dance",4.1],["salute B2B Chloé Caillet","House","Indie Dance",4.4],["Massimiliano Pagliara","House","Indie House",3.9],["Rebekah","Techno","Industrial Techno",4.4],["A.M.C w/ MC Phantom","Drum & Bass","Jump-Up",4.5],["Bou","Drum & Bass","Jump-Up",4.6],["Fallen with MC Dino","Drum & Bass","Jump-Up",3.7],["Murphy's Law","Drum & Bass","Jump-Up",3.7],["Nightstalker with MC Dino","Drum & Bass","Jump-Up",3.6],["Hybrid Minds","Drum & Bass","Liquid",4.5],["Dabin","Bass","Melodic Bass",4.5],["Seven Lions","Bass","Melodic Bass",4.8],["William Black","Bass","Melodic Bass",4.4],["Adventure Club","Bass","Melodic Dubstep",4.6],["Cassian","Melodic House","Melodic House",4.6],["Eli & Fur","Melodic House","Melodic House",4.4],["Adriatique","Melodic Techno","Melodic Techno",4.7],["Argy","Melodic Techno","Melodic Techno",4.6],["Innellea","Melodic Techno","Melodic Techno",4.4],["Kevin de Vries","Melodic Techno","Melodic Techno",4.7],["Korolova","Melodic Techno","Melodic Techno",4.4],["Massano","Melodic Techno","Melodic Techno",4.4],["Mathame","Melodic Techno","Melodic Techno",4.6],["Black Tiger Sex Machine","Bass","Midtempo Bass",4.5],["Chris Stussy","House","Minimal House",4.6],["Josh Baker","House","Minimal House",4.3],["Luciano","House","Minimal House",4.3],["Luuk van Dijk","House","Minimal House",4.4],["Toman","House","Minimal House",4],["Beltran","House","Minimal Tech House",4.5],["Beltran B2B Simas","House","Minimal Tech House",4.3],["Delta Heavy","Drum & Bass","Neurofunk",4.4],["MUZZ","Drum & Bass","Neurofunk",4.4],["ANNA","Techno","Peak Techno",4.6],["Charlotte de Witte","Techno","Peak Techno",5],["Cristoph","Melodic House","Progressive House",4.5],["Kaskade","House","Progressive House",4.8],["Underworld","Techno","Progressive Techno",4.9],["Above & Beyond (Sunrise Set)","Trance","Progressive Trance",4.9],["Cosmic Gate","Trance","Progressive Trance",4.7],["Gareth Emery","Trance","Progressive Trance",4.7],["Ilan Bluestone","Trance","Progressive Trance",4.6],["Shingo Nakamura","Trance","Progressive Trance",4.3],["Tinlicker","Trance","Progressive Trance",4.7],["Indira Paganotto","Techno","Psy Techno",4.7],["Astrix","Trance","Psytrance",4.5],["The Prodigy","Breakbeat","Rave",5],["Prospa","House","Rave House",4.4],["HOL!","Bass","Riddim",4.4],["INFEKT B2B Samplifire","Bass","Riddim",4.6],["Alves","House","Tech House",3.7],["AVELLO B2B Dennett","House","Tech House",3.6],["Bad Boombox B2B Ollie Lishman","House","Tech House",3.7],["BOLO","House","Tech House",4],["CID","House","Tech House",4.2],["Cloonee","House","Tech House",4.6],["Club Angel","House","Tech House",3.6],["Fisher","House","Tech House",4.9],["HNTR","House","Tech House",4.1],["Jackie Hollander","House","Tech House",3.7],["John Summit","House","Tech House",4.9],["KETTAMA","House","Tech House",4.6],["KinAhau","House","Tech House",3.6],["Luke Dean","House","Tech House",3.8],["Matty Ralph","House","Tech House",3.7],["Max Dean","House","Tech House",4],["Morgan Seatree","House","Tech House",4.1],["Noizu","House","Tech House",4.4],["Nostalgix","House","Tech House",4.3],["Obskür","House","Tech House",4.1],["Omar+","House","Tech House",3.7],["OMNOM","House","Tech House",4.5],["Roddy Lima","House","Tech House",3.6],["The Saints","House","Tech House",3.6],["San Pacho","House","Tech House",4.4],["Sidney Charles B2B Bushbaby","House","Tech House",4],["Skream","House","Tech House",4.6],["Vintage Culture","House","Tech House",4.7],["Walker & Royce B2B VNSSA","House","Tech House",4.5],["Westend","House","Tech House",4.4],["Eli Brown","Techno","Techno",4.8],["Joseph Capriati","Techno","Techno",4.7],["Layton Giordani","Techno","Techno",4.5],["Rebūke","Techno","Techno",4.5],["Sama Abdulhadi","Techno","Techno",4.3],["Stacy Christine","Techno","Techno",3.6],["Thomas Schumacher","Techno","Techno",4.1],["Tiga","Techno","Techno",4.3],["VTSS","Techno","Techno",4.4],["CUTDWN","Bass","Trap",3.8],["Alison Wonderland","Bass","Trap/Future Bass",4.7],["Hamdi","Bass","UK Bass",4.6],["Adiel","Techno","Underground Techno",4.1],["BAUGRUPPE90","Techno","Underground Techno",3.9],["Alyssa Jolee","Trance","Uplifting Trance",3.7],["Andrew Rayel","Trance","Uplifting Trance",4.4],["Billy Gillies","Trance","Uplifting Trance",4.3],["Cold Blue","Trance","Uplifting Trance",4.2],["Darren Porter","Trance","Uplifting Trance",4],["Maria Healy","Trance","Uplifting Trance",4.1],["SUPERSTRINGS","Trance","Uplifting Trance",4],["AR/CO","House","Vocal House",4],["HAYLA","House","Vocal House",4.1],["Sarah de Warren","Trance","Vocal Trance",4.1],
+  ["999999999","Techno","Progressive Techno",4.7],["KI/KI","Techno","Acid Techno",4.6],["Ahmed Spins","House","Afro House",4.2],["MËSTIZA","House","Afro House",4.2],["Chris Lorenzo","House","Bass House",4.6],["Ship Wrek","House","Bass House",4.3],["Wax Motif","House","Bass House",4.6],["MPH","UK Garage","Bassline",4.4],["Notion","UK Garage","Bassline",4.2],["Sammy Virji","UK Garage","Bassline",4.8],["Hardwell","Mainstage","Big Room",4.9],["Martin Garrix","Mainstage","Big Room",5],["Maddix","Hard Dance","Big Room Techno",4.6],["Frankie Bones","Techno","Classic Techno",4.1],["Darude","Trance","Classic Trance",4.5],["Paul Oakenfold","Trance","Classic Trance",4.5],["Paul van Dyk","Trance","Classic Trance",4.7],["Sofi Tukker","House","Dance House",4.6],["BUNT. (In The Round)","House","Dance Pop",4.2],["Culture Shock","Drum & Bass","Dancefloor",4.5],["Sub Focus","Drum & Bass","Dancefloor",4.8],["1991","Drum & Bass","Dancefloor DnB",4.3],["Abana B2B Juliet Mendoza","House","Deep House",3.8],["DJ Tennis B2B Chloé Caillet","House","Deep House",4.4],["Heidi Lawden B2B Masha Mar","House","Deep House",3.7],["Lu.Re","House","Deep House",3.6],["Mary Droppinz","House","Deep House",4.1],["MEDUZA³","House","Deep House",4.7],["Peggy Gou","House","Deep House",4.8],["Serafina","House","Deep House",3.6],["Silvie Loto","House","Deep House",3.8],["Solomun","House","Deep House",4.8],["Warung","House","Deep House",3.7],["The Carry Nation","House","Disco House",3.8],["ÆON:MODE (Sunrise Set)","Bass","Dubstep",4.1],["ATLiens","Bass","Dubstep",4.6],["Boogie T B2B Distinct Motive","Bass","Dubstep",4.2],["Cyclops","Bass","Dubstep",4],["Doctor P B2B Flux Pavilion B2B FuntCase","Bass","Dubstep",4.8],["DØMINA","Bass","Dubstep",3.7],["DREYA V","Bass","Dubstep",3.7],["Eptic B2B Space Laces","Bass","Dubstep",4.7],["Getter","Bass","Dubstep",4.5],["Ghengar","Bass","Dubstep",4.2],["GorillaT","Bass","Dubstep",4.1],["GRiZ B2B Wooli","Bass","Dubstep",4.8],["HEYZ","Bass","Dubstep",3.9],["Kai Wachi","Bass","Dubstep",4.5],["KLO","Bass","Dubstep",3.6],["Level Up","Bass","Dubstep",4.2],["Levity","Bass","Dubstep",4],["Mish","Bass","Dubstep",3.6],["Peekaboo","Bass","Dubstep",4.6],["Ray Volpe","Bass","Dubstep",4.6],["RIOT","Bass","Dubstep",4.2],["Sippy","Bass","Dubstep",4.2],["SLAMM","Bass","Dubstep",3.7],["Slugg","Bass","Dubstep",3.8],["Subtronics","Bass","Dubstep",4.9],["Viperactive","Bass","Dubstep",3.7],["Virtual Riot","Bass","Dubstep",4.7],["Wooli","Bass","Dubstep",4.7],["YDG","Bass","Dubstep",4.1],["Yosuf","Bass","Dubstep",4],["Porter Robinson (DJ Set)","Mainstage","Electro",4.7],["Laidback Luke B2B Chuckie","Mainstage","Electro House",4.5],["Steve Aoki","Mainstage","Electro House",4.6],["Zedd","Mainstage","Electro House",4.8],["Boys Noize","Electro","Electro Techno",4.6],["DJ Gigola","Techno","Electro Techno",4],["AHEE B2B Liquid Stranger","Bass","Experimental Bass",4.4],["Deathpact ∞ Deathpact","Bass","Experimental Bass",4.4],["EAZYBAKED","Bass","Experimental Bass",4.1],["Player Dave","Bass","Experimental Bass",4],["The Chainsmokers","Mainstage","Festival EDM",4.7],["Tiësto","Mainstage","Festival EDM",5],["Armin van Buuren (Sunrise Set)","Trance","Festival Trance",5],["San Holo (Wholesome Riddim Set)","Bass","Future Bass",4.6],["Whethan","Bass","Future Bass",4.3],["KREAM","House","Future House",4.4],["Interplanetary Criminal","UK Garage","Garage",4.5],["Adrián Mills","Techno","Hard Techno",4.2],["Anastazja","Techno","Hard Techno",3.9],["Bashkka B2B Sedef Adasi","Techno","Hard Techno",4],["Benwal","Techno","Hard Techno",3.8],["Clawz","Techno","Hard Techno",3.7],["Cloudy","Techno","Hard Techno",3.8],["Discip","Techno","Hard Techno",3.7],["DYEN","Techno","Hard Techno",4.4],["Funk Tribu","Techno","Hard Techno",4.2],["Hannah Laing","Techno","Hard Techno",4.4],["Holy Priest","Hard Dance","Hard Techno",4.2],["I Hate Models","Techno","Hard Techno",4.7],["ISAbella","Techno","Hard Techno",3.6],["Klangkuenstler","Techno","Hard Techno",4.7],["KUKO","Hard Dance","Hard Techno",4],["Johannes Schuster","Hard Dance","Hard Techno",4],["Lilly Palmer","Techno","Hard Techno",4.5],["Linska","Techno","Hard Techno",3.7],["mink","Techno","Hard Techno",3.6],["Nico Moreno","Techno","Hard Techno",4.6],["Pegassi","Hard Dance","Hard Techno",4],["Restricted","Hard Dance","Hard Techno",4.2],["RØZ","Techno","Hard Techno",3.7],["SIHK","Techno","Hard Techno",3.7],["Spray","Techno","Hard Techno",3.6],["Stan Christ","Techno","Hard Techno",4.2],["T78","Techno","Hard Techno",4],["Trace","Techno","Hard Techno",3.8],["Chris Lorenzo B2B Bullet Tooth","Hard Dance","Hardcore",3.6],["Dead X","Hard Dance","Hardcore",3.6],["GRAVAGERZ","Hard Dance","Hardcore",3.7],["GRAVEDGR","Hard Dance","Hardcore",4.4],["Lil Texas","Hard Dance","Hardcore",4.6],["The Outlaw","Hard Dance","Hardcore",3.6],["Rob Gee B2B Lenny Dee","Hard Dance","Hardcore",4],["Vieze Asbak","Hard Dance","Hardcore",4],["MALUGI","Techno","Hardgroove",4.2],["MCR-T","Techno","Hardgroove",4.2],["Audiofreq B2B Code Black B2B Toneshifterz","Hard Dance","Hardstyle",4.4],["Da Tweekaz","Hard Dance","Hardstyle",4.6],["DJ Isaac","Hard Dance","Hardstyle",4.2],["DJ Mandy","Hard Dance","Hardstyle",3.9],["Lady Faith B2B LNY TNZ","Hard Dance","Hardstyle",4.2],["The Purge","Hard Dance","Hardstyle",4.1],["Rooler","Hard Dance","Hardstyle",4.6],["Silva Bumpa","Hard Dance","Hardstyle",4.1],["Sub Zero Project","Hard Dance","Hardstyle",4.8],["Warface","Hard Dance","Hardstyle",4.6],["Frost Children","Electro","Hyperpop",3.9],["Snow Strippers","Electro","Hyperpop",4.2],["Avalon Emerson","House","Indie Dance",4.2],["Confidence Man","House","Indie Dance",4.2],["DJ Tennis B2B Red Axes","House","Indie Dance",4.3],["HAAi B2B Luke Alessi","House","Indie Dance",4.2],["PARAMIDA","House","Indie Dance",4.1],["salute B2B Chloé Caillet","House","Indie Dance",4.4],["Massimiliano Pagliara","House","Indie House",3.9],["Rebekah","Techno","Industrial Techno",4.4],["A.M.C w/ Phantom","Drum & Bass","Jump-Up",4.5],["Bou","Drum & Bass","Jump-Up",4.6],["Fallen with MC Dino","Drum & Bass","Jump-Up",3.7],["Murphy's Law","Drum & Bass","Jump-Up",3.7],["Nightstalker with MC Dino","Drum & Bass","Jump-Up",3.6],["Hybrid Minds","Drum & Bass","Liquid",4.5],["Dabin","Bass","Melodic Bass",4.5],["Seven Lions","Bass","Melodic Bass",4.8],["William Black","Bass","Melodic Bass",4.4],["Adventure Club (Throwback Set)","Bass","Melodic Dubstep",4.6],["Cassian","Melodic House","Melodic House",4.6],["Eli & Fur","Melodic House","Melodic House",4.4],["Adriatique","Melodic Techno","Melodic Techno",4.7],["Argy","Melodic Techno","Melodic Techno",4.6],["Innellea","Melodic Techno","Melodic Techno",4.4],["Kevin de Vries","Melodic Techno","Melodic Techno",4.7],["Korolova","Melodic Techno","Melodic Techno",4.4],["Massano","Melodic Techno","Melodic Techno",4.4],["Mathame","Melodic Techno","Melodic Techno",4.6],["Black Tiger Sex Machine","Bass","Midtempo Bass",4.5],["Chris Stussy","House","Minimal House",4.6],["Josh Baker","House","Minimal House",4.3],["Luciano","House","Minimal House",4.3],["Luuk van Dijk","House","Minimal House",4.4],["Toman","House","Minimal House",4],["Beltran","House","Minimal Tech House",4.5],["Beltran B2B Simas","House","Minimal Tech House",4.3],["Delta Heavy","Drum & Bass","Neurofunk",4.4],["MUZZ","Drum & Bass","Neurofunk",4.4],["ANNA","Techno","Peak Techno",4.6],["Charlotte de Witte","Techno","Peak Techno",5],["Cristoph","Melodic House","Progressive House",4.5],["Kaskade","House","Progressive House",4.8],["Underworld","Techno","Progressive Techno",4.9],["Above &amp; Beyond (Sunrise Set)","Trance","Progressive Trance",4.9],["Cosmic Gate","Trance","Progressive Trance",4.7],["Gareth Emery","Trance","Progressive Trance",4.7],["Ilan Bluestone","Trance","Progressive Trance",4.6],["Shingo Nakamura","Trance","Progressive Trance",4.3],["Tinlicker (DJ Set)","Trance","Progressive Trance",4.7],["Indira Paganotto","Techno","Psy Techno",4.7],["Astrix","Trance","Psytrance",4.5],["The Prodigy","Breakbeat","Rave",5],["Prospa","House","Rave House",4.4],["HOL!","Bass","Riddim",4.4],["INFEKT B2B Samplifire","Bass","Riddim",4.6],["Alves","House","Tech House",3.7],["Avello B2B Dennett","House","Tech House",3.6],["Bad Boombox B2B Ollie Lishman","House","Tech House",3.7],["BOLO (Sunrise Set)","House","Tech House",4],["CID","House","Tech House",4.2],["Cloonee","House","Tech House",4.6],["Club Angel","House","Tech House",3.6],["Fisher","House","Tech House",4.9],["HNTR","House","Tech House",4.1],["Jackie Hollander","House","Tech House",3.7],["John Summit","House","Tech House",4.9],["KETTAMA","House","Tech House",4.6],["KinAhau","House","Tech House",3.6],["Luke Dean","House","Tech House",3.8],["Matty Ralph","House","Tech House",3.7],["Max Dean","House","Tech House",4],["Morgan Seatree","House","Tech House",4.1],["Noizu","House","Tech House",4.4],["Nostalgix","House","Tech House",4.3],["Obskür","House","Tech House",4.1],["Omar+","House","Tech House",3.7],["OMNOM","House","Tech House",4.5],["Roddy Lima","House","Tech House",3.6],["The Saints","House","Tech House",3.6],["San Pacho","House","Tech House",4.4],["Sidney Charles B2B Bushbaby","House","Tech House",4],["Skream","House","Tech House",4.6],["Vintage Culture","House","Tech House",4.7],["Walker & Royce B2B VNSSA","House","Tech House",4.5],["Westend","House","Tech House",4.4],["Eli Brown","Techno","Techno",4.8],["Joseph Capriati","Techno","Techno",4.7],["Layton Giordani","Techno","Techno",4.5],["Rebūke","Techno","Techno",4.5],["Sama Abdulhadi","Techno","Techno",4.3],["Stacy Christine","Techno","Techno",3.6],["Thomas Schumacher","Techno","Techno",4.1],["Tiga","Techno","Techno",4.3],["VTSS (In The Round)","Techno","Techno",4.4],["CUTDWN","Bass","Trap",3.8],["Alison Wonderland","Bass","Trap/Future Bass",4.7],["Hamdi","Bass","UK Bass",4.6],["Adiel","Techno","Underground Techno",4.1],["BAUGRUPPE90","Techno","Underground Techno",3.9],["Alyssa Jolee","Trance","Uplifting Trance",3.7],["Andrew Rayel","Trance","Uplifting Trance",4.4],["Billy Gillies","Trance","Uplifting Trance",4.3],["Cold Blue","Trance","Uplifting Trance",4.2],["Darren Porter","Trance","Uplifting Trance",4],["Maria Healy","Trance","Uplifting Trance",4.1],["SUPERSTRINGS","Trance","Uplifting Trance",4],["AR/CO","House","Vocal House",4],["HAYLA","House","Vocal House",4.1],["Sarah de Warren","Trance","Vocal Trance",4.1],
 ];
 
 const BEAST=["Martin Garrix","Hardwell","Zedd","MEDUZA","Above & Beyond (Sunrise Set)","ATLiens","Sub Focus","Charlotte de Witte","I Hate Models","Klangkuenstler","Restricted","Holy Priest","Subtronics","GRiZ B2B Wooli","Doctor P B2B Flux Pavilion B2B FuntCase","Nico Moreno","John Summit","Fisher","KETTAMA","Sammy Virji","Armin van Buuren (Sunrise Set)"];
@@ -1240,7 +1269,19 @@ function getFiltered(){
   let mode='By Rating',data=[...ARTISTS];
   if(activeListId!==null){
     const lst=myLists.find(l=>l.id===activeListId);
-    if(lst){data=data.filter(a=>lst.artists.includes(a[0])).sort((a,b)=>b[3]-a[3]);mode='📋 '+lst.name;}
+    if(lst){
+      mode='📋 '+lst.name;
+      // Build rows from list — use ARTISTS data if available, fallback for b2b/custom entries
+      const artistMap=Object.fromEntries(ARTISTS.map(a=>[a[0],a]));
+      data=(lst.artists||[]).map(name=>{
+        return artistMap[name] || [name,'','','-'];
+      }).sort((a,b)=>{
+        if(a[3]==='-'&&b[3]==='-')return a[0].localeCompare(b[0]);
+        if(a[3]==='-')return 1;
+        if(b[3]==='-')return -1;
+        return b[3]-a[3];
+      });
+    }
     return{data,mode};
   }
   if(state.top10){data=data.filter(a=>a[1]===state.top10).sort((a,b)=>b[3]-a[3]).slice(0,10);mode='Top 10 · '+state.top10;}
@@ -1258,7 +1299,7 @@ function render(){
   resCount.textContent=data.length+' artist'+(data.length!==1?'s':'');
   resMode.textContent=mode;
   if(data.length===0){artistList.innerHTML='<div class="empty">No artists found 👀</div>';return;}
-  artistList.innerHTML=data.map((a,i)=>`<div class="artist-row" style="animation-delay:${Math.min(i*.02,.4)}s"><div><div class="art-name">${a[0]}</div><div class="art-sub">${a[2]}</div></div><span class="art-genre ${genreClass(a[1])}">${a[1]}</span><span class="art-rating ${ratingClass(a[3])}">${a[3]}</span></div>`).join('');
+  artistList.innerHTML=data.map((a,i)=>`<div class="artist-row" style="animation-delay:${Math.min(i*.02,.4)}s"><div><div class="art-name">${a[0]}</div><div class="art-sub">${a[2]||''}</div></div>${a[1]?`<span class="art-genre ${genreClass(a[1])}">${a[1]}</span>`:''}<span class="art-rating ${ratingClass(a[3])}">${a[3]!=='-'?a[3]:''}</span></div>`).join('');
 }
 
 function mkSel(sel,key,others){sel.addEventListener('change',()=>{state[key]=sel.value;if(state[key]){others.forEach(([s,k])=>{state[k]='';s.value='';});activeListId=null;renderListChips();}updateActive();render();});}
@@ -1321,17 +1362,20 @@ function buildSchedule(){
       const stageName=card.querySelector('.stage-name')?.textContent?.trim()||'';
       card.querySelectorAll('.stage-day-block').forEach(block=>{
         const dayLabel=block.querySelector('.stage-day-label')?.textContent?.trim()||'';
+        // Strip host suffix e.g. "Sunday May 17 · Hosted by Basscon" → "Sunday May 17"
+        const cleanDay=dayLabel.split('·')[0].trim();
         block.querySelectorAll('.stage-artist').forEach(el=>{
           const rawName=el.textContent.trim();
           if(!STAGE_SCHEDULE[rawName])STAGE_SCHEDULE[rawName]=[];
-          if(!STAGE_SCHEDULE[rawName].some(e=>e.day===dayLabel&&e.stage===stageName))
-            STAGE_SCHEDULE[rawName].push({day:dayLabel,stage:stageName});
+          if(!STAGE_SCHEDULE[rawName].some(e=>e.day===cleanDay&&e.stage===stageName))
+            STAGE_SCHEDULE[rawName].push({day:cleanDay,stage:stageName});
         });
       });
     });
   }catch(e){console.warn('buildSchedule',e);}
 }
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',buildSchedule);}else{buildSchedule();}
+// Build schedule on window load to ensure all DOM is ready
+window.addEventListener('load', buildSchedule);
 
 /* ── CHIPS ── */
 function renderListChips(){
@@ -1361,6 +1405,7 @@ function renderListChips(){
 
 /* ── LIST VIEW (by day/stage) ── */
 function renderListView(){
+  if(Object.keys(STAGE_SCHEDULE).length===0)buildSchedule();
   const wrap=document.getElementById('listViewWrap');
   if(!wrap)return;
   if(activeListId===null){wrap.innerHTML='';return;}
@@ -1377,9 +1422,13 @@ function renderListView(){
       grouped[day][stage].push(name);
     });
   });
+  // If STAGE_SCHEDULE is still empty, all artists go to unscheduled
+  const allArtists=lst.artists||[];
   let html='<div class="list-view-wrap">';
+  let hasContent=false;
   dayOrder.forEach(day=>{
     if(!grouped[day])return;
+    hasContent=true;
     html+=`<div class="list-day-group"><div class="list-day-header">${day}</div>`;
     Object.entries(grouped[day]).forEach(([stage,names])=>{
       html+=`<div class="list-stage-group"><div class="list-stage-label">${stage}</div>`;
@@ -1388,9 +1437,11 @@ function renderListView(){
     });
     html+='</div>';
   });
-  if(unscheduled.length){
+  // Show unscheduled — if schedule is empty, ALL artists go here
+  const toShow=unscheduled.length>0?unscheduled:(hasContent?[]:allArtists);
+  if(toShow.length){
     html+='<div class="list-day-group"><div class="list-day-header">Unscheduled</div><div class="list-stage-group">';
-    unscheduled.forEach(name=>{html+=`<div class="list-stage-artist"><span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;});
+    toShow.forEach(name=>{html+=`<div class="list-stage-artist"><span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;});
     html+='</div></div>';
   }
   html+='</div>';
@@ -1608,6 +1659,24 @@ function drawPartsAndFW() {
 }
 // Fireworks draw in main loop below
 
+
+
+/* ── DAY FILTER ── */
+document.querySelectorAll('.day-filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.day-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const day=btn.dataset.day;
+    document.querySelectorAll('.stage-day-block').forEach(block=>{
+      if(day==='all'){
+        block.classList.remove('hidden');
+      } else {
+        const label=block.querySelector('.stage-day-label')?.textContent?.split('·')[0].trim()||'';
+        block.classList.toggle('hidden', label!==day);
+      }
+    });
+  });
+});
 
 /* ── LIGHTBOX ── */
 function openLightbox(src, caption, sub) {
