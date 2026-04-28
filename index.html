@@ -356,7 +356,6 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
 
-
 /* ══════════════════════════════════
    MAPS / PHOTOS SECTION
 ══════════════════════════════════ */
@@ -485,22 +484,23 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 .modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.1em;color:var(--cyan);margin-bottom:14px;}
 .modal-input{width:100%;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(0,238,255,.25);border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;outline:none;margin-bottom:14px;}
 .modal-input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,238,255,.12);}
-.modal-search-wrap{position:relative;margin-bottom:10px;}
+.modal-search-wrap{position:relative;margin-bottom:8px;}
 .modal-search{width:100%;padding:9px 14px 9px 34px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;}
 .modal-search:focus{border-color:var(--purple);}
 .modal-search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.35;font-size:.85rem;}
+.modal-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.modal-selected-count{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);}
+.modal-show-selected{background:none;border:1px solid rgba(0,238,255,.25);border-radius:6px;color:rgba(0,238,255,.5);font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;cursor:pointer;transition:all .2s;}
+.modal-show-selected:hover,.modal-show-selected.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,238,255,.08);}
 .modal-artist-list{max-height:260px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;margin-bottom:14px;}
 .modal-artist-list::-webkit-scrollbar{width:4px;}
 .modal-artist-list::-webkit-scrollbar-thumb{background:rgba(0,238,255,.25);border-radius:2px;}
 .modal-artist-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;}
 .modal-artist-item:last-child{border-bottom:none;}
 .modal-artist-item:hover{background:rgba(255,255,255,.04);}
-.modal-artist-item input[type=checkbox]{accent-color:var(--cyan);width:16px;height:16px;flex-shrink:0;cursor:pointer;}
-.modal-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.modal-selected-count{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);}
-.modal-show-selected{background:none;border:1px solid rgba(0,238,255,.25);border-radius:6px;color:rgba(0,238,255,.5);font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;cursor:pointer;transition:all .2s;}
-.modal-show-selected:hover,.modal-show-selected.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,238,255,.08);}
 .modal-artist-item.checked-item{background:rgba(0,238,255,.06);}
+.modal-artist-item input[type=checkbox]{accent-color:var(--cyan);width:16px;height:16px;flex-shrink:0;cursor:pointer;}
+.modal-artist-name{flex:1;font-weight:600;font-size:.92rem;}
 .modal-artist-meta{font-size:.72rem;color:rgba(255,255,255,.35);}
 .modal-btns{display:flex;gap:10px;justify-content:flex-end;}
 .modal-btn{padding:9px 20px;border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none;}
@@ -519,7 +519,7 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 .list-remove-btn{margin-left:auto;font-size:.75rem;opacity:.3;cursor:pointer;padding:2px 6px;border-radius:4px;transition:all .15s;color:var(--pink);}
 .list-remove-btn:hover{opacity:1;background:rgba(255,7,58,.1);}
 .list-empty-hint{text-align:center;padding:22px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);}
-
+.fb-saving{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,238,255,.4);margin-left:8px;}
 </style>
 </head>
 <body>
@@ -1084,9 +1084,7 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
     <!-- My Lists -->
     <div class="lists-section" id="myListsSection">
       <span class="lists-label">My Lists</span>
-      <div class="lists-bar" id="listsBar">
-        <button class="new-list-btn" id="newListBtn">＋ New List</button>
-      </div>
+      <div class="lists-bar" id="listsBar"></div>
       <div id="listViewWrap"></div>
     </div>
 
@@ -1110,8 +1108,7 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 </div>
 
 
-
-<script>
+<script type="module">
 /* ── CANVAS ── */
 const cvBg=document.getElementById('cvBg'),ctBg=cvBg.getContext('2d');
 const cvFx=document.getElementById('cvFx'),ctFx=cvFx.getContext('2d');
@@ -1237,7 +1234,6 @@ let state={genre:'',subgenre:'',top10:'',top5:'',sort:'',search:''};
 let activeListId=null;
 
 function clearAll(){state={genre:'',subgenre:'',top10:'',top5:'',sort:'',search:''};activeListId=null;[selGenre,selSubgenre,selTop10,selTop5,selSort].forEach(s=>s.value='');searchBox.value='';updateActive();renderListChips();render();}
-
 function updateActive(){['genre','subgenre','top10','top5','sort'].forEach(k=>{document.getElementById('fr-'+k).classList.toggle('active',!!state[k]);});}
 
 function getFiltered(){
@@ -1275,8 +1271,50 @@ searchBox.addEventListener('input',()=>{state.search=searchBox.value;render();})
 document.getElementById('clearBtn').addEventListener('click',clearAll);
 render();
 
-/* ── CUSTOM LISTS ── */
-const STAGE_SCHEDULE={};
+/* ── FIREBASE + SHARED LISTS ── */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCAXPzet8ORVOITfUG_4K5nfuzSwxQFbxg",
+  authDomain: "edc-2026.firebaseapp.com",
+  projectId: "edc-2026",
+  storageBucket: "edc-2026.firebasestorage.app",
+  messagingSenderId: "127780971777",
+  appId: "1:127780971777:web:c377a87b6fa8ae428d2700",
+  measurementId: "G-6VY5K6KKXB"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const listsCol = collection(db, 'lists');
+
+let myLists = [];
+let editingListId = null;
+let modalShowSelectedFirst = false;
+let modalCheckMap = {};
+
+// Real-time listener — updates everyone instantly
+onSnapshot(listsCol, (snapshot) => {
+  myLists = snapshot.docs.map(d => ({...d.data(), id: d.id}));
+  myLists.sort((a,b) => (a.createdAt||0) - (b.createdAt||0));
+  renderListChips();
+  if(activeListId !== null) { renderListView(); render(); }
+});
+
+async function saveNewList(name, artists) {
+  await addDoc(listsCol, { name, artists, createdAt: Date.now() });
+}
+async function updateList(id, name, artists) {
+  await updateDoc(doc(db, 'lists', id), { name, artists });
+}
+async function deleteList(id) {
+  await deleteDoc(doc(db, 'lists', id));
+  if(activeListId === id){ activeListId = null; renderListView(); render(); }
+}
+
+/* ── SCHEDULE LOOKUP ── */
+const STAGE_SCHEDULE = {};
 function buildSchedule(){
   try{
     document.querySelectorAll('.stage-card').forEach(card=>{
@@ -1285,7 +1323,6 @@ function buildSchedule(){
         const dayLabel=block.querySelector('.stage-day-label')?.textContent?.trim()||'';
         block.querySelectorAll('.stage-artist').forEach(el=>{
           const rawName=el.textContent.trim();
-          // Exact match only - a b2b entry only schedules the full b2b name, not individuals
           if(!STAGE_SCHEDULE[rawName])STAGE_SCHEDULE[rawName]=[];
           if(!STAGE_SCHEDULE[rawName].some(e=>e.day===dayLabel&&e.stage===stageName))
             STAGE_SCHEDULE[rawName].push({day:dayLabel,stage:stageName});
@@ -1296,10 +1333,7 @@ function buildSchedule(){
 }
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',buildSchedule);}else{buildSchedule();}
 
-let myLists=[];try{myLists=JSON.parse(localStorage.getItem('edcLists')||'[]');}catch(e){myLists=[];}
-let editingListId=null;
-function saveLists(){try{localStorage.setItem('edcLists',JSON.stringify(myLists));}catch(e){}}
-
+/* ── CHIPS ── */
 function renderListChips(){
   const bar=document.getElementById('listsBar');
   if(!bar)return;
@@ -1323,18 +1357,17 @@ function renderListChips(){
   nb.textContent='＋ New List';
   nb.addEventListener('click',()=>openModal(null));
   bar.appendChild(nb);
-  renderListView();
 }
 
+/* ── LIST VIEW (by day/stage) ── */
 function renderListView(){
   const wrap=document.getElementById('listViewWrap');
   if(!wrap)return;
   if(activeListId===null){wrap.innerHTML='';return;}
   const lst=myLists.find(l=>l.id===activeListId);
-  if(!lst||lst.artists.length===0){wrap.innerHTML='<div class="list-view-wrap"><div class="list-empty-hint">No artists yet — click ✏️ to add some!</div></div>';return;}
+  if(!lst||!lst.artists||lst.artists.length===0){wrap.innerHTML='<div class="list-view-wrap"><div class="list-empty-hint">No artists yet — click ✏️ to add some!</div></div>';return;}
   const dayOrder=['Friday May 15','Saturday May 16','Sunday May 17'];
-  const grouped={};
-  const unscheduled=[];
+  const grouped={};const unscheduled=[];
   lst.artists.forEach(name=>{
     const slots=STAGE_SCHEDULE[name];
     if(!slots||slots.length===0){unscheduled.push(name);return;}
@@ -1363,61 +1396,30 @@ function renderListView(){
   html+='</div>';
   wrap.innerHTML=html;
   wrap.querySelectorAll('.list-remove-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const lid=parseInt(btn.dataset.list);
+    btn.addEventListener('click',async()=>{
+      const lid=btn.dataset.list;
       const l=myLists.find(x=>x.id===lid);
-      if(l){l.artists=l.artists.filter(a=>a!==btn.dataset.artist);saveLists();renderListView();render();}
+      if(l){await updateList(lid,l.name,l.artists.filter(a=>a!==btn.dataset.artist));}
     });
   });
 }
 
-function deleteList(id){
-  myLists=myLists.filter(l=>l.id!==id);
-  if(activeListId===id)activeListId=null;
-  saveLists();renderListChips();render();
+/* ── MODAL ── */
+function buildModalEntries(){
+  const entries=ARTISTS.map(a=>({name:a[0],meta:a[2]}));
+  const nameSet=new Set(entries.map(e=>e.name));
+  Object.keys(STAGE_SCHEDULE).forEach(name=>{
+    if(!nameSet.has(name)){entries.push({name,meta:'B2B'});nameSet.add(name);}
+  });
+  return entries.sort((a,b)=>a.name.localeCompare(b.name));
 }
 
-let modalCheckMap={};
-function openModal(listId){
-  editingListId=listId;
-  const modal=document.getElementById('listModal');
-  const nameInput=document.getElementById('listNameInput');
-  if(!modal||!nameInput)return;
-  document.getElementById('modalTitle').textContent=listId!==null?'Edit List':'New List';
-  modalCheckMap={};
-  if(listId!==null){const lst=myLists.find(l=>l.id===listId);if(lst){nameInput.value=lst.name;lst.artists.forEach(a=>{modalCheckMap[a]=true;});}}
-  else{nameInput.value='';}
-  document.getElementById('modalSearch').value='';
-  modalShowSelectedFirst=false;
-  const ssBtn=document.getElementById('modalShowSelected');
-  if(ssBtn)ssBtn.classList.remove('active');
-  renderModalArtists('');
-  updateModalCount();
-  modal.classList.add('open');
-  nameInput.focus();
-}
-
-let modalShowSelectedFirst=false;
 function updateModalCount(){
   const n=Object.values(modalCheckMap).filter(Boolean).length;
   const el=document.getElementById('modalCount');
   if(el)el.textContent=n+' selected';
   const saveEl=document.getElementById('modalSave');
   if(saveEl)saveEl.textContent=n>0?`Save List (${n})`:'Save List';
-}
-
-function buildModalEntries(){
-  // Start with all individual artists from ARTISTS array
-  const entries=ARTISTS.map(a=>({name:a[0],meta:a[2]}));
-  const nameSet=new Set(entries.map(e=>e.name));
-  // Add any stage entry (b2b names etc) that isn't already in the list
-  Object.keys(STAGE_SCHEDULE).forEach(name=>{
-    if(!nameSet.has(name)){
-      entries.push({name,meta:'B2B'});
-      nameSet.add(name);
-    }
-  });
-  return entries.sort((a,b)=>a.name.localeCompare(b.name));
 }
 
 function renderModalArtists(q){
@@ -1440,32 +1442,42 @@ function renderModalArtists(q){
   });
 }
 
-const modalSearchEl=document.getElementById('modalSearch');
-if(modalSearchEl)modalSearchEl.addEventListener('input',e=>renderModalArtists(e.target.value));
-const modalShowSelBtn=document.getElementById('modalShowSelected');
-if(modalShowSelBtn)modalShowSelBtn.addEventListener('click',()=>{
+function openModal(listId){
+  editingListId=listId;
+  const modal=document.getElementById('listModal');
+  const nameInput=document.getElementById('listNameInput');
+  if(!modal||!nameInput)return;
+  document.getElementById('modalTitle').textContent=listId?'Edit List':'New List';
+  modalCheckMap={};
+  if(listId){const lst=myLists.find(l=>l.id===listId);if(lst){nameInput.value=lst.name;lst.artists.forEach(a=>{modalCheckMap[a]=true;});}}
+  else{nameInput.value='';}
+  modalShowSelectedFirst=false;
+  const ssBtn=document.getElementById('modalShowSelected');
+  if(ssBtn)ssBtn.classList.remove('active');
+  document.getElementById('modalSearch').value='';
+  renderModalArtists('');
+  updateModalCount();
+  modal.classList.add('open');
+  nameInput.focus();
+}
+
+document.getElementById('modalSearch').addEventListener('input',e=>renderModalArtists(e.target.value));
+document.getElementById('modalShowSelected').addEventListener('click',()=>{
   modalShowSelectedFirst=!modalShowSelectedFirst;
-  modalShowSelBtn.classList.toggle('active',modalShowSelectedFirst);
+  document.getElementById('modalShowSelected').classList.toggle('active',modalShowSelectedFirst);
   renderModalArtists(document.getElementById('modalSearch').value);
 });
-const modalCancelEl=document.getElementById('modalCancel');
-if(modalCancelEl)modalCancelEl.addEventListener('click',()=>document.getElementById('listModal').classList.remove('open'));
-const listModalEl=document.getElementById('listModal');
-if(listModalEl)listModalEl.addEventListener('click',e=>{if(e.target===listModalEl)listModalEl.classList.remove('open');});
-const modalSaveEl=document.getElementById('modalSave');
-if(modalSaveEl)modalSaveEl.addEventListener('click',()=>{
+document.getElementById('modalCancel').addEventListener('click',()=>document.getElementById('listModal').classList.remove('open'));
+document.getElementById('listModal').addEventListener('click',e=>{if(e.target===document.getElementById('listModal'))document.getElementById('listModal').classList.remove('open');});
+
+document.getElementById('modalSave').addEventListener('click',async()=>{
   const name=document.getElementById('listNameInput').value.trim();
   if(!name){document.getElementById('listNameInput').focus();return;}
   const selected=Object.entries(modalCheckMap).filter(([,v])=>v).map(([k])=>k);
-  if(editingListId!==null){const lst=myLists.find(l=>l.id===editingListId);if(lst){lst.name=name;lst.artists=selected;}}
-  else{myLists.push({id:Date.now(),name,artists:selected});}
-  saveLists();
   document.getElementById('listModal').classList.remove('open');
-  renderListChips();
-  if(editingListId!==null&&activeListId===editingListId){renderListView();render();}
+  if(editingListId){await updateList(editingListId,name,selected);}
+  else{await saveNewList(name,selected);}
 });
-
-renderListChips();
 
 /* ── CORNER FIREWORKS on cvFx ── */
 const FW_COLORS = ['#00eeff','#ff073a','#39ff14','#ffd600','#9b00ff','#ffffff','#ff8800'];
@@ -1595,7 +1607,6 @@ function drawPartsAndFW() {
   }
 }
 // Fireworks draw in main loop below
-
 
 
 /* ── LIGHTBOX ── */
