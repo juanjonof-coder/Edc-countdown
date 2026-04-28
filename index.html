@@ -1280,11 +1280,15 @@ const STAGE_SCHEDULE={};
 function buildSchedule(){
   try{
     document.querySelectorAll('.stage-card').forEach(card=>{
-      const stageName=card.querySelector('.stage-name')?.textContent?.trim()||'';      card.querySelectorAll('.stage-day-block').forEach(block=>{
-        const dayLabel=block.querySelector('.stage-day-label')?.textContent?.trim()||'';        block.querySelectorAll('.stage-artist').forEach(el=>{
-          const name=el.textContent.trim();
-          if(!STAGE_SCHEDULE[name])STAGE_SCHEDULE[name]=[];
-          STAGE_SCHEDULE[name].push({day:dayLabel,stage:stageName});
+      const stageName=card.querySelector('.stage-name')?.textContent?.trim()||'';
+      card.querySelectorAll('.stage-day-block').forEach(block=>{
+        const dayLabel=block.querySelector('.stage-day-label')?.textContent?.trim()||'';
+        block.querySelectorAll('.stage-artist').forEach(el=>{
+          const rawName=el.textContent.trim();
+          // Exact match only - a b2b entry only schedules the full b2b name, not individuals
+          if(!STAGE_SCHEDULE[rawName])STAGE_SCHEDULE[rawName]=[];
+          if(!STAGE_SCHEDULE[rawName].some(e=>e.day===dayLabel&&e.stage===stageName))
+            STAGE_SCHEDULE[rawName].push({day:dayLabel,stage:stageName});
         });
       });
     });
@@ -1402,17 +1406,31 @@ function updateModalCount(){
   if(saveEl)saveEl.textContent=n>0?`Save List (${n})`:'Save List';
 }
 
+function buildModalEntries(){
+  // Start with all individual artists from ARTISTS array
+  const entries=ARTISTS.map(a=>({name:a[0],meta:a[2]}));
+  const nameSet=new Set(entries.map(e=>e.name));
+  // Add any stage entry (b2b names etc) that isn't already in the list
+  Object.keys(STAGE_SCHEDULE).forEach(name=>{
+    if(!nameSet.has(name)){
+      entries.push({name,meta:'B2B'});
+      nameSet.add(name);
+    }
+  });
+  return entries.sort((a,b)=>a.name.localeCompare(b.name));
+}
+
 function renderModalArtists(q){
   const container=document.getElementById('modalArtistList');
   if(!container)return;
-  let sorted=[...ARTISTS].sort((a,b)=>a[0].localeCompare(b[0]));
+  let entries=buildModalEntries();
   if(modalShowSelectedFirst){
-    const checked=sorted.filter(a=>modalCheckMap[a[0]]);
-    const unchecked=sorted.filter(a=>!modalCheckMap[a[0]]);
-    sorted=[...checked,...unchecked];
+    const checked=entries.filter(e=>modalCheckMap[e.name]);
+    const unchecked=entries.filter(e=>!modalCheckMap[e.name]);
+    entries=[...checked,...unchecked];
   }
-  const filtered=q?sorted.filter(a=>a[0].toLowerCase().includes(q.toLowerCase())):sorted;
-  container.innerHTML=filtered.map(a=>`<label class="modal-artist-item${modalCheckMap[a[0]]?' checked-item':''}"><input type="checkbox" ${modalCheckMap[a[0]]?'checked':''} data-name="${a[0].replace(/"/g,'&quot;')}"><span class="modal-artist-name">${a[0]}</span><span class="modal-artist-meta">${a[2]}</span></label>`).join('');
+  const filtered=q?entries.filter(e=>e.name.toLowerCase().includes(q.toLowerCase())):entries;
+  container.innerHTML=filtered.map(e=>`<label class="modal-artist-item${modalCheckMap[e.name]?' checked-item':''}"><input type="checkbox" ${modalCheckMap[e.name]?'checked':''} data-name="${e.name.replace(/"/g,'&quot;')}"><span class="modal-artist-name">${e.name}</span><span class="modal-artist-meta">${e.meta}</span></label>`).join('');
   container.querySelectorAll('input[type=checkbox]').forEach(cb=>{
     cb.addEventListener('change',()=>{
       modalCheckMap[cb.dataset.name]=cb.checked;
