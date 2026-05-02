@@ -467,6 +467,17 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
   color:rgba(255,255,255,.4);margin-top:3px;
 }
 
+/* ── SET TIME LABELS ── */
+.stage-artist{display:flex;align-items:baseline;gap:8px;}
+.set-time{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:rgba(0,238,255,.5);flex-shrink:0;min-width:52px;}
+
+/* ── DAY FILTER BAR ── */
+.day-filter-bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+.day-filter-btn{padding:10px 24px;border-radius:30px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;cursor:pointer;transition:all .25s;}
+.day-filter-btn:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8);}
+.day-filter-btn.active{background:rgba(155,0,255,.15);border-color:var(--purple);color:#fff;box-shadow:0 0 18px rgba(155,0,255,.25);}
+.stage-day-block.hidden{display:none;}
+
 /* ── CUSTOM LISTS ── */
 .lists-section{margin-bottom:10px;}
 .lists-label{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px;display:block;}
@@ -483,9 +494,9 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 .modal-box{width:100%;max-width:500px;background:#0a0a14;border:1px solid rgba(0,238,255,.25);border-radius:16px;padding:22px 20px;box-shadow:0 0 60px rgba(0,238,255,.12);}
 .modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.1em;color:var(--cyan);margin-bottom:14px;}
 .modal-input{width:100%;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(0,238,255,.25);border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;outline:none;margin-bottom:14px;}
-.modal-input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,238,255,.12);}
+.modal-input:focus{border-color:var(--cyan);}
 .modal-search-wrap{position:relative;margin-bottom:8px;}
-.modal-search{width:100%;padding:9px 14px 9px 34px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;}
+.modal-search{width:100%;padding:9px 14px 9px 34px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:.9rem;outline:none;}
 .modal-search:focus{border-color:var(--purple);}
 .modal-search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.35;font-size:.85rem;}
 .modal-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
@@ -505,7 +516,6 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 .modal-btns{display:flex;gap:10px;justify-content:flex-end;}
 .modal-btn{padding:9px 20px;border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none;}
 .modal-btn-cancel{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);}
-.modal-btn-cancel:hover{background:rgba(255,255,255,.1);}
 .modal-btn-save{background:rgba(0,238,255,.12);color:var(--cyan);border:1.5px solid rgba(0,238,255,.4);}
 .modal-btn-save:hover{background:rgba(0,238,255,.22);}
 .list-view-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px;}
@@ -516,32 +526,10 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
 .list-stage-label{font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:7px 0 4px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:4px;}
 .list-stage-artist{padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:8px;}
 .list-stage-artist:last-child{border-bottom:none;}
+.list-set-time{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:rgba(0,238,255,.5);min-width:52px;}
 .list-remove-btn{margin-left:auto;font-size:.75rem;opacity:.3;cursor:pointer;padding:2px 6px;border-radius:4px;transition:all .15s;color:var(--pink);}
 .list-remove-btn:hover{opacity:1;background:rgba(255,7,58,.1);}
 .list-empty-hint{text-align:center;padding:22px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);}
-.fb-saving{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,238,255,.4);margin-left:8px;}
-
-/* ── DAY FILTER BAR ── */
-.day-filter-bar{
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
-  margin-bottom:28px;
-}
-.day-filter-btn{
-  padding:10px 24px;border-radius:30px;
-  background:rgba(255,255,255,.05);
-  border:1.5px solid rgba(255,255,255,.12);
-  color:rgba(255,255,255,.5);
-  font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;
-  cursor:pointer;transition:all .25s;
-}
-.day-filter-btn:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8);}
-.day-filter-btn.active{
-  background:rgba(155,0,255,.15);
-  border-color:var(--purple);
-  color:#fff;
-  box-shadow:0 0 18px rgba(155,0,255,.25);
-}
-.stage-day-block.hidden{display:none;}
 </style>
 </head>
 <body>
@@ -589,437 +577,427 @@ html,body{width:100%;min-height:100%;background:var(--bg);color:#fff;font-family
   <!-- ══ STAGES ══ -->
   <div class="stages-section" id="stages">
     <div class="stages-header">
-      <div class="stages-title">Stages</div>
+      <div class="stages-title">Stages &amp; Set Times</div>
       <div class="stages-sub">EDC Las Vegas · May 15–17, 2026</div>
     </div>
 
     <div class="day-filter-bar">
       <button class="day-filter-btn active" data-day="all">All Days</button>
-      <button class="day-filter-btn" data-day="Friday May 15">Friday May 15</button>
-      <button class="day-filter-btn" data-day="Saturday May 16">Saturday May 16</button>
-      <button class="day-filter-btn" data-day="Sunday May 17">Sunday May 17</button>
+      <button class="day-filter-btn" data-day="fri">Friday May 15</button>
+      <button class="day-filter-btn" data-day="sat">Saturday May 16</button>
+      <button class="day-filter-btn" data-day="sun">Sunday May 17</button>
     </div>
 
     <div class="stages-grid">
 
-      <!-- KINETIC FIELD -->
       <div class="stage-card sc-kinetic">
         <div class="stage-card-header">
           <div class="stage-name">Kinetic Field</div>
           <div class="stage-host">Main Stage</div>
         </div>
         <div class="stage-days">
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="fri">
             <div class="stage-day-label">Friday May 15</div>
-            <span class="stage-artist">Argy</span>
-            <span class="stage-artist">The Chainsmokers</span>
-            <span class="stage-artist">Charlotte de Witte</span>
-            <span class="stage-artist">Chris Lorenzo</span>
-            <span class="stage-artist">Fisher</span>
-            <span class="stage-artist">Korolova</span>
-            <span class="stage-artist b2b">Laidback Luke B2B Chuckie</span>
-            <span class="stage-artist">Porter Robinson (DJ Set)</span>
-            <span class="stage-artist">Sofi Tukker</span>
+            <span class="stage-artist b2b" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Laidback Luke B2B Chuckie</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>Korolova</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Argy</span>
+            <span class="stage-artist" data-time="10:07 PM"><span class="set-time">10:07 PM</span>Chris Lorenzo</span>
+            <span class="stage-artist" data-time="11:19 PM"><span class="set-time">11:19 PM</span>Sofi Tukker</span>
+            <span class="stage-artist" data-time="12:32 AM"><span class="set-time">12:32 AM</span>The Chainsmokers</span>
+            <span class="stage-artist" data-time="1:47 AM"><span class="set-time">1:47 AM</span>Fisher</span>
+            <span class="stage-artist" data-time="3:01 AM"><span class="set-time">3:01 AM</span>Porter Robinson (DJ Set)</span>
+            <span class="stage-artist" data-time="4:14 AM"><span class="set-time">4:14 AM</span>Charlotte de Witte</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sat">
             <div class="stage-day-label">Saturday May 16</div>
-            <span class="stage-artist">Above &amp; Beyond (Sunrise Set)</span>
-            <span class="stage-artist">AR/CO</span>
-            <span class="stage-artist">Hardwell</span>
-            <span class="stage-artist">HAYLA</span>
-            <span class="stage-artist">John Summit</span>
-            <span class="stage-artist">Kaskade</span>
-            <span class="stage-artist">Steve Aoki</span>
-            <span class="stage-artist">Sub Focus</span>
-            <span class="stage-artist">Subtronics</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>AR/CO</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>HAYLA</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Sub Focus</span>
+            <span class="stage-artist" data-time="10:07 PM"><span class="set-time">10:07 PM</span>Steve Aoki</span>
+            <span class="stage-artist" data-time="11:19 PM"><span class="set-time">11:19 PM</span>Hardwell</span>
+            <span class="stage-artist" data-time="12:32 AM"><span class="set-time">12:32 AM</span>John Summit</span>
+            <span class="stage-artist" data-time="1:45 AM"><span class="set-time">1:45 AM</span>Subtronics</span>
+            <span class="stage-artist" data-time="3:01 AM"><span class="set-time">3:01 AM</span>Kaskade</span>
+            <span class="stage-artist" data-time="4:14 AM"><span class="set-time">4:14 AM</span>Above &amp; Beyond (Sunrise Set)</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sun">
             <div class="stage-day-label">Sunday May 17</div>
-            <span class="stage-artist">Armin van Buuren (Sunrise Set)</span>
-            <span class="stage-artist">Cloonee</span>
-            <span class="stage-artist">Funk Tribu</span>
-            <span class="stage-artist b2b">GRiZ B2B Wooli</span>
-            <span class="stage-artist">Layton Giordani</span>
-            <span class="stage-artist">Martin Garrix</span>
-            <span class="stage-artist">Ship Wrek</span>
-            <span class="stage-artist">Trace</span>
-            <span class="stage-artist">Zedd</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Trace</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>Ship Wrek</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Layton Giordani</span>
+            <span class="stage-artist" data-time="10:07 PM"><span class="set-time">10:07 PM</span>Funk Tribu</span>
+            <span class="stage-artist b2b" data-time="11:19 PM"><span class="set-time">11:19 PM</span>GRiZ B2B Wooli</span>
+            <span class="stage-artist" data-time="12:32 AM"><span class="set-time">12:32 AM</span>Zedd</span>
+            <span class="stage-artist" data-time="1:47 AM"><span class="set-time">1:47 AM</span>Martin Garrix</span>
+            <span class="stage-artist" data-time="3:01 AM"><span class="set-time">3:01 AM</span>Cloonee</span>
+            <span class="stage-artist" data-time="4:14 AM"><span class="set-time">4:14 AM</span>Armin van Buuren (Sunrise Set)</span>
           </div>
         </div>
       </div>
 
-      <!-- CIRCUIT GROUNDS -->
       <div class="stage-card sc-circuit">
         <div class="stage-card-header">
           <div class="stage-name">Circuit Grounds</div>
           <div class="stage-host">Techno / Hard Dance</div>
         </div>
         <div class="stage-days">
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="fri">
             <div class="stage-day-label">Friday May 15</div>
-            <span class="stage-artist">1991</span>
-            <span class="stage-artist">Bou</span>
-            <span class="stage-artist">I Hate Models</span>
-            <span class="stage-artist">Level Up</span>
-            <span class="stage-artist">Levity</span>
-            <span class="stage-artist">Nico Moreno</span>
-            <span class="stage-artist">Ray Volpe</span>
-            <span class="stage-artist">The Outlaw</span>
-            <span class="stage-artist">Wooli</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>1991</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>Bou</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Nico Moreno</span>
+            <span class="stage-artist" data-time="10:00 PM"><span class="set-time">10:00 PM</span>I Hate Models</span>
+            <span class="stage-artist" data-time="11:15 PM"><span class="set-time">11:15 PM</span>Levity</span>
+            <span class="stage-artist" data-time="12:25 AM"><span class="set-time">12:25 AM</span>Wooli</span>
+            <span class="stage-artist" data-time="1:35 AM"><span class="set-time">1:35 AM</span>The Outlaw</span>
+            <span class="stage-artist" data-time="2:35 AM"><span class="set-time">2:35 AM</span>Holy Priest</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>Ray Volpe</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Level Up</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sat">
             <div class="stage-day-label">Saturday May 16</div>
-            <span class="stage-artist">Boys Noize</span>
-            <span class="stage-artist">DJ Mandy</span>
-            <span class="stage-artist">KETTAMA</span>
-            <span class="stage-artist">Lilly Palmer</span>
-            <span class="stage-artist b2b">Peggy Gou B2B KI/KI</span>
-            <span class="stage-artist">RØZ</span>
-            <span class="stage-artist">Sammy Virji</span>
-            <span class="stage-artist">Tiësto</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>DJ Mandy</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>RØZ</span>
+            <span class="stage-artist" data-time="9:15 PM"><span class="set-time">9:15 PM</span>KETTAMA</span>
+            <span class="stage-artist" data-time="10:45 PM"><span class="set-time">10:45 PM</span>Sammy Virji</span>
+            <span class="stage-artist" data-time="12:15 AM"><span class="set-time">12:15 AM</span>Tiësto</span>
+            <span class="stage-artist b2b" data-time="1:45 AM"><span class="set-time">1:45 AM</span>Peggy Gou B2B KI/KI</span>
+            <span class="stage-artist" data-time="3:15 AM"><span class="set-time">3:15 AM</span>Boys Noize</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Lilly Palmer</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sun">
             <div class="stage-day-label">Sunday May 17</div>
-            <span class="stage-artist">ANNA</span>
-            <span class="stage-artist">Beltran</span>
-            <span class="stage-artist">Chris Stussy</span>
-            <span class="stage-artist">Kevin de Vries</span>
-            <span class="stage-artist">Linska</span>
-            <span class="stage-artist">Solomun</span>
-            <span class="stage-artist">Vintage Culture</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Linska</span>
+            <span class="stage-artist" data-time="8:30 PM"><span class="set-time">8:30 PM</span>ANNA</span>
+            <span class="stage-artist" data-time="10:00 PM"><span class="set-time">10:00 PM</span>Beltran</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Chris Stussy</span>
+            <span class="stage-artist" data-time="1:00 AM"><span class="set-time">1:00 AM</span>Solomun</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Vintage Culture</span>
+            <span class="stage-artist" data-time="4:00 AM"><span class="set-time">4:00 AM</span>Kevin de Vries</span>
           </div>
         </div>
       </div>
 
-      <!-- COSMIC MEADOW -->
       <div class="stage-card sc-cosmic">
         <div class="stage-card-header">
           <div class="stage-name">Cosmic Meadow</div>
           <div class="stage-host">House / Bass</div>
         </div>
         <div class="stage-days">
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="fri">
             <div class="stage-day-label">Friday May 15</div>
-            <span class="stage-artist">Jackie Hollander</span>
-            <span class="stage-artist b2b">Max Dean B2B Luke Dean</span>
-            <span class="stage-artist">MEDUZA³</span>
-            <span class="stage-artist">MPH</span>
-            <span class="stage-artist">Notion</span>
-            <span class="stage-artist">Roddy Lima</span>
-            <span class="stage-artist">San Pacho</span>
-            <span class="stage-artist">Underworld</span>
-            <span class="stage-artist b2b">Walker & Royce B2B VNSSA</span>
-            <span class="stage-artist">Westend</span>
+            <span class="stage-artist b2b" data-time="5:00 PM"><span class="set-time">5:00 PM</span>Max Dean B2B Luke Dean</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Jackie Hollander</span>
+            <span class="stage-artist" data-time="8:55 PM"><span class="set-time">8:55 PM</span>Westend</span>
+            <span class="stage-artist b2b" data-time="9:55 PM"><span class="set-time">9:55 PM</span>Walker &amp; Royce B2B VNSSA</span>
+            <span class="stage-artist" data-time="11:10 PM"><span class="set-time">11:10 PM</span>Underworld</span>
+            <span class="stage-artist" data-time="12:25 AM"><span class="set-time">12:25 AM</span>MEDUZA³</span>
+            <span class="stage-artist" data-time="1:47 AM"><span class="set-time">1:47 AM</span>Notion</span>
+            <span class="stage-artist" data-time="2:47 AM"><span class="set-time">2:47 AM</span>MPH</span>
+            <span class="stage-artist" data-time="4:02 AM"><span class="set-time">4:02 AM</span>San Pacho</span>
           </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Saturday May 16 · Hosted by HARD</div>
-            <span class="stage-artist">BUNT. (In The Round)</span>
-            <span class="stage-artist b2b">DJ Gigola B2B MCR-T</span>
-            <span class="stage-artist">Frost Children</span>
-            <span class="stage-artist">Hannah Laing</span>
-            <span class="stage-artist">Interplanetary Criminal</span>
-            <span class="stage-artist">MALUGI</span>
-            <span class="stage-artist">Snow Strippers</span>
-            <span class="stage-artist">The Prodigy</span>
-            <span class="stage-artist">VTSS (In The Round)</span>
+          <div class="stage-day-block" data-day="sat">
+            <div class="stage-day-label">Saturday May 16</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Frost Children</span>
+            <span class="stage-artist" data-time="8:15 PM"><span class="set-time">8:15 PM</span>Hannah Laing</span>
+            <span class="stage-artist" data-time="9:25 PM"><span class="set-time">9:25 PM</span>Snow Strippers</span>
+            <span class="stage-artist" data-time="10:15 PM"><span class="set-time">10:15 PM</span>VTSS (In The Round)</span>
+            <span class="stage-artist" data-time="11:35 PM"><span class="set-time">11:35 PM</span>The Prodigy</span>
+            <span class="stage-artist" data-time="12:40 AM"><span class="set-time">12:40 AM</span>BUNT. (In The Round)</span>
+            <span class="stage-artist" data-time="2:10 AM"><span class="set-time">2:10 AM</span>Interplanetary Criminal</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>MALUGI</span>
+            <span class="stage-artist b2b" data-time="4:30 AM"><span class="set-time">4:30 AM</span>DJ Gigola B2B MCR-T</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sun">
             <div class="stage-day-label">Sunday May 17</div>
-            <span class="stage-artist">Alison Wonderland</span>
-            <span class="stage-artist">Black Tiger Sex Machine</span>
-            <span class="stage-artist">Dabin</span>
-            <span class="stage-artist">GRAVAGERZ</span>
-            <span class="stage-artist b2b">Nico Moreno B2B Holy Priest</span>
-            <span class="stage-artist">Nostalgix</span>
-            <span class="stage-artist">San Holo (Wholesome Riddim Set)</span>
-            <span class="stage-artist">Seven Lions</span>
-            <span class="stage-artist">William Black</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>GRAVAGERZ</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>Nostalgix</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>William Black</span>
+            <span class="stage-artist" data-time="10:00 PM"><span class="set-time">10:00 PM</span>San Holo (Wholesome Riddim Set)</span>
+            <span class="stage-artist" data-time="11:00 PM"><span class="set-time">11:00 PM</span>Dabin</span>
+            <span class="stage-artist" data-time="12:05 AM"><span class="set-time">12:05 AM</span>Alison Wonderland</span>
+            <span class="stage-artist" data-time="1:05 AM"><span class="set-time">1:05 AM</span>Seven Lions</span>
+            <span class="stage-artist" data-time="2:20 AM"><span class="set-time">2:20 AM</span>Restricted</span>
+            <span class="stage-artist" data-time="3:20 AM"><span class="set-time">3:20 AM</span>Black Tiger Sex Machine</span>
+            <span class="stage-artist b2b" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Nico Moreno B2B Holy Priest</span>
           </div>
         </div>
       </div>
 
-      <!-- WASTELAND -->
       <div class="stage-card sc-wasteland">
         <div class="stage-card-header">
           <div class="stage-name">Wasteland</div>
           <div class="stage-host">Hard Dance / Hardcore</div>
         </div>
         <div class="stage-days">
-          <div class="stage-day-block">
-            <div class="stage-day-label">Friday May 15 · Hosted by Unreal</div>
-            <span class="stage-artist">Adrián Mills</span>
-            <span class="stage-artist">Cloudy</span>
-            <span class="stage-artist">DØMINA</span>
-            <span class="stage-artist">DYEN</span>
-            <span class="stage-artist">GRAVEDGR</span>
-            <span class="stage-artist b2b">Johannes Schuster</span>
-            <span class="stage-artist">KUKO</span>
-            <span class="stage-artist">Rebekah</span>
-            <span class="stage-artist">Serafina</span>
-            <span class="stage-artist">Stan Christ</span>
+          <div class="stage-day-block" data-day="fri">
+            <div class="stage-day-label">Friday May 15</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>DØMINA</span>
+            <span class="stage-artist" data-time="8:30 PM"><span class="set-time">8:30 PM</span>Serafina</span>
+            <span class="stage-artist" data-time="9:30 PM"><span class="set-time">9:30 PM</span>Johannes Schuster</span>
+            <span class="stage-artist" data-time="10:30 PM"><span class="set-time">10:30 PM</span>Adrián Mills</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Cloudy</span>
+            <span class="stage-artist" data-time="12:30 AM"><span class="set-time">12:30 AM</span>KUKO</span>
+            <span class="stage-artist" data-time="1:30 AM"><span class="set-time">1:30 AM</span>GRAVEDGR</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Rebekah</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>DYEN</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Stan Christ</span>
           </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Saturday May 16 · Hosted by Basscon</div>
-            <span class="stage-artist">Alyssa Jolee</span>
-            <span class="stage-artist b2b">Audiofreq B2B Code Black B2B Toneshifterz</span>
-            <span class="stage-artist">CUTDWN</span>
-            <span class="stage-artist">Da Tweekaz</span>
-            <span class="stage-artist">Dead X</span>
-            <span class="stage-artist b2b">Lady Faith B2B LNY TNZ</span>
-            <span class="stage-artist">Lil Texas</span>
-            <span class="stage-artist">Mish</span>
-            <span class="stage-artist b2b">Rob Gee B2B Lenny Dee</span>
-            <span class="stage-artist">The Saints</span>
+          <div class="stage-day-block" data-day="sat">
+            <div class="stage-day-label">Saturday May 16</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>CUTDWN</span>
+            <span class="stage-artist" data-time="8:30 PM"><span class="set-time">8:30 PM</span>Dead X</span>
+            <span class="stage-artist" data-time="9:30 PM"><span class="set-time">9:30 PM</span>The Saints</span>
+            <span class="stage-artist b2b" data-time="10:30 PM"><span class="set-time">10:30 PM</span>Rob Gee B2B Lenny Dee</span>
+            <span class="stage-artist b2b" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Lady Faith B2B LNY TNZ</span>
+            <span class="stage-artist b2b" data-time="12:30 AM"><span class="set-time">12:30 AM</span>Audiofreq B2B Code Black B2B Toneshifterz</span>
+            <span class="stage-artist" data-time="1:30 AM"><span class="set-time">1:30 AM</span>Da Tweekaz</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Lil Texas</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>Mish</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Alyssa Jolee</span>
           </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Sunday May 17 · Hosted by Basscon</div>
-            <span class="stage-artist">Clawz</span>
-            <span class="stage-artist">DJ Isaac</span>
-            <span class="stage-artist">Restricted</span>
-            <span class="stage-artist">Rooler</span>
-            <span class="stage-artist">SIHK</span>
-            <span class="stage-artist">Sub Zero Project</span>
-            <span class="stage-artist">The Purge</span>
-            <span class="stage-artist">Vieze Asbak</span>
-            <span class="stage-artist">Warface</span>
-            <span class="stage-artist">Yosuf</span>
+          <div class="stage-day-block" data-day="sun">
+            <div class="stage-day-label">Sunday May 17</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>SIHK</span>
+            <span class="stage-artist" data-time="8:30 PM"><span class="set-time">8:30 PM</span>Clawz</span>
+            <span class="stage-artist" data-time="9:30 PM"><span class="set-time">9:30 PM</span>The Purge</span>
+            <span class="stage-artist" data-time="10:30 PM"><span class="set-time">10:30 PM</span>Yosuf</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>DJ Isaac</span>
+            <span class="stage-artist" data-time="12:30 AM"><span class="set-time">12:30 AM</span>Vieze Asbak</span>
+            <span class="stage-artist" data-time="1:30 AM"><span class="set-time">1:30 AM</span>Sub Zero Project</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Rooler</span>
+            <span class="stage-artist b2b" data-time="3:30 AM"><span class="set-time">3:30 AM</span>MADGRRL B2B Vessel</span>
+            <span class="stage-artist b2b" data-time="4:30 AM"><span class="set-time">4:30 AM</span>MADGRRL B2B Vessel</span>
           </div>
         </div>
       </div>
 
-      <!-- NEON GARDEN -->
       <div class="stage-card sc-neon">
         <div class="stage-card-header">
           <div class="stage-name">Neon Garden</div>
           <div class="stage-host">Factory 93 Experience</div>
         </div>
         <div class="stage-days">
-          <div class="stage-day-block">
-            <div class="stage-day-label">Friday May 15 · Hosted by Time Warp</div>
-            <span class="stage-artist">Adriatique</span>
-            <span class="stage-artist">Anastazja</span>
-            <span class="stage-artist b2b">DJ Tennis B2B Chloé Caillet</span>
-            <span class="stage-artist">Eli Brown</span>
-            <span class="stage-artist">Joseph Capriati</span>
-            <span class="stage-artist">MËSTIZA</span>
-            <span class="stage-artist">Peggy Gou</span>
+          <div class="stage-day-block" data-day="fri">
+            <div class="stage-day-label">Friday May 15</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Anastazja</span>
+            <span class="stage-artist" data-time="8:30 PM"><span class="set-time">8:30 PM</span>MËSTIZA</span>
+            <span class="stage-artist b2b" data-time="10:00 PM"><span class="set-time">10:00 PM</span>DJ Tennis B2B Chloé Caillet</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Peggy Gou</span>
+            <span class="stage-artist" data-time="1:00 AM"><span class="set-time">1:00 AM</span>Adriatique</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Joseph Capriati</span>
+            <span class="stage-artist" data-time="4:00 AM"><span class="set-time">4:00 AM</span>Eli Brown</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sat">
             <div class="stage-day-label">Saturday May 16</div>
-            <span class="stage-artist">Ahmed Spins</span>
-            <span class="stage-artist b2b">Josh Baker B2B KETTAMA B2B Prospa</span>
-            <span class="stage-artist">Luciano</span>
-            <span class="stage-artist">mink</span>
-            <span class="stage-artist">Prospa</span>
-            <span class="stage-artist">Silvie Loto</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>mink</span>
+            <span class="stage-artist" data-time="8:30 PM"><span class="set-time">8:30 PM</span>Silvie Loto</span>
+            <span class="stage-artist" data-time="10:00 PM"><span class="set-time">10:00 PM</span>Ahmed Spins</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Luciano</span>
+            <span class="stage-artist" data-time="1:30 AM"><span class="set-time">1:30 AM</span>Prospa</span>
+            <span class="stage-artist b2b" data-time="3:30 AM"><span class="set-time">3:30 AM</span>Josh Baker B2B KETTAMA</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sun">
             <div class="stage-day-label">Sunday May 17</div>
-            <span class="stage-artist">999999999</span>
-            <span class="stage-artist">Adiel</span>
-            <span class="stage-artist">DJ Gigola</span>
-            <span class="stage-artist">Frankie Bones</span>
-            <span class="stage-artist">Indira Paganotto</span>
-            <span class="stage-artist">KI/KI</span>
-            <span class="stage-artist">Klangkuenstler</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Bad Boombox</span>
+            <span class="stage-artist" data-time="8:15 PM"><span class="set-time">8:15 PM</span>Frankie Bones</span>
+            <span class="stage-artist" data-time="9:30 PM"><span class="set-time">9:30 PM</span>Adiel</span>
+            <span class="stage-artist" data-time="10:50 PM"><span class="set-time">10:50 PM</span>DJ Gigola</span>
+            <span class="stage-artist" data-time="12:10 AM"><span class="set-time">12:10 AM</span>999999999</span>
+            <span class="stage-artist" data-time="1:30 AM"><span class="set-time">1:30 AM</span>Indira Paganotto</span>
+            <span class="stage-artist" data-time="2:50 AM"><span class="set-time">2:50 AM</span>KI/KI</span>
+            <span class="stage-artist" data-time="4:10 AM"><span class="set-time">4:10 AM</span>Klangkuenstler</span>
           </div>
         </div>
       </div>
 
-      <!-- QUANTUM VALLEY -->
       <div class="stage-card sc-quantum">
         <div class="stage-card-header">
           <div class="stage-name">Quantum Valley</div>
           <div class="stage-host">Trance / Melodic</div>
         </div>
         <div class="stage-days">
-          <div class="stage-day-block">
-            <div class="stage-day-label">Friday May 15 · Dreamstate</div>
-            <span class="stage-artist">Cold Blue</span>
-            <span class="stage-artist">Cosmic Gate</span>
-            <span class="stage-artist">Darren Porter</span>
-            <span class="stage-artist">Darude</span>
-            <span class="stage-artist">Gareth Emery</span>
-            <span class="stage-artist">Ilan Bluestone</span>
-            <span class="stage-artist">Matty Ralph</span>
-            <span class="stage-artist">Paul van Dyk</span>
-            <span class="stage-artist">Pegassi</span>
-            <span class="stage-artist">Sarah de Warren</span>
+          <div class="stage-day-block" data-day="fri">
+            <div class="stage-day-label">Friday May 15</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Sarah de Warren</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>Matty Ralph</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Cold Blue</span>
+            <span class="stage-artist" data-time="10:00 PM"><span class="set-time">10:00 PM</span>Pegassi</span>
+            <span class="stage-artist" data-time="11:00 PM"><span class="set-time">11:00 PM</span>Darude</span>
+            <span class="stage-artist" data-time="12:00 AM"><span class="set-time">12:00 AM</span>Cosmic Gate</span>
+            <span class="stage-artist" data-time="1:00 AM"><span class="set-time">1:00 AM</span>Gareth Emery</span>
+            <span class="stage-artist" data-time="2:00 AM"><span class="set-time">2:00 AM</span>Ilan Bluestone</span>
+            <span class="stage-artist" data-time="3:00 AM"><span class="set-time">3:00 AM</span>Paul van Dyk</span>
+            <span class="stage-artist" data-time="4:00 AM"><span class="set-time">4:00 AM</span>Darren Porter</span>
           </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Saturday May 16 · Dreamstate</div>
-            <span class="stage-artist">Andrew Rayel</span>
-            <span class="stage-artist">Astrix</span>
-            <span class="stage-artist">Billy Gillies</span>
-            <span class="stage-artist">Maddix</span>
-            <span class="stage-artist">Maria Healy</span>
-            <span class="stage-artist">Mathame</span>
-            <span class="stage-artist">Paul Oakenfold</span>
-            <span class="stage-artist">SUPERSTRINGS</span>
-            <span class="stage-artist">T78</span>
-            <span class="stage-artist">Thomas Schumacher</span>
+          <div class="stage-day-block" data-day="sat">
+            <div class="stage-day-label">Saturday May 16</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Maria Healy</span>
+            <span class="stage-artist" data-time="8:30 PM"><span class="set-time">8:30 PM</span>SUPERSTRINGS</span>
+            <span class="stage-artist" data-time="9:30 PM"><span class="set-time">9:30 PM</span>Billy Gillies</span>
+            <span class="stage-artist" data-time="10:30 PM"><span class="set-time">10:30 PM</span>Paul Oakenfold</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Andrew Rayel</span>
+            <span class="stage-artist" data-time="12:30 AM"><span class="set-time">12:30 AM</span>Maddix</span>
+            <span class="stage-artist" data-time="1:30 AM"><span class="set-time">1:30 AM</span>Mathame</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Astrix</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>T78</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Thomas Schumacher</span>
           </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Sunday May 17 · Interstellar</div>
-            <span class="stage-artist">Cassian</span>
-            <span class="stage-artist">Cristoph</span>
-            <span class="stage-artist">Eli & Fur</span>
-            <span class="stage-artist">Innellea</span>
-            <span class="stage-artist">KREAM</span>
-            <span class="stage-artist">Massano</span>
-            <span class="stage-artist">Rebūke</span>
-            <span class="stage-artist">Shingo Nakamura</span>
-            <span class="stage-artist">Tinlicker (DJ Set)</span>
-            <span class="stage-artist">Warung</span>
+          <div class="stage-day-block" data-day="sun">
+            <div class="stage-day-label">Sunday May 17</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Warung</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>Shingo Nakamura</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Rebūke</span>
+            <span class="stage-artist" data-time="10:00 PM"><span class="set-time">10:00 PM</span>Cristoph</span>
+            <span class="stage-artist" data-time="11:00 PM"><span class="set-time">11:00 PM</span>Eli &amp; Fur</span>
+            <span class="stage-artist" data-time="12:00 AM"><span class="set-time">12:00 AM</span>Tinlicker (DJ Set)</span>
+            <span class="stage-artist" data-time="1:00 AM"><span class="set-time">1:00 AM</span>Cassian</span>
+            <span class="stage-artist" data-time="2:15 AM"><span class="set-time">2:15 AM</span>Massano</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>Innellea</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>KREAM</span>
           </div>
         </div>
       </div>
 
-      <!-- STEREOBLOOM -->
       <div class="stage-card sc-stereo">
         <div class="stage-card-header">
           <div class="stage-name">Stereobloom</div>
-          <div class="stage-host">Insomniac Records</div>
+          <div class="stage-host">Electronic / Eclectic</div>
         </div>
         <div class="stage-days">
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="fri">
             <div class="stage-day-label">Friday May 15</div>
-            <span class="stage-artist b2b">Abana B2B Juliet Mendoza</span>
-            <span class="stage-artist">Josh Baker</span>
-            <span class="stage-artist">Luke Dean</span>
-            <span class="stage-artist">Luuk van Dijk</span>
-            <span class="stage-artist">Max Dean</span>
-            <span class="stage-artist">Obskür</span>
-            <span class="stage-artist">Omar+</span>
-            <span class="stage-artist">SLAMM</span>
-            <span class="stage-artist">Toman</span>
+            <span class="stage-artist b2b" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Abana B2B Juliet Mendoza</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>SLAMM</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Luuk van Dijk</span>
+            <span class="stage-artist" data-time="10:15 PM"><span class="set-time">10:15 PM</span>Omar+</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Luke Dean</span>
+            <span class="stage-artist" data-time="12:45 AM"><span class="set-time">12:45 AM</span>Josh Baker</span>
+            <span class="stage-artist" data-time="2:00 AM"><span class="set-time">2:00 AM</span>Max Dean</span>
+            <span class="stage-artist" data-time="3:15 AM"><span class="set-time">3:15 AM</span>Obskür</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Toman</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sat">
             <div class="stage-day-label">Saturday May 16</div>
-            <span class="stage-artist">BOLO (Sunrise Set)</span>
-            <span class="stage-artist">CID</span>
-            <span class="stage-artist">Discip</span>
-            <span class="stage-artist">DREYA V</span>
-            <span class="stage-artist">HNTR</span>
-            <span class="stage-artist">Noizu</span>
-            <span class="stage-artist">OMNOM</span>
-            <span class="stage-artist">Slugg</span>
-            <span class="stage-artist">Wax Motif</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Slugg</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>DREYA V</span>
+            <span class="stage-artist" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Discip</span>
+            <span class="stage-artist" data-time="10:00 PM"><span class="set-time">10:00 PM</span>OMNOM</span>
+            <span class="stage-artist" data-time="11:15 PM"><span class="set-time">11:15 PM</span>Noizu</span>
+            <span class="stage-artist" data-time="12:30 AM"><span class="set-time">12:30 AM</span>Wax Motif</span>
+            <span class="stage-artist" data-time="1:45 AM"><span class="set-time">1:45 AM</span>CID</span>
+            <span class="stage-artist" data-time="3:00 AM"><span class="set-time">3:00 AM</span>HNTR</span>
+            <span class="stage-artist" data-time="4:15 AM"><span class="set-time">4:15 AM</span>BOLO (Sunrise Set)</span>
           </div>
-          <div class="stage-day-block">
+          <div class="stage-day-block" data-day="sun">
             <div class="stage-day-label">Sunday May 17</div>
-            <span class="stage-artist b2b">Chris Lorenzo B2B Bullet Tooth</span>
-            <span class="stage-artist">Hamdi</span>
-            <span class="stage-artist">KLO</span>
-            <span class="stage-artist">Lu.Re</span>
-            <span class="stage-artist">Morgan Seatree</span>
-            <span class="stage-artist">Murphy's Law</span>
-            <span class="stage-artist b2b">Sidney Charles B2B Bushbaby</span>
-            <span class="stage-artist">Silva Bumpa</span>
-            <span class="stage-artist">Skream</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>KLO</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>Murphy's Law</span>
+            <span class="stage-artist" data-time="9:15 PM"><span class="set-time">9:15 PM</span>Stacy Christine</span>
+            <span class="stage-artist" data-time="10:30 PM"><span class="set-time">10:30 PM</span>Skream</span>
+            <span class="stage-artist" data-time="11:45 PM"><span class="set-time">11:45 PM</span>Hamdi</span>
+            <span class="stage-artist b2b" data-time="1:00 AM"><span class="set-time">1:00 AM</span>Chris Lorenzo B2B Bullet Tooth</span>
+            <span class="stage-artist" data-time="2:15 AM"><span class="set-time">2:15 AM</span>Silver Bumpa</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>Morgan Seattle</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>LU.RE.</span>
           </div>
         </div>
       </div>
 
-      <!-- BASSPOD -->
-      <div class="stage-card sc-basspod">
-        <div class="stage-card-header">
-          <div class="stage-name">Basspod</div>
-          <div class="stage-host">Hosted by Bassrush</div>
-        </div>
-        <div class="stage-days">
-          <div class="stage-day-block">
-            <div class="stage-day-label">Friday May 15</div>
-            <span class="stage-artist">Adventure Club (Throwback Set)</span>
-            <span class="stage-artist">ATLiens</span>
-            <span class="stage-artist">Culture Shock</span>
-            <span class="stage-artist">Cyclops</span>
-            <span class="stage-artist b2b">Deathpact ∞ Deathpact</span>
-            <span class="stage-artist">Ghengar</span>
-            <span class="stage-artist">GorillaT</span>
-            <span class="stage-artist">HEYZ</span>
-            <span class="stage-artist">Kai Wachi</span>
-            <span class="stage-artist">MUZZ</span>
-            <span class="stage-artist">RIOT</span>
-          </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Saturday May 16</div>
-            <span class="stage-artist b2b">Avello B2B Dennett</span>
-            <span class="stage-artist">Delta Heavy</span>
-            <span class="stage-artist b2b">Doctor P B2B Flux Pavilion B2B FuntCase</span>
-            <span class="stage-artist b2b">Eptic B2B Space Laces</span>
-            <span class="stage-artist">Fallen with MC Dino</span>
-            <span class="stage-artist">Getter</span>
-            <span class="stage-artist">HOL!</span>
-            <span class="stage-artist">Hybrid Minds</span>
-            <span class="stage-artist">Mary Droppinz</span>
-            <span class="stage-artist">Viperactive</span>
-            <span class="stage-artist">YDG</span>
-          </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Sunday May 17</div>
-            <span class="stage-artist">A.M.C w/ Phantom</span>
-            <span class="stage-artist">ÆON:MODE (Sunrise Set)</span>
-            <span class="stage-artist b2b">AHEE B2B Liquid Stranger</span>
-            <span class="stage-artist b2b">Boogie T B2B Distinct Motive</span>
-            <span class="stage-artist">EAZYBAKED</span>
-            <span class="stage-artist b2b">INFEKT B2B Samplifire</span>
-            <span class="stage-artist">Nightstalker with MC Dino</span>
-            <span class="stage-artist">Peekaboo</span>
-            <span class="stage-artist">Sippy</span>
-            <span class="stage-artist">Virtual Riot</span>
-            <span class="stage-artist">Whethan</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- BIONIC JUNGLE -->
       <div class="stage-card sc-bionic">
         <div class="stage-card-header">
           <div class="stage-name">Bionic Jungle</div>
-          <div class="stage-host">Multi-host</div>
+          <div class="stage-host">Organic / Experimental</div>
         </div>
         <div class="stage-days">
-          <div class="stage-day-block">
-            <div class="stage-day-label">Friday May 15 · Take It Outside</div>
-            <span class="stage-artist">Avalon Emerson</span>
-            <span class="stage-artist b2b">Heidi Lawden B2B Masha Mar</span>
-            <span class="stage-artist">Massimiliano Pagliara</span>
-            <span class="stage-artist">PARAMIDA</span>
-            <span class="stage-artist">Robert Hood</span>
-            <span class="stage-artist b2b">salute B2B Chloé Caillet</span>
-            <span class="stage-artist">Stacy Christine</span>
-            <span class="stage-artist">The Carry Nation</span>
+          <div class="stage-day-block" data-day="fri">
+            <div class="stage-day-label">Friday May 15</div>
+            <span class="stage-artist b2b" data-time="5:00 PM"><span class="set-time">5:00 PM</span>Heidi Lawden B2B Masha Mar</span>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Stacy Christine</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>The Carry Nation</span>
+            <span class="stage-artist" data-time="9:30 PM"><span class="set-time">9:30 PM</span>Massimiliano Pagliara</span>
+            <span class="stage-artist" data-time="11:00 PM"><span class="set-time">11:00 PM</span>PARAMIDA</span>
+            <span class="stage-artist b2b" data-time="12:30 AM"><span class="set-time">12:30 AM</span>salute B2B Chloé Caillet</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Robert Hood</span>
+            <span class="stage-artist" data-time="4:00 AM"><span class="set-time">4:00 AM</span>Avalon Emerson</span>
           </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Saturday May 16 · HARD Recs</div>
-            <span class="stage-artist b2b">Bad Boombox B2B Ollie Lishman</span>
-            <span class="stage-artist b2b">Bashkka B2B Sedef Adasi</span>
-            <span class="stage-artist">BAUGRUPPE90</span>
-            <span class="stage-artist">Benwal</span>
-            <span class="stage-artist">Club Angel</span>
-            <span class="stage-artist b2b">HAAi B2B Luke Alessi</span>
-            <span class="stage-artist">MCR-T</span>
-            <span class="stage-artist">Player Dave</span>
-            <span class="stage-artist">Spray</span>
+          <div class="stage-day-block" data-day="sat">
+            <div class="stage-day-label">Saturday May 16</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Player Dave</span>
+            <span class="stage-artist" data-time="8:00 PM"><span class="set-time">8:00 PM</span>Spray</span>
+            <span class="stage-artist b2b" data-time="9:00 PM"><span class="set-time">9:00 PM</span>Bashkka B2B Sedef Adasi</span>
+            <span class="stage-artist b2b" data-time="10:30 PM"><span class="set-time">10:30 PM</span>HAAi B2B Luke Alessi</span>
+            <span class="stage-artist" data-time="12:00 AM"><span class="set-time">12:00 AM</span>MCR-T</span>
+            <span class="stage-artist b2b" data-time="1:15 AM"><span class="set-time">1:15 AM</span>Bad Boombox B2B Ollie Lishman</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Benwal</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>BAUGRUPPE90</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Club Angel</span>
           </div>
-          <div class="stage-day-block">
-            <div class="stage-day-label">Sunday May 17 · Factory 93 + Beltools</div>
-            <span class="stage-artist">Alves</span>
-            <span class="stage-artist b2b">Beltran B2B Simas</span>
-            <span class="stage-artist b2b">DJ Tennis B2B Red Axes</span>
-            <span class="stage-artist">ISAbella</span>
-            <span class="stage-artist">KinAhau</span>
-            <span class="stage-artist">Tiga</span>
+          <div class="stage-day-block" data-day="sun">
+            <div class="stage-day-label">Sunday May 17</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Alves</span>
+            <span class="stage-artist" data-time="8:30 PM"><span class="set-time">8:30 PM</span>ISAbella</span>
+            <span class="stage-artist" data-time="10:30 PM"><span class="set-time">10:30 PM</span>KinAhau</span>
+            <span class="stage-artist" data-time="12:00 AM"><span class="set-time">12:00 AM</span>Tiga</span>
+            <span class="stage-artist b2b" data-time="1:30 AM"><span class="set-time">1:30 AM</span>DJ Tennis B2B Red Axes</span>
+            <span class="stage-artist b2b" data-time="3:30 AM"><span class="set-time">3:30 AM</span>Beltran B2B Seamus</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card sc-basspod">
+        <div class="stage-card-header">
+          <div class="stage-name">Basspod</div>
+          <div class="stage-host">Bass / Dubstep</div>
+        </div>
+        <div class="stage-days">
+          <div class="stage-day-block" data-day="fri">
+            <div class="stage-day-label">Friday May 15</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>RIOT</span>
+            <span class="stage-artist" data-time="7:50 PM"><span class="set-time">7:50 PM</span>HEYZ</span>
+            <span class="stage-artist" data-time="8:40 PM"><span class="set-time">8:40 PM</span>MUZZ</span>
+            <span class="stage-artist" data-time="9:30 PM"><span class="set-time">9:30 PM</span>GorillaT</span>
+            <span class="stage-artist" data-time="10:30 PM"><span class="set-time">10:30 PM</span>Ghengar</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Deathpact ∞ Deathpact</span>
+            <span class="stage-artist" data-time="12:30 AM"><span class="set-time">12:30 AM</span>ATLiens</span>
+            <span class="stage-artist" data-time="1:30 AM"><span class="set-time">1:30 AM</span>Kai Wachi</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Adventure Club</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>Culture Shock</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Cyclops</span>
+          </div>
+          <div class="stage-day-block" data-day="sat">
+            <div class="stage-day-label">Saturday May 16</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Fallen w/ MC Dino</span>
+            <span class="stage-artist b2b" data-time="7:50 PM"><span class="set-time">7:50 PM</span>Avello B2B Dennett</span>
+            <span class="stage-artist" data-time="8:40 PM"><span class="set-time">8:40 PM</span>Viperactive</span>
+            <span class="stage-artist" data-time="9:30 PM"><span class="set-time">9:30 PM</span>Hybrid Minds</span>
+            <span class="stage-artist" data-time="10:30 PM"><span class="set-time">10:30 PM</span>YDG</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Delta Heavy</span>
+            <span class="stage-artist" data-time="12:30 AM"><span class="set-time">12:30 AM</span>Getter</span>
+            <span class="stage-artist b2b" data-time="1:30 AM"><span class="set-time">1:30 AM</span>Eptic B2B Space Laces</span>
+            <span class="stage-artist b2b" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Doctor P B2B Flux Pavilion B2B FuntCase</span>
+            <span class="stage-artist" data-time="3:30 AM"><span class="set-time">3:30 AM</span>HOL!</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>Mary Droppinz</span>
+          </div>
+          <div class="stage-day-block" data-day="sun">
+            <div class="stage-day-label">Sunday May 17</div>
+            <span class="stage-artist" data-time="7:00 PM"><span class="set-time">7:00 PM</span>Nightstalker w/ MC Dino</span>
+            <span class="stage-artist" data-time="7:50 PM"><span class="set-time">7:50 PM</span>Sippy</span>
+            <span class="stage-artist" data-time="8:40 PM"><span class="set-time">8:40 PM</span>EAZYBAKED</span>
+            <span class="stage-artist b2b" data-time="9:30 PM"><span class="set-time">9:30 PM</span>INFEKT B2B Samplifire</span>
+            <span class="stage-artist" data-time="10:30 PM"><span class="set-time">10:30 PM</span>A.M.C w/ MC Phantom</span>
+            <span class="stage-artist" data-time="11:30 PM"><span class="set-time">11:30 PM</span>Virtual Riot</span>
+            <span class="stage-artist" data-time="12:30 AM"><span class="set-time">12:30 AM</span>Peekaboo</span>
+            <span class="stage-artist b2b" data-time="1:30 AM"><span class="set-time">1:30 AM</span>AHee B2B Liquid Stranger</span>
+            <span class="stage-artist" data-time="2:30 AM"><span class="set-time">2:30 AM</span>Whethan</span>
+            <span class="stage-artist b2b" data-time="3:30 AM"><span class="set-time">3:30 AM</span>Boogie T B2B Distinction</span>
+            <span class="stage-artist" data-time="4:30 AM"><span class="set-time">4:30 AM</span>ÆON:MODE (Sunrise Set)</span>
           </div>
         </div>
       </div>
 
     </div>
-
-    <div class="stages-note">⏱ Set times to be announced — check back closer to the event</div>
   </div>
-
 
   <div class="section-divider"></div>
 
@@ -1243,7 +1221,7 @@ tick();setInterval(tick,1000);
 
 /* ── LINEUP DATA ── */
 const ARTISTS=[
-  ["999999999","Techno","Progressive Techno",4.7],["KI/KI","Techno","Acid Techno",4.6],["Ahmed Spins","House","Afro House",4.2],["MËSTIZA","House","Afro House",4.2],["Chris Lorenzo","House","Bass House",4.6],["Ship Wrek","House","Bass House",4.3],["Wax Motif","House","Bass House",4.6],["MPH","UK Garage","Bassline",4.4],["Notion","UK Garage","Bassline",4.2],["Sammy Virji","UK Garage","Bassline",4.8],["Hardwell","Mainstage","Big Room",4.9],["Martin Garrix","Mainstage","Big Room",5],["Maddix","Hard Dance","Big Room Techno",4.6],["Frankie Bones","Techno","Classic Techno",4.1],["Darude","Trance","Classic Trance",4.5],["Paul Oakenfold","Trance","Classic Trance",4.5],["Paul van Dyk","Trance","Classic Trance",4.7],["Sofi Tukker","House","Dance House",4.6],["BUNT. (In The Round)","House","Dance Pop",4.2],["Culture Shock","Drum & Bass","Dancefloor",4.5],["Sub Focus","Drum & Bass","Dancefloor",4.8],["1991","Drum & Bass","Dancefloor DnB",4.3],["Abana B2B Juliet Mendoza","House","Deep House",3.8],["DJ Tennis B2B Chloé Caillet","House","Deep House",4.4],["Heidi Lawden B2B Masha Mar","House","Deep House",3.7],["Lu.Re","House","Deep House",3.6],["Mary Droppinz","House","Deep House",4.1],["MEDUZA³","House","Deep House",4.7],["Peggy Gou","House","Deep House",4.8],["Serafina","House","Deep House",3.6],["Silvie Loto","House","Deep House",3.8],["Solomun","House","Deep House",4.8],["Warung","House","Deep House",3.7],["The Carry Nation","House","Disco House",3.8],["ÆON:MODE (Sunrise Set)","Bass","Dubstep",4.1],["ATLiens","Bass","Dubstep",4.6],["Boogie T B2B Distinct Motive","Bass","Dubstep",4.2],["Cyclops","Bass","Dubstep",4],["Doctor P B2B Flux Pavilion B2B FuntCase","Bass","Dubstep",4.8],["DØMINA","Bass","Dubstep",3.7],["DREYA V","Bass","Dubstep",3.7],["Eptic B2B Space Laces","Bass","Dubstep",4.7],["Getter","Bass","Dubstep",4.5],["Ghengar","Bass","Dubstep",4.2],["GorillaT","Bass","Dubstep",4.1],["GRiZ B2B Wooli","Bass","Dubstep",4.8],["HEYZ","Bass","Dubstep",3.9],["Kai Wachi","Bass","Dubstep",4.5],["KLO","Bass","Dubstep",3.6],["Level Up","Bass","Dubstep",4.2],["Levity","Bass","Dubstep",4],["Mish","Bass","Dubstep",3.6],["Peekaboo","Bass","Dubstep",4.6],["Ray Volpe","Bass","Dubstep",4.6],["RIOT","Bass","Dubstep",4.2],["Sippy","Bass","Dubstep",4.2],["SLAMM","Bass","Dubstep",3.7],["Slugg","Bass","Dubstep",3.8],["Subtronics","Bass","Dubstep",4.9],["Viperactive","Bass","Dubstep",3.7],["Virtual Riot","Bass","Dubstep",4.7],["Wooli","Bass","Dubstep",4.7],["YDG","Bass","Dubstep",4.1],["Yosuf","Bass","Dubstep",4],["Porter Robinson (DJ Set)","Mainstage","Electro",4.7],["Laidback Luke B2B Chuckie","Mainstage","Electro House",4.5],["Steve Aoki","Mainstage","Electro House",4.6],["Zedd","Mainstage","Electro House",4.8],["Boys Noize","Electro","Electro Techno",4.6],["DJ Gigola","Techno","Electro Techno",4],["AHEE B2B Liquid Stranger","Bass","Experimental Bass",4.4],["Deathpact ∞ Deathpact","Bass","Experimental Bass",4.4],["EAZYBAKED","Bass","Experimental Bass",4.1],["Player Dave","Bass","Experimental Bass",4],["The Chainsmokers","Mainstage","Festival EDM",4.7],["Tiësto","Mainstage","Festival EDM",5],["Armin van Buuren (Sunrise Set)","Trance","Festival Trance",5],["San Holo (Wholesome Riddim Set)","Bass","Future Bass",4.6],["Whethan","Bass","Future Bass",4.3],["KREAM","House","Future House",4.4],["Interplanetary Criminal","UK Garage","Garage",4.5],["Adrián Mills","Techno","Hard Techno",4.2],["Anastazja","Techno","Hard Techno",3.9],["Bashkka B2B Sedef Adasi","Techno","Hard Techno",4],["Benwal","Techno","Hard Techno",3.8],["Clawz","Techno","Hard Techno",3.7],["Cloudy","Techno","Hard Techno",3.8],["Discip","Techno","Hard Techno",3.7],["DYEN","Techno","Hard Techno",4.4],["Funk Tribu","Techno","Hard Techno",4.2],["Hannah Laing","Techno","Hard Techno",4.4],["Holy Priest","Hard Dance","Hard Techno",4.2],["I Hate Models","Techno","Hard Techno",4.7],["ISAbella","Techno","Hard Techno",3.6],["Klangkuenstler","Techno","Hard Techno",4.7],["KUKO","Hard Dance","Hard Techno",4],["Johannes Schuster","Hard Dance","Hard Techno",4],["Lilly Palmer","Techno","Hard Techno",4.5],["Linska","Techno","Hard Techno",3.7],["mink","Techno","Hard Techno",3.6],["Nico Moreno","Techno","Hard Techno",4.6],["Pegassi","Hard Dance","Hard Techno",4],["Restricted","Hard Dance","Hard Techno",4.2],["RØZ","Techno","Hard Techno",3.7],["SIHK","Techno","Hard Techno",3.7],["Spray","Techno","Hard Techno",3.6],["Stan Christ","Techno","Hard Techno",4.2],["T78","Techno","Hard Techno",4],["Trace","Techno","Hard Techno",3.8],["Chris Lorenzo B2B Bullet Tooth","Hard Dance","Hardcore",3.6],["Dead X","Hard Dance","Hardcore",3.6],["GRAVAGERZ","Hard Dance","Hardcore",3.7],["GRAVEDGR","Hard Dance","Hardcore",4.4],["Lil Texas","Hard Dance","Hardcore",4.6],["The Outlaw","Hard Dance","Hardcore",3.6],["Rob Gee B2B Lenny Dee","Hard Dance","Hardcore",4],["Vieze Asbak","Hard Dance","Hardcore",4],["MALUGI","Techno","Hardgroove",4.2],["MCR-T","Techno","Hardgroove",4.2],["Audiofreq B2B Code Black B2B Toneshifterz","Hard Dance","Hardstyle",4.4],["Da Tweekaz","Hard Dance","Hardstyle",4.6],["DJ Isaac","Hard Dance","Hardstyle",4.2],["DJ Mandy","Hard Dance","Hardstyle",3.9],["Lady Faith B2B LNY TNZ","Hard Dance","Hardstyle",4.2],["The Purge","Hard Dance","Hardstyle",4.1],["Rooler","Hard Dance","Hardstyle",4.6],["Silva Bumpa","Hard Dance","Hardstyle",4.1],["Sub Zero Project","Hard Dance","Hardstyle",4.8],["Warface","Hard Dance","Hardstyle",4.6],["Frost Children","Electro","Hyperpop",3.9],["Snow Strippers","Electro","Hyperpop",4.2],["Avalon Emerson","House","Indie Dance",4.2],["Confidence Man","House","Indie Dance",4.2],["DJ Tennis B2B Red Axes","House","Indie Dance",4.3],["HAAi B2B Luke Alessi","House","Indie Dance",4.2],["PARAMIDA","House","Indie Dance",4.1],["salute B2B Chloé Caillet","House","Indie Dance",4.4],["Massimiliano Pagliara","House","Indie House",3.9],["Rebekah","Techno","Industrial Techno",4.4],["A.M.C w/ Phantom","Drum & Bass","Jump-Up",4.5],["Bou","Drum & Bass","Jump-Up",4.6],["Fallen with MC Dino","Drum & Bass","Jump-Up",3.7],["Murphy's Law","Drum & Bass","Jump-Up",3.7],["Nightstalker with MC Dino","Drum & Bass","Jump-Up",3.6],["Hybrid Minds","Drum & Bass","Liquid",4.5],["Dabin","Bass","Melodic Bass",4.5],["Seven Lions","Bass","Melodic Bass",4.8],["William Black","Bass","Melodic Bass",4.4],["Adventure Club (Throwback Set)","Bass","Melodic Dubstep",4.6],["Cassian","Melodic House","Melodic House",4.6],["Eli & Fur","Melodic House","Melodic House",4.4],["Adriatique","Melodic Techno","Melodic Techno",4.7],["Argy","Melodic Techno","Melodic Techno",4.6],["Innellea","Melodic Techno","Melodic Techno",4.4],["Kevin de Vries","Melodic Techno","Melodic Techno",4.7],["Korolova","Melodic Techno","Melodic Techno",4.4],["Massano","Melodic Techno","Melodic Techno",4.4],["Mathame","Melodic Techno","Melodic Techno",4.6],["Black Tiger Sex Machine","Bass","Midtempo Bass",4.5],["Chris Stussy","House","Minimal House",4.6],["Josh Baker","House","Minimal House",4.3],["Luciano","House","Minimal House",4.3],["Luuk van Dijk","House","Minimal House",4.4],["Toman","House","Minimal House",4],["Beltran","House","Minimal Tech House",4.5],["Beltran B2B Simas","House","Minimal Tech House",4.3],["Delta Heavy","Drum & Bass","Neurofunk",4.4],["MUZZ","Drum & Bass","Neurofunk",4.4],["ANNA","Techno","Peak Techno",4.6],["Charlotte de Witte","Techno","Peak Techno",5],["Cristoph","Melodic House","Progressive House",4.5],["Kaskade","House","Progressive House",4.8],["Underworld","Techno","Progressive Techno",4.9],["Above &amp; Beyond (Sunrise Set)","Trance","Progressive Trance",4.9],["Cosmic Gate","Trance","Progressive Trance",4.7],["Gareth Emery","Trance","Progressive Trance",4.7],["Ilan Bluestone","Trance","Progressive Trance",4.6],["Shingo Nakamura","Trance","Progressive Trance",4.3],["Tinlicker (DJ Set)","Trance","Progressive Trance",4.7],["Indira Paganotto","Techno","Psy Techno",4.7],["Astrix","Trance","Psytrance",4.5],["The Prodigy","Breakbeat","Rave",5],["Prospa","House","Rave House",4.4],["HOL!","Bass","Riddim",4.4],["INFEKT B2B Samplifire","Bass","Riddim",4.6],["Alves","House","Tech House",3.7],["Avello B2B Dennett","House","Tech House",3.6],["Bad Boombox B2B Ollie Lishman","House","Tech House",3.7],["BOLO (Sunrise Set)","House","Tech House",4],["CID","House","Tech House",4.2],["Cloonee","House","Tech House",4.6],["Club Angel","House","Tech House",3.6],["Fisher","House","Tech House",4.9],["HNTR","House","Tech House",4.1],["Jackie Hollander","House","Tech House",3.7],["John Summit","House","Tech House",4.9],["KETTAMA","House","Tech House",4.6],["KinAhau","House","Tech House",3.6],["Luke Dean","House","Tech House",3.8],["Matty Ralph","House","Tech House",3.7],["Max Dean","House","Tech House",4],["Morgan Seatree","House","Tech House",4.1],["Noizu","House","Tech House",4.4],["Nostalgix","House","Tech House",4.3],["Obskür","House","Tech House",4.1],["Omar+","House","Tech House",3.7],["OMNOM","House","Tech House",4.5],["Roddy Lima","House","Tech House",3.6],["The Saints","House","Tech House",3.6],["San Pacho","House","Tech House",4.4],["Sidney Charles B2B Bushbaby","House","Tech House",4],["Skream","House","Tech House",4.6],["Vintage Culture","House","Tech House",4.7],["Walker & Royce B2B VNSSA","House","Tech House",4.5],["Westend","House","Tech House",4.4],["Eli Brown","Techno","Techno",4.8],["Joseph Capriati","Techno","Techno",4.7],["Layton Giordani","Techno","Techno",4.5],["Rebūke","Techno","Techno",4.5],["Sama Abdulhadi","Techno","Techno",4.3],["Stacy Christine","Techno","Techno",3.6],["Thomas Schumacher","Techno","Techno",4.1],["Tiga","Techno","Techno",4.3],["VTSS (In The Round)","Techno","Techno",4.4],["CUTDWN","Bass","Trap",3.8],["Alison Wonderland","Bass","Trap/Future Bass",4.7],["Hamdi","Bass","UK Bass",4.6],["Adiel","Techno","Underground Techno",4.1],["BAUGRUPPE90","Techno","Underground Techno",3.9],["Alyssa Jolee","Trance","Uplifting Trance",3.7],["Andrew Rayel","Trance","Uplifting Trance",4.4],["Billy Gillies","Trance","Uplifting Trance",4.3],["Cold Blue","Trance","Uplifting Trance",4.2],["Darren Porter","Trance","Uplifting Trance",4],["Maria Healy","Trance","Uplifting Trance",4.1],["SUPERSTRINGS","Trance","Uplifting Trance",4],["AR/CO","House","Vocal House",4],["HAYLA","House","Vocal House",4.1],["Sarah de Warren","Trance","Vocal Trance",4.1],
+  ["999999999","Techno","Progressive Techno",4.7],["KI/KI","Techno","Acid Techno",4.6],["Ahmed Spins","House","Afro House",4.2],["MËSTIZA","House","Afro House",4.2],["Chris Lorenzo","House","Bass House",4.6],["Ship Wrek","House","Bass House",4.3],["Wax Motif","House","Bass House",4.6],["MPH","UK Garage","Bassline",4.4],["Notion","UK Garage","Bassline",4.2],["Sammy Virji","UK Garage","Bassline",4.8],["Hardwell","Mainstage","Big Room",4.9],["Martin Garrix","Mainstage","Big Room",5],["Maddix","Hard Dance","Big Room Techno",4.6],["Frankie Bones","Techno","Classic Techno",4.1],["Darude","Trance","Classic Trance",4.5],["Paul Oakenfold","Trance","Classic Trance",4.5],["Paul van Dyk","Trance","Classic Trance",4.7],["Sofi Tukker","House","Dance House",4.6],["BUNT.","House","Dance Pop",4.2],["Culture Shock","Drum & Bass","Dancefloor",4.5],["Sub Focus","Drum & Bass","Dancefloor",4.8],["1991","Drum & Bass","Dancefloor DnB",4.3],["Abana B2B Juliet Mendoza","House","Deep House",3.8],["DJ Tennis B2B Chloé Caillet","House","Deep House",4.4],["Heidi Lawden B2B Masha Mar","House","Deep House",3.7],["Lu.Re","House","Deep House",3.6],["Mary Droppinz","House","Deep House",4.1],["MEDUZA","House","Deep House",4.7],["Peggy Gou","House","Deep House",4.8],["Serafina","House","Deep House",3.6],["Silvie Loto","House","Deep House",3.8],["Solomun","House","Deep House",4.8],["Warung","House","Deep House",3.7],["The Carry Nation","House","Disco House",3.8],["ÆON:MODE","Bass","Dubstep",4.1],["ATLiens","Bass","Dubstep",4.6],["Boogie T B2B Distinct Motive","Bass","Dubstep",4.2],["Cyclops","Bass","Dubstep",4],["Doctor P B2B Flux Pavilion B2B FuntCase","Bass","Dubstep",4.8],["DØMINA","Bass","Dubstep",3.7],["DREYA V","Bass","Dubstep",3.7],["Eptic B2B Space Laces","Bass","Dubstep",4.7],["Getter","Bass","Dubstep",4.5],["Ghengar","Bass","Dubstep",4.2],["GorillaT","Bass","Dubstep",4.1],["GRiZ B2B Wooli","Bass","Dubstep",4.8],["HEYZ","Bass","Dubstep",3.9],["Kai Wachi","Bass","Dubstep",4.5],["KLO","Bass","Dubstep",3.6],["Level Up","Bass","Dubstep",4.2],["Levity","Bass","Dubstep",4],["Mish","Bass","Dubstep",3.6],["Peekaboo","Bass","Dubstep",4.6],["Ray Volpe","Bass","Dubstep",4.6],["RIOT","Bass","Dubstep",4.2],["Sippy","Bass","Dubstep",4.2],["SLAMM","Bass","Dubstep",3.7],["Slugg","Bass","Dubstep",3.8],["Subtronics","Bass","Dubstep",4.9],["Viperactive","Bass","Dubstep",3.7],["Virtual Riot","Bass","Dubstep",4.7],["Wooli","Bass","Dubstep",4.7],["YDG","Bass","Dubstep",4.1],["Yosuf","Bass","Dubstep",4],["Porter Robinson","Mainstage","Electro",4.7],["Laidback Luke B2B Chuckie","Mainstage","Electro House",4.5],["Steve Aoki","Mainstage","Electro House",4.6],["Zedd","Mainstage","Electro House",4.8],["Boys Noize","Electro","Electro Techno",4.6],["DJ Gigola","Techno","Electro Techno",4],["AHEE B2B Liquid Stranger","Bass","Experimental Bass",4.4],["Deathpact","Bass","Experimental Bass",4.4],["EAZYBAKED","Bass","Experimental Bass",4.1],["Player Dave","Bass","Experimental Bass",4],["The Chainsmokers","Mainstage","Festival EDM",4.7],["Tiësto","Mainstage","Festival EDM",5],["Armin van Buuren (Sunrise Set)","Trance","Festival Trance",5],["San Holo","Bass","Future Bass",4.6],["Whethan","Bass","Future Bass",4.3],["KREAM","House","Future House",4.4],["Interplanetary Criminal","UK Garage","Garage",4.5],["Adrián Mills","Techno","Hard Techno",4.2],["Anastazja","Techno","Hard Techno",3.9],["Bashkka B2B Sedef Adasi","Techno","Hard Techno",4],["Benwal","Techno","Hard Techno",3.8],["Clawz","Techno","Hard Techno",3.7],["Cloudy","Techno","Hard Techno",3.8],["Discip","Techno","Hard Techno",3.7],["DYEN","Techno","Hard Techno",4.4],["Funk Tribu","Techno","Hard Techno",4.2],["Hannah Laing","Techno","Hard Techno",4.4],["Holy Priest","Hard Dance","Hard Techno",4.2],["I Hate Models","Techno","Hard Techno",4.7],["ISAbella","Techno","Hard Techno",3.6],["Klangkuenstler","Techno","Hard Techno",4.7],["KUKO B2B Johannes Schuster","Hard Dance","Hard Techno",4],["Lilly Palmer","Techno","Hard Techno",4.5],["Linska","Techno","Hard Techno",3.7],["mink","Techno","Hard Techno",3.6],["Nico Moreno","Techno","Hard Techno",4.6],["Pegassi","Hard Dance","Hard Techno",4],["Restricted","Hard Dance","Hard Techno",4.2],["RØZ","Techno","Hard Techno",3.7],["Sihk","Techno","Hard Techno",3.7],["Spray","Techno","Hard Techno",3.6],["Stan Christ","Techno","Hard Techno",4.2],["T78","Techno","Hard Techno",4],["Trace","Techno","Hard Techno",3.8],["Bullet Tooth","Hard Dance","Hardcore",3.6],["Dead X","Hard Dance","Hardcore",3.6],["GRAVAGERZ","Hard Dance","Hardcore",3.7],["GRAVEDGR","Hard Dance","Hardcore",4.4],["Lil Texas","Hard Dance","Hardcore",4.6],["The Outlaw","Hard Dance","Hardcore",3.6],["Rob Gee B2B Lenny Dee","Hard Dance","Hardcore",4],["Vieze Asbak","Hard Dance","Hardcore",4],["MALUGI","Techno","Hardgroove",4.2],["MCR-T","Techno","Hardgroove",4.2],["Audiofreq B2B Code Black B2B Toneshifterz","Hard Dance","Hardstyle",4.4],["Da Tweekaz","Hard Dance","Hardstyle",4.6],["DJ Isaac","Hard Dance","Hardstyle",4.2],["DJ Mandy","Hard Dance","Hardstyle",3.9],["Lady Faith B2B LNY TNZ","Hard Dance","Hardstyle",4.2],["The Purge","Hard Dance","Hardstyle",4.1],["Rooler","Hard Dance","Hardstyle",4.6],["Silva Bumpa","Hard Dance","Hardstyle",4.1],["Sub Zero Project","Hard Dance","Hardstyle",4.8],["Warface","Hard Dance","Hardstyle",4.6],["Frost Children","Electro","Hyperpop",3.9],["Snow Strippers","Electro","Hyperpop",4.2],["Avalon Emerson","House","Indie Dance",4.2],["Confidence Man","House","Indie Dance",4.2],["DJ Tennis B2B Red Axes","House","Indie Dance",4.3],["HAAi B2B Luke Alessi","House","Indie Dance",4.2],["PARAMIDA","House","Indie Dance",4.1],["salute B2B Chloé Caillet","House","Indie Dance",4.4],["Massimiliano Pagliara","House","Indie House",3.9],["Rebekah","Techno","Industrial Techno",4.4],["A.M.C w/ MC Phantom","Drum & Bass","Jump-Up",4.5],["Bou","Drum & Bass","Jump-Up",4.6],["Fallen with MC Dino","Drum & Bass","Jump-Up",3.7],["Murphy's Law","Drum & Bass","Jump-Up",3.7],["Nightstalker with MC Dino","Drum & Bass","Jump-Up",3.6],["Hybrid Minds","Drum & Bass","Liquid",4.5],["Dabin","Bass","Melodic Bass",4.5],["Seven Lions","Bass","Melodic Bass",4.8],["William Black","Bass","Melodic Bass",4.4],["Adventure Club","Bass","Melodic Dubstep",4.6],["Cassian","Melodic House","Melodic House",4.6],["Eli & Fur","Melodic House","Melodic House",4.4],["Adriatique","Melodic Techno","Melodic Techno",4.7],["Argy","Melodic Techno","Melodic Techno",4.6],["Innellea","Melodic Techno","Melodic Techno",4.4],["Kevin de Vries","Melodic Techno","Melodic Techno",4.7],["Korolova","Melodic Techno","Melodic Techno",4.4],["Massano","Melodic Techno","Melodic Techno",4.4],["Mathame","Melodic Techno","Melodic Techno",4.6],["Black Tiger Sex Machine","Bass","Midtempo Bass",4.5],["Chris Stussy","House","Minimal House",4.6],["Josh Baker","House","Minimal House",4.3],["Luciano","House","Minimal House",4.3],["Luuk van Dijk","House","Minimal House",4.4],["Toman","House","Minimal House",4],["Beltran","House","Minimal Tech House",4.5],["Beltran B2B Simas","House","Minimal Tech House",4.3],["Delta Heavy","Drum & Bass","Neurofunk",4.4],["MUZZ","Drum & Bass","Neurofunk",4.4],["ANNA","Techno","Peak Techno",4.6],["Charlotte de Witte","Techno","Peak Techno",5],["Cristoph","Melodic House","Progressive House",4.5],["Kaskade","House","Progressive House",4.8],["Underworld","Techno","Progressive Techno",4.9],["Above & Beyond (Sunrise Set)","Trance","Progressive Trance",4.9],["Cosmic Gate","Trance","Progressive Trance",4.7],["Gareth Emery","Trance","Progressive Trance",4.7],["Ilan Bluestone","Trance","Progressive Trance",4.6],["Shingo Nakamura","Trance","Progressive Trance",4.3],["Tinlicker","Trance","Progressive Trance",4.7],["Indira Paganotto","Techno","Psy Techno",4.7],["Astrix","Trance","Psytrance",4.5],["The Prodigy","Breakbeat","Rave",5],["Prospa","House","Rave House",4.4],["HOL!","Bass","Riddim",4.4],["INFEKT B2B Samplifire","Bass","Riddim",4.6],["Alves","House","Tech House",3.7],["AVELLO B2B Dennett","House","Tech House",3.6],["Bad Boombox B2B Ollie Lishman","House","Tech House",3.7],["BOLO","House","Tech House",4],["CID","House","Tech House",4.2],["Cloonee","House","Tech House",4.6],["Club Angel","House","Tech House",3.6],["Fisher","House","Tech House",4.9],["HNTR","House","Tech House",4.1],["Jackie Hollander","House","Tech House",3.7],["John Summit","House","Tech House",4.9],["KETTAMA","House","Tech House",4.6],["KinAhau","House","Tech House",3.6],["Luke Dean","House","Tech House",3.8],["Matty Ralph","House","Tech House",3.7],["Max Dean","House","Tech House",4],["Morgan Seatree","House","Tech House",4.1],["Noizu","House","Tech House",4.4],["Nostalgix","House","Tech House",4.3],["Obskür","House","Tech House",4.1],["Omar+","House","Tech House",3.7],["OMNOM","House","Tech House",4.5],["Roddy Lima","House","Tech House",3.6],["The Saints","House","Tech House",3.6],["San Pacho","House","Tech House",4.4],["Sidney Charles B2B Bushbaby","House","Tech House",4],["Skream","House","Tech House",4.6],["Vintage Culture","House","Tech House",4.7],["Walker & Royce B2B VNSSA","House","Tech House",4.5],["Westend","House","Tech House",4.4],["Eli Brown","Techno","Techno",4.8],["Joseph Capriati","Techno","Techno",4.7],["Layton Giordani","Techno","Techno",4.5],["Rebūke","Techno","Techno",4.5],["Sama Abdulhadi","Techno","Techno",4.3],["Stacy Christine","Techno","Techno",3.6],["Thomas Schumacher","Techno","Techno",4.1],["Tiga","Techno","Techno",4.3],["VTSS","Techno","Techno",4.4],["CUTDWN","Bass","Trap",3.8],["Alison Wonderland","Bass","Trap/Future Bass",4.7],["Hamdi","Bass","UK Bass",4.6],["Adiel","Techno","Underground Techno",4.1],["BAUGRUPPE90","Techno","Underground Techno",3.9],["Alyssa Jolee","Trance","Uplifting Trance",3.7],["Andrew Rayel","Trance","Uplifting Trance",4.4],["Billy Gillies","Trance","Uplifting Trance",4.3],["Cold Blue","Trance","Uplifting Trance",4.2],["Darren Porter","Trance","Uplifting Trance",4],["Maria Healy","Trance","Uplifting Trance",4.1],["SUPERSTRINGS","Trance","Uplifting Trance",4],["AR/CO","House","Vocal House",4],["HAYLA","House","Vocal House",4.1],["Sarah de Warren","Trance","Vocal Trance",4.1],
 ];
 
 const BEAST=["Martin Garrix","Hardwell","Zedd","MEDUZA","Above & Beyond (Sunrise Set)","ATLiens","Sub Focus","Charlotte de Witte","I Hate Models","Klangkuenstler","Restricted","Holy Priest","Subtronics","GRiZ B2B Wooli","Doctor P B2B Flux Pavilion B2B FuntCase","Nico Moreno","John Summit","Fisher","KETTAMA","Sammy Virji","Armin van Buuren (Sunrise Set)"];
@@ -1271,15 +1249,10 @@ function getFiltered(){
     const lst=myLists.find(l=>l.id===activeListId);
     if(lst){
       mode='📋 '+lst.name;
-      // Build rows from list — use ARTISTS data if available, fallback for b2b/custom entries
       const artistMap=Object.fromEntries(ARTISTS.map(a=>[a[0],a]));
-      data=(lst.artists||[]).map(name=>{
-        return artistMap[name] || [name,'','','-'];
-      }).sort((a,b)=>{
+      data=(lst.artists||[]).map(name=>artistMap[name]||[name,'','','-']).sort((a,b)=>{
         if(a[3]==='-'&&b[3]==='-')return a[0].localeCompare(b[0]);
-        if(a[3]==='-')return 1;
-        if(b[3]==='-')return -1;
-        return b[3]-a[3];
+        if(a[3]==='-')return 1;if(b[3]==='-')return -1;return b[3]-a[3];
       });
     }
     return{data,mode};
@@ -1312,70 +1285,320 @@ searchBox.addEventListener('input',()=>{state.search=searchBox.value;render();})
 document.getElementById('clearBtn').addEventListener('click',clearAll);
 render();
 
+/* ── DAY FILTER ── */
+document.querySelectorAll('.day-filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.day-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const day=btn.dataset.day;
+    document.querySelectorAll('.stage-day-block').forEach(block=>{
+      if(day==='all'){block.classList.remove('hidden');}
+      else{block.classList.toggle('hidden',block.dataset.day!==day);}
+    });
+  });
+});
+
 /* ── FIREBASE + SHARED LISTS ── */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCAXPzet8ORVOITfUG_4K5nfuzSwxQFbxg",
-  authDomain: "edc-2026.firebaseapp.com",
-  projectId: "edc-2026",
-  storageBucket: "edc-2026.firebasestorage.app",
-  messagingSenderId: "127780971777",
-  appId: "1:127780971777:web:c377a87b6fa8ae428d2700",
-  measurementId: "G-6VY5K6KKXB"
-};
+const firebaseConfig={apiKey:"AIzaSyCAXPzet8ORVOITfUG_4K5nfuzSwxQFbxg",authDomain:"edc-2026.firebaseapp.com",projectId:"edc-2026",storageBucket:"edc-2026.firebasestorage.app",messagingSenderId:"127780971777",appId:"1:127780971777:web:c377a87b6fa8ae428d2700"};
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const listsCol=collection(db,'lists');
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const listsCol = collection(db, 'lists');
+let myLists=[];
+let editingListId=null;
+let modalShowSelectedFirst=false;
+let modalCheckMap={};
 
-let myLists = [];
-let editingListId = null;
-let modalShowSelectedFirst = false;
-let modalCheckMap = {};
-
-// Real-time listener — updates everyone instantly
-onSnapshot(listsCol, (snapshot) => {
-  myLists = snapshot.docs.map(d => ({...d.data(), id: d.id}));
-  myLists.sort((a,b) => (a.createdAt||0) - (b.createdAt||0));
+onSnapshot(listsCol,(snapshot)=>{
+  myLists=snapshot.docs.map(d=>({...d.data(),id:d.id}));
+  myLists.sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
   renderListChips();
-  if(activeListId !== null) { renderListView(); render(); }
+  if(activeListId!==null){renderListView();render();}
 });
 
-async function saveNewList(name, artists) {
-  await addDoc(listsCol, { name, artists, createdAt: Date.now() });
-}
-async function updateList(id, name, artists) {
-  await updateDoc(doc(db, 'lists', id), { name, artists });
-}
-async function deleteList(id) {
-  await deleteDoc(doc(db, 'lists', id));
-  if(activeListId === id){ activeListId = null; renderListView(); render(); }
+async function saveNewList(name,artists){await addDoc(listsCol,{name,artists,createdAt:Date.now()});}
+async function updateList(id,name,artists){await updateDoc(doc(db,'lists',id),{name,artists});}
+async function deleteList(id){
+  await deleteDoc(doc(db,'lists',id));
+  if(activeListId===id){activeListId=null;renderListView();render();}
 }
 
 /* ── SCHEDULE LOOKUP ── */
-const STAGE_SCHEDULE = {};
+const STAGE_SCHEDULE={};
+// Full set times data embedded for reliable schedule lookup
+const SET_TIMES={
+  'Friday May 15':[
+    {time:'5:00 PM',stage:'Cosmic Meadow',artist:'Max Dean B2B Luke Dean'},
+    {time:'5:00 PM',stage:'Bionic Jungle',artist:'Heidi Lawden B2B Masha Mar'},
+    {time:'7:00 PM',stage:'Kinetic Field',artist:'Laidback Luke B2B Chuckie'},
+    {time:'7:00 PM',stage:'Circuit Grounds',artist:'1991'},
+    {time:'7:00 PM',stage:'Cosmic Meadow',artist:'Jackie Hollander'},
+    {time:'7:00 PM',stage:'Wasteland',artist:'DØMINA'},
+    {time:'7:00 PM',stage:'Neon Garden',artist:'Anastazja'},
+    {time:'7:00 PM',stage:'Quantum Valley',artist:'Sarah de Warren'},
+    {time:'7:00 PM',stage:'Stereobloom',artist:'Abana B2B Juliet Mendoza'},
+    {time:'7:00 PM',stage:'Bionic Jungle',artist:'Stacy Christine'},
+    {time:'7:00 PM',stage:'Basspod',artist:'RIOT'},
+    {time:'7:50 PM',stage:'Basspod',artist:'HEYZ'},
+    {time:'8:00 PM',stage:'Kinetic Field',artist:'Korolova'},
+    {time:'8:00 PM',stage:'Circuit Grounds',artist:'Bou'},
+    {time:'8:00 PM',stage:'Bionic Jungle',artist:'The Carry Nation'},
+    {time:'8:00 PM',stage:'Quantum Valley',artist:'Matty Ralph'},
+    {time:'8:00 PM',stage:'Stereobloom',artist:'SLAMM'},
+    {time:'8:30 PM',stage:'Neon Garden',artist:'MËSTIZA'},
+    {time:'8:30 PM',stage:'Wasteland',artist:'Serafina'},
+    {time:'8:40 PM',stage:'Basspod',artist:'MUZZ'},
+    {time:'8:55 PM',stage:'Cosmic Meadow',artist:'Westend'},
+    {time:'9:00 PM',stage:'Kinetic Field',artist:'Argy'},
+    {time:'9:00 PM',stage:'Circuit Grounds',artist:'Nico Moreno'},
+    {time:'9:00 PM',stage:'Quantum Valley',artist:'Cold Blue'},
+    {time:'9:00 PM',stage:'Stereobloom',artist:'Luuk van Dijk'},
+    {time:'9:30 PM',stage:'Wasteland',artist:'Johannes Schuster'},
+    {time:'9:30 PM',stage:'Bionic Jungle',artist:'Massimiliano Pagliara'},
+    {time:'9:30 PM',stage:'Basspod',artist:'GorillaT'},
+    {time:'9:55 PM',stage:'Cosmic Meadow',artist:'Walker & Royce B2B VNSSA'},
+    {time:'10:00 PM',stage:'Circuit Grounds',artist:'I Hate Models'},
+    {time:'10:00 PM',stage:'Neon Garden',artist:'DJ Tennis B2B Chloé Caillet'},
+    {time:'10:00 PM',stage:'Quantum Valley',artist:'Pegassi'},
+    {time:'10:07 PM',stage:'Kinetic Field',artist:'Chris Lorenzo'},
+    {time:'10:15 PM',stage:'Stereobloom',artist:'Omar+'},
+    {time:'10:30 PM',stage:'Wasteland',artist:'Adrián Mills'},
+    {time:'10:30 PM',stage:'Basspod',artist:'Ghengar'},
+    {time:'11:00 PM',stage:'Quantum Valley',artist:'Darude'},
+    {time:'11:00 PM',stage:'Bionic Jungle',artist:'PARAMIDA'},
+    {time:'11:10 PM',stage:'Cosmic Meadow',artist:'Underworld'},
+    {time:'11:15 PM',stage:'Circuit Grounds',artist:'Levity'},
+    {time:'11:19 PM',stage:'Kinetic Field',artist:'Sofi Tukker'},
+    {time:'11:30 PM',stage:'Wasteland',artist:'Cloudy'},
+    {time:'11:30 PM',stage:'Neon Garden',artist:'Peggy Gou'},
+    {time:'11:30 PM',stage:'Stereobloom',artist:'Luke Dean'},
+    {time:'11:30 PM',stage:'Basspod',artist:'Deathpact ∞ Deathpact'},
+    {time:'12:00 AM',stage:'Quantum Valley',artist:'Cosmic Gate'},
+    {time:'12:25 AM',stage:'Cosmic Meadow',artist:'MEDUZA³'},
+    {time:'12:25 AM',stage:'Circuit Grounds',artist:'Wooli'},
+    {time:'12:30 AM',stage:'Wasteland',artist:'KUKO'},
+    {time:'12:30 AM',stage:'Bionic Jungle',artist:'salute B2B Chloé Caillet'},
+    {time:'12:30 AM',stage:'Basspod',artist:'ATLiens'},
+    {time:'12:32 AM',stage:'Kinetic Field',artist:'The Chainsmokers'},
+    {time:'12:45 AM',stage:'Stereobloom',artist:'Josh Baker'},
+    {time:'1:00 AM',stage:'Neon Garden',artist:'Adriatique'},
+    {time:'1:00 AM',stage:'Quantum Valley',artist:'Gareth Emery'},
+    {time:'1:30 AM',stage:'Wasteland',artist:'GRAVEDGR'},
+    {time:'1:30 AM',stage:'Basspod',artist:'Kai Wachi'},
+    {time:'1:35 AM',stage:'Circuit Grounds',artist:'The Outlaw'},
+    {time:'1:47 AM',stage:'Kinetic Field',artist:'Fisher'},
+    {time:'1:47 AM',stage:'Cosmic Meadow',artist:'Notion'},
+    {time:'2:00 AM',stage:'Quantum Valley',artist:'Ilan Bluestone'},
+    {time:'2:00 AM',stage:'Stereobloom',artist:'Max Dean'},
+    {time:'2:30 AM',stage:'Neon Garden',artist:'Joseph Capriati'},
+    {time:'2:30 AM',stage:'Wasteland',artist:'Rebekah'},
+    {time:'2:30 AM',stage:'Bionic Jungle',artist:'Robert Hood'},
+    {time:'2:30 AM',stage:'Basspod',artist:'Adventure Club'},
+    {time:'2:35 AM',stage:'Circuit Grounds',artist:'Holy Priest'},
+    {time:'2:47 AM',stage:'Cosmic Meadow',artist:'MPH'},
+    {time:'3:00 AM',stage:'Quantum Valley',artist:'Paul van Dyk'},
+    {time:'3:01 AM',stage:'Kinetic Field',artist:'Porter Robinson (DJ Set)'},
+    {time:'3:15 AM',stage:'Stereobloom',artist:'Obskür'},
+    {time:'3:30 AM',stage:'Circuit Grounds',artist:'Ray Volpe'},
+    {time:'3:30 AM',stage:'Wasteland',artist:'DYEN'},
+    {time:'3:30 AM',stage:'Basspod',artist:'Culture Shock'},
+    {time:'4:00 AM',stage:'Bionic Jungle',artist:'Avalon Emerson'},
+    {time:'4:00 AM',stage:'Quantum Valley',artist:'Darren Porter'},
+    {time:'4:00 AM',stage:'Neon Garden',artist:'Eli Brown'},
+    {time:'4:02 AM',stage:'Cosmic Meadow',artist:'San Pacho'},
+    {time:'4:14 AM',stage:'Kinetic Field',artist:'Charlotte de Witte'},
+    {time:'4:30 AM',stage:'Circuit Grounds',artist:'Level Up'},
+    {time:'4:30 AM',stage:'Wasteland',artist:'Stan Christ'},
+    {time:'4:30 AM',stage:'Stereobloom',artist:'Toman'},
+    {time:'4:30 AM',stage:'Basspod',artist:'Cyclops'},
+  ],
+  'Saturday May 16':[
+    {time:'7:00 PM',stage:'Kinetic Field',artist:'AR/CO'},
+    {time:'7:00 PM',stage:'Circuit Grounds',artist:'DJ Mandy'},
+    {time:'7:00 PM',stage:'Cosmic Meadow',artist:'Frost Children'},
+    {time:'7:00 PM',stage:'Wasteland',artist:'CUTDWN'},
+    {time:'7:00 PM',stage:'Neon Garden',artist:'mink'},
+    {time:'7:00 PM',stage:'Quantum Valley',artist:'Maria Healy'},
+    {time:'7:00 PM',stage:'Stereobloom',artist:'Slugg'},
+    {time:'7:00 PM',stage:'Bionic Jungle',artist:'Player Dave'},
+    {time:'7:00 PM',stage:'Basspod',artist:'Fallen w/ MC Dino'},
+    {time:'7:50 PM',stage:'Basspod',artist:'Avello B2B Dennett'},
+    {time:'8:00 PM',stage:'Kinetic Field',artist:'HAYLA'},
+    {time:'8:00 PM',stage:'Circuit Grounds',artist:'RØZ'},
+    {time:'8:00 PM',stage:'Stereobloom',artist:'DREYA V'},
+    {time:'8:00 PM',stage:'Bionic Jungle',artist:'Spray'},
+    {time:'8:15 PM',stage:'Cosmic Meadow',artist:'Hannah Laing'},
+    {time:'8:30 PM',stage:'Wasteland',artist:'Dead X'},
+    {time:'8:30 PM',stage:'Neon Garden',artist:'Silvie Loto'},
+    {time:'8:30 PM',stage:'Quantum Valley',artist:'SUPERSTRINGS'},
+    {time:'8:40 PM',stage:'Basspod',artist:'Viperactive'},
+    {time:'9:00 PM',stage:'Kinetic Field',artist:'Sub Focus'},
+    {time:'9:00 PM',stage:'Stereobloom',artist:'Discip'},
+    {time:'9:00 PM',stage:'Bionic Jungle',artist:'Bashkka B2B Sedef Adasi'},
+    {time:'9:15 PM',stage:'Circuit Grounds',artist:'KETTAMA'},
+    {time:'9:25 PM',stage:'Cosmic Meadow',artist:'Snow Strippers'},
+    {time:'9:30 PM',stage:'Wasteland',artist:'The Saints'},
+    {time:'9:30 PM',stage:'Quantum Valley',artist:'Billy Gillies'},
+    {time:'9:30 PM',stage:'Basspod',artist:'Hybrid Minds'},
+    {time:'10:00 PM',stage:'Neon Garden',artist:'Ahmed Spins'},
+    {time:'10:00 PM',stage:'Stereobloom',artist:'OMNOM'},
+    {time:'10:07 PM',stage:'Kinetic Field',artist:'Steve Aoki'},
+    {time:'10:15 PM',stage:'Cosmic Meadow',artist:'VTSS (In The Round)'},
+    {time:'10:30 PM',stage:'Bionic Jungle',artist:'HAAi B2B Luke Alessi'},
+    {time:'10:30 PM',stage:'Quantum Valley',artist:'Paul Oakenfold'},
+    {time:'10:30 PM',stage:'Wasteland',artist:'Rob Gee B2B Lenny Dee'},
+    {time:'10:30 PM',stage:'Basspod',artist:'YDG'},
+    {time:'10:45 PM',stage:'Circuit Grounds',artist:'Sammy Virji'},
+    {time:'11:15 PM',stage:'Stereobloom',artist:'Noizu'},
+    {time:'11:19 PM',stage:'Kinetic Field',artist:'Hardwell'},
+    {time:'11:30 PM',stage:'Quantum Valley',artist:'Andrew Rayel'},
+    {time:'11:30 PM',stage:'Wasteland',artist:'Lady Faith B2B LNY TNZ'},
+    {time:'11:30 PM',stage:'Neon Garden',artist:'Luciano'},
+    {time:'11:30 PM',stage:'Basspod',artist:'Delta Heavy'},
+    {time:'11:35 PM',stage:'Cosmic Meadow',artist:'The Prodigy'},
+    {time:'12:00 AM',stage:'Bionic Jungle',artist:'MCR-T'},
+    {time:'12:15 AM',stage:'Circuit Grounds',artist:'Tiësto'},
+    {time:'12:30 AM',stage:'Wasteland',artist:'Audiofreq B2B Code Black B2B Toneshifterz'},
+    {time:'12:30 AM',stage:'Quantum Valley',artist:'Maddix'},
+    {time:'12:30 AM',stage:'Stereobloom',artist:'Wax Motif'},
+    {time:'12:30 AM',stage:'Basspod',artist:'Getter'},
+    {time:'12:32 AM',stage:'Kinetic Field',artist:'John Summit'},
+    {time:'12:40 AM',stage:'Cosmic Meadow',artist:'BUNT. (In The Round)'},
+    {time:'1:15 AM',stage:'Bionic Jungle',artist:'Bad Boombox B2B Ollie Lishman'},
+    {time:'1:30 AM',stage:'Wasteland',artist:'Da Tweekaz'},
+    {time:'1:30 AM',stage:'Neon Garden',artist:'Prospa'},
+    {time:'1:30 AM',stage:'Quantum Valley',artist:'Mathame'},
+    {time:'1:30 AM',stage:'Basspod',artist:'Eptic B2B Space Laces'},
+    {time:'1:45 AM',stage:'Kinetic Field',artist:'Subtronics'},
+    {time:'1:45 AM',stage:'Circuit Grounds',artist:'Peggy Gou B2B KI/KI'},
+    {time:'1:45 AM',stage:'Stereobloom',artist:'CID'},
+    {time:'2:10 AM',stage:'Cosmic Meadow',artist:'Interplanetary Criminal'},
+    {time:'2:30 AM',stage:'Quantum Valley',artist:'Astrix'},
+    {time:'2:30 AM',stage:'Wasteland',artist:'Lil Texas'},
+    {time:'2:30 AM',stage:'Bionic Jungle',artist:'Benwal'},
+    {time:'2:30 AM',stage:'Basspod',artist:'Doctor P B2B Flux Pavilion B2B FuntCase'},
+    {time:'3:00 AM',stage:'Stereobloom',artist:'HNTR'},
+    {time:'3:01 AM',stage:'Kinetic Field',artist:'Kaskade'},
+    {time:'3:15 AM',stage:'Circuit Grounds',artist:'Boys Noize'},
+    {time:'3:30 AM',stage:'Bionic Jungle',artist:'BAUGRUPPE90'},
+    {time:'3:30 AM',stage:'Cosmic Meadow',artist:'MALUGI'},
+    {time:'3:30 AM',stage:'Wasteland',artist:'Mish'},
+    {time:'3:30 AM',stage:'Neon Garden',artist:'Josh Baker B2B KETTAMA'},
+    {time:'3:30 AM',stage:'Quantum Valley',artist:'T78'},
+    {time:'3:30 AM',stage:'Basspod',artist:'HOL!'},
+    {time:'4:14 AM',stage:'Kinetic Field',artist:'Above & Beyond (Sunrise Set)'},
+    {time:'4:15 AM',stage:'Stereobloom',artist:'BOLO (Sunrise Set)'},
+    {time:'4:30 AM',stage:'Wasteland',artist:'Alyssa Jolee'},
+    {time:'4:30 AM',stage:'Cosmic Meadow',artist:'DJ Gigola B2B MCR-T'},
+    {time:'4:30 AM',stage:'Circuit Grounds',artist:'Lilly Palmer'},
+    {time:'4:30 AM',stage:'Bionic Jungle',artist:'Club Angel'},
+    {time:'4:30 AM',stage:'Quantum Valley',artist:'Thomas Schumacher'},
+    {time:'4:30 AM',stage:'Basspod',artist:'Mary Droppinz'},
+  ],
+  'Sunday May 17':[
+    {time:'7:00 PM',stage:'Kinetic Field',artist:'Trace'},
+    {time:'7:00 PM',stage:'Circuit Grounds',artist:'Linska'},
+    {time:'7:00 PM',stage:'Cosmic Meadow',artist:'GRAVAGERZ'},
+    {time:'7:00 PM',stage:'Wasteland',artist:'SIHK'},
+    {time:'7:00 PM',stage:'Neon Garden',artist:'Bad Boombox'},
+    {time:'7:00 PM',stage:'Quantum Valley',artist:'Warung'},
+    {time:'7:00 PM',stage:'Stereobloom',artist:'KLO'},
+    {time:'7:00 PM',stage:'Bionic Jungle',artist:'Alves'},
+    {time:'7:00 PM',stage:'Basspod',artist:'Nightstalker w/ MC Dino'},
+    {time:'7:50 PM',stage:'Basspod',artist:'Sippy'},
+    {time:'8:00 PM',stage:'Kinetic Field',artist:'Ship Wrek'},
+    {time:'8:00 PM',stage:'Cosmic Meadow',artist:'Nostalgix'},
+    {time:'8:00 PM',stage:'Quantum Valley',artist:'Shingo Nakamura'},
+    {time:'8:00 PM',stage:'Stereobloom',artist:"Murphy's Law"},
+    {time:'8:15 PM',stage:'Neon Garden',artist:'Frankie Bones'},
+    {time:'8:30 PM',stage:'Circuit Grounds',artist:'ANNA'},
+    {time:'8:30 PM',stage:'Wasteland',artist:'Clawz'},
+    {time:'8:30 PM',stage:'Bionic Jungle',artist:'ISAbella'},
+    {time:'8:40 PM',stage:'Basspod',artist:'EAZYBAKED'},
+    {time:'9:00 PM',stage:'Kinetic Field',artist:'Layton Giordani'},
+    {time:'9:00 PM',stage:'Cosmic Meadow',artist:'William Black'},
+    {time:'9:00 PM',stage:'Quantum Valley',artist:'Rebūke'},
+    {time:'9:15 PM',stage:'Stereobloom',artist:'Stacy Christine'},
+    {time:'9:30 PM',stage:'Neon Garden',artist:'Adiel'},
+    {time:'9:30 PM',stage:'Wasteland',artist:'The Purge'},
+    {time:'9:30 PM',stage:'Basspod',artist:'INFEKT B2B Samplifire'},
+    {time:'10:00 PM',stage:'Circuit Grounds',artist:'Beltran'},
+    {time:'10:00 PM',stage:'Cosmic Meadow',artist:'San Holo (Wholesome Riddim Set)'},
+    {time:'10:00 PM',stage:'Quantum Valley',artist:'Cristoph'},
+    {time:'10:07 PM',stage:'Kinetic Field',artist:'Funk Tribu'},
+    {time:'10:30 PM',stage:'Wasteland',artist:'Yosuf'},
+    {time:'10:30 PM',stage:'Bionic Jungle',artist:'KinAhau'},
+    {time:'10:30 PM',stage:'Stereobloom',artist:'Skream'},
+    {time:'10:30 PM',stage:'Basspod',artist:'A.M.C w/ MC Phantom'},
+    {time:'10:50 PM',stage:'Neon Garden',artist:'DJ Gigola'},
+    {time:'11:00 PM',stage:'Cosmic Meadow',artist:'Dabin'},
+    {time:'11:00 PM',stage:'Quantum Valley',artist:'Eli & Fur'},
+    {time:'11:19 PM',stage:'Kinetic Field',artist:'GRiZ B2B Wooli'},
+    {time:'11:30 PM',stage:'Circuit Grounds',artist:'Chris Stussy'},
+    {time:'11:30 PM',stage:'Wasteland',artist:'DJ Isaac'},
+    {time:'11:30 PM',stage:'Basspod',artist:'Virtual Riot'},
+    {time:'11:45 PM',stage:'Stereobloom',artist:'Hamdi'},
+    {time:'12:00 AM',stage:'Bionic Jungle',artist:'Tiga'},
+    {time:'12:00 AM',stage:'Quantum Valley',artist:'Tinlicker (DJ Set)'},
+    {time:'12:05 AM',stage:'Cosmic Meadow',artist:'Alison Wonderland'},
+    {time:'12:10 AM',stage:'Neon Garden',artist:'999999999'},
+    {time:'12:30 AM',stage:'Wasteland',artist:'Vieze Asbak'},
+    {time:'12:30 AM',stage:'Basspod',artist:'Peekaboo'},
+    {time:'12:32 AM',stage:'Kinetic Field',artist:'Zedd'},
+    {time:'1:00 AM',stage:'Circuit Grounds',artist:'Solomun'},
+    {time:'1:00 AM',stage:'Quantum Valley',artist:'Cassian'},
+    {time:'1:00 AM',stage:'Stereobloom',artist:'Chris Lorenzo B2B Bullet Tooth'},
+    {time:'1:05 AM',stage:'Cosmic Meadow',artist:'Seven Lions'},
+    {time:'1:30 AM',stage:'Neon Garden',artist:'Indira Paganotto'},
+    {time:'1:30 AM',stage:'Wasteland',artist:'Sub Zero Project'},
+    {time:'1:30 AM',stage:'Bionic Jungle',artist:'DJ Tennis B2B Red Axes'},
+    {time:'1:30 AM',stage:'Basspod',artist:'AHee B2B Liquid Stranger'},
+    {time:'1:47 AM',stage:'Kinetic Field',artist:'Martin Garrix'},
+    {time:'2:15 AM',stage:'Quantum Valley',artist:'Massano'},
+    {time:'2:15 AM',stage:'Stereobloom',artist:'Silver Bumpa'},
+    {time:'2:20 AM',stage:'Cosmic Meadow',artist:'Restricted'},
+    {time:'2:30 AM',stage:'Circuit Grounds',artist:'Vintage Culture'},
+    {time:'2:30 AM',stage:'Wasteland',artist:'Rooler'},
+    {time:'2:30 AM',stage:'Basspod',artist:'Whethan'},
+    {time:'2:50 AM',stage:'Neon Garden',artist:'KI/KI'},
+    {time:'3:01 AM',stage:'Kinetic Field',artist:'Cloonee'},
+    {time:'3:20 AM',stage:'Cosmic Meadow',artist:'Black Tiger Sex Machine'},
+    {time:'3:30 AM',stage:'Bionic Jungle',artist:'Beltran B2B Seamus'},
+    {time:'3:30 AM',stage:'Quantum Valley',artist:'Innellea'},
+    {time:'3:30 AM',stage:'Stereobloom',artist:'Morgan Seattle'},
+    {time:'3:30 AM',stage:'Wasteland',artist:'MADGRRL B2B Vessel'},
+    {time:'3:30 AM',stage:'Basspod',artist:'Boogie T B2B Distinction'},
+    {time:'4:00 AM',stage:'Circuit Grounds',artist:'Kevin de Vries'},
+    {time:'4:10 AM',stage:'Neon Garden',artist:'Klangkuenstler'},
+    {time:'4:14 AM',stage:'Kinetic Field',artist:'Armin van Buuren (Sunrise Set)'},
+    {time:'4:30 AM',stage:'Cosmic Meadow',artist:'Nico Moreno B2B Holy Priest'},
+    {time:'4:30 AM',stage:'Quantum Valley',artist:'KREAM'},
+    {time:'4:30 AM',stage:'Stereobloom',artist:'LU.RE.'},
+    {time:'4:30 AM',stage:'Wasteland',artist:'MADGRRL B2B Vessel'},
+    {time:'4:30 AM',stage:'Basspod',artist:'ÆON:MODE (Sunrise Set)'},
+  ],
+};
+
+// Build STAGE_SCHEDULE from SET_TIMES
 function buildSchedule(){
-  try{
-    document.querySelectorAll('.stage-card').forEach(card=>{
-      const stageName=card.querySelector('.stage-name')?.textContent?.trim()||'';
-      card.querySelectorAll('.stage-day-block').forEach(block=>{
-        const dayLabel=block.querySelector('.stage-day-label')?.textContent?.trim()||'';
-        // Strip host suffix e.g. "Sunday May 17 · Hosted by Basscon" → "Sunday May 17"
-        const cleanDay=dayLabel.split('·')[0].trim();
-        block.querySelectorAll('.stage-artist').forEach(el=>{
-          const rawName=el.textContent.trim();
-          if(!STAGE_SCHEDULE[rawName])STAGE_SCHEDULE[rawName]=[];
-          if(!STAGE_SCHEDULE[rawName].some(e=>e.day===cleanDay&&e.stage===stageName))
-            STAGE_SCHEDULE[rawName].push({day:cleanDay,stage:stageName});
-        });
-      });
+  Object.entries(SET_TIMES).forEach(([day,sets])=>{
+    sets.forEach(({stage,artist})=>{
+      if(!STAGE_SCHEDULE[artist])STAGE_SCHEDULE[artist]=[];
+      if(!STAGE_SCHEDULE[artist].some(e=>e.day===day&&e.stage===stage))
+        STAGE_SCHEDULE[artist].push({day,stage});
     });
-  }catch(e){console.warn('buildSchedule',e);}
+  });
 }
-// Build schedule on window load to ensure all DOM is ready
-window.addEventListener('load', buildSchedule);
+window.addEventListener('load',buildSchedule);
+
+// Get set time for an artist on a given day+stage
+function getSetTime(artist,day,stage){
+  const entry=(SET_TIMES[day]||[]).find(s=>s.artist===artist&&s.stage===stage);
+  return entry?entry.time:'';
+}
 
 /* ── CHIPS ── */
 function renderListChips(){
@@ -1403,49 +1626,79 @@ function renderListChips(){
   bar.appendChild(nb);
 }
 
-/* ── LIST VIEW (by day/stage) ── */
+/* ── LIST VIEW (by day → stage → time + artist) ── */
 function renderListView(){
   if(Object.keys(STAGE_SCHEDULE).length===0)buildSchedule();
   const wrap=document.getElementById('listViewWrap');
   if(!wrap)return;
   if(activeListId===null){wrap.innerHTML='';return;}
   const lst=myLists.find(l=>l.id===activeListId);
-  if(!lst||!lst.artists||lst.artists.length===0){wrap.innerHTML='<div class="list-view-wrap"><div class="list-empty-hint">No artists yet — click ✏️ to add some!</div></div>';return;}
+  if(!lst||!lst.artists||lst.artists.length===0){
+    wrap.innerHTML='<div class="list-view-wrap"><div class="list-empty-hint">No artists yet — click ✏️ to add some!</div></div>';
+    return;
+  }
+
   const dayOrder=['Friday May 15','Saturday May 16','Sunday May 17'];
-  const grouped={};const unscheduled=[];
+
+  // Build grouped structure with times
+  const grouped={}; // day → stage → [{time, artist}]
+  const unscheduled=[];
+
   lst.artists.forEach(name=>{
     const slots=STAGE_SCHEDULE[name];
-    if(!slots||slots.length===0){unscheduled.push(name);return;}
+    if(!slots||slots.length===0){unscheduled.push({name,time:''});return;}
     slots.forEach(({day,stage})=>{
+      const time=getSetTime(name,day,stage);
       if(!grouped[day])grouped[day]={};
       if(!grouped[day][stage])grouped[day][stage]=[];
-      grouped[day][stage].push(name);
+      grouped[day][stage].push({name,time});
     });
   });
-  // If STAGE_SCHEDULE is still empty, all artists go to unscheduled
-  const allArtists=lst.artists||[];
+
+  // Sort by time within each stage
+  function timeToMins(t){
+    if(!t)return 9999;
+    const m=t.match(/(\d+):(\d+)\s*(AM|PM)/i);
+    if(!m)return 9999;
+    let h=parseInt(m[1]),min=parseInt(m[2]),period=m[3].toUpperCase();
+    if(period==='PM'&&h!==12)h+=12;
+    if(period==='AM'&&h===12)h=0;
+    // treat AM times (after midnight) as late night (add 24h)
+    if(period==='AM')h+=24;
+    return h*60+min;
+  }
+
   let html='<div class="list-view-wrap">';
   let hasContent=false;
   dayOrder.forEach(day=>{
     if(!grouped[day])return;
     hasContent=true;
     html+=`<div class="list-day-group"><div class="list-day-header">${day}</div>`;
-    Object.entries(grouped[day]).forEach(([stage,names])=>{
+    // Sort stages, then sort artists by time within each stage
+    Object.entries(grouped[day]).forEach(([stage,artists])=>{
+      artists.sort((a,b)=>timeToMins(a.time)-timeToMins(b.time));
       html+=`<div class="list-stage-group"><div class="list-stage-label">${stage}</div>`;
-      names.forEach(name=>{html+=`<div class="list-stage-artist"><span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;});
+      artists.forEach(({name,time})=>{
+        html+=`<div class="list-stage-artist">`;
+        if(time)html+=`<span class="list-set-time">${time}</span>`;
+        html+=`<span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;
+      });
       html+='</div>';
     });
     html+='</div>';
   });
-  // Show unscheduled — if schedule is empty, ALL artists go here
-  const toShow=unscheduled.length>0?unscheduled:(hasContent?[]:allArtists);
-  if(toShow.length){
+
+  if(unscheduled.length||!hasContent){
+    const toShow=unscheduled.length>0?unscheduled:lst.artists.map(n=>({name:n,time:''}));
     html+='<div class="list-day-group"><div class="list-day-header">Unscheduled</div><div class="list-stage-group">';
-    toShow.forEach(name=>{html+=`<div class="list-stage-artist"><span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;});
+    toShow.forEach(({name})=>{
+      html+=`<div class="list-stage-artist"><span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;
+    });
     html+='</div></div>';
   }
   html+='</div>';
   wrap.innerHTML=html;
+
   wrap.querySelectorAll('.list-remove-btn').forEach(btn=>{
     btn.addEventListener('click',async()=>{
       const lid=btn.dataset.list;
@@ -1459,8 +1712,9 @@ function renderListView(){
 function buildModalEntries(){
   const entries=ARTISTS.map(a=>({name:a[0],meta:a[2]}));
   const nameSet=new Set(entries.map(e=>e.name));
-  Object.keys(STAGE_SCHEDULE).forEach(name=>{
-    if(!nameSet.has(name)){entries.push({name,meta:'B2B'});nameSet.add(name);}
+  // Add all set-times artists not already in ARTISTS
+  Object.values(SET_TIMES).flat().forEach(({artist})=>{
+    if(!nameSet.has(artist)){entries.push({name:artist,meta:'B2B / Special'});nameSet.add(artist);}
   });
   return entries.sort((a,b)=>a.name.localeCompare(b.name));
 }
@@ -1503,8 +1757,7 @@ function openModal(listId){
   if(listId){const lst=myLists.find(l=>l.id===listId);if(lst){nameInput.value=lst.name;lst.artists.forEach(a=>{modalCheckMap[a]=true;});}}
   else{nameInput.value='';}
   modalShowSelectedFirst=false;
-  const ssBtn=document.getElementById('modalShowSelected');
-  if(ssBtn)ssBtn.classList.remove('active');
+  document.getElementById('modalShowSelected').classList.remove('active');
   document.getElementById('modalSearch').value='';
   renderModalArtists('');
   updateModalCount();
@@ -1520,7 +1773,6 @@ document.getElementById('modalShowSelected').addEventListener('click',()=>{
 });
 document.getElementById('modalCancel').addEventListener('click',()=>document.getElementById('listModal').classList.remove('open'));
 document.getElementById('listModal').addEventListener('click',e=>{if(e.target===document.getElementById('listModal'))document.getElementById('listModal').classList.remove('open');});
-
 document.getElementById('modalSave').addEventListener('click',async()=>{
   const name=document.getElementById('listNameInput').value.trim();
   if(!name){document.getElementById('listNameInput').focus();return;}
@@ -1529,6 +1781,8 @@ document.getElementById('modalSave').addEventListener('click',async()=>{
   if(editingListId){await updateList(editingListId,name,selected);}
   else{await saveNewList(name,selected);}
 });
+
+renderListChips();
 
 /* ── CORNER FIREWORKS on cvFx ── */
 const FW_COLORS = ['#00eeff','#ff073a','#39ff14','#ffd600','#9b00ff','#ffffff','#ff8800'];
@@ -1659,24 +1913,6 @@ function drawPartsAndFW() {
 }
 // Fireworks draw in main loop below
 
-
-
-/* ── DAY FILTER ── */
-document.querySelectorAll('.day-filter-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.day-filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const day=btn.dataset.day;
-    document.querySelectorAll('.stage-day-block').forEach(block=>{
-      if(day==='all'){
-        block.classList.remove('hidden');
-      } else {
-        const label=block.querySelector('.stage-day-label')?.textContent?.split('·')[0].trim()||'';
-        block.classList.toggle('hidden', label!==day);
-      }
-    });
-  });
-});
 
 /* ── LIGHTBOX ── */
 function openLightbox(src, caption, sub) {
