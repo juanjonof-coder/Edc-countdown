@@ -1673,19 +1673,20 @@ function renderListView(){
   dayOrder.forEach(day=>{
     if(!grouped[day])return;
     hasContent=true;
-    html+=`<div class="list-day-group"><div class="list-day-header">${day}</div>`;
-    // Sort stages, then sort artists by time within each stage
+    // Flatten all stage/artist entries for this day, then sort by time
+    const allEntries=[];
     Object.entries(grouped[day]).forEach(([stage,artists])=>{
-      artists.sort((a,b)=>timeToMins(a.time)-timeToMins(b.time));
-      html+=`<div class="list-stage-group"><div class="list-stage-label">${stage}</div>`;
-      artists.forEach(({name,time})=>{
-        html+=`<div class="list-stage-artist">`;
-        if(time)html+=`<span class="list-set-time">${time}</span>`;
-        html+=`<span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;
-      });
-      html+='</div>';
+      artists.forEach(({name,time})=>allEntries.push({name,time,stage}));
     });
-    html+='</div>';
+    allEntries.sort((a,b)=>timeToMins(a.time)-timeToMins(b.time));
+    html+=`<div class="list-day-group"><div class="list-day-header">${day}</div><div class="list-stage-group">`;
+    allEntries.forEach(({name,time,stage})=>{
+      html+=`<div class="list-stage-artist">`;
+      if(time)html+=`<span class="list-set-time">${time}</span>`;
+      html+=`<span class="list-stage-label" style="display:inline;padding:0;border:none;margin:0 8px 0 2px;font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);">${stage}</span>`;
+      html+=`<span>${name}</span><span class="list-remove-btn" data-list="${lst.id}" data-artist="${name.replace(/"/g,'&quot;')}">✕</span></div>`;
+    });
+    html+='</div></div>';
   });
 
   if(unscheduled.length||!hasContent){
